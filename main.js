@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var Logger = require('./log.js');
 var output = new Logger ();
 
