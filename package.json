@@ -1,0 +1,25 @@
+{
+  "name": "robocup",
+  "version": "1.0.0",
+  "description": "A bot that does robot things.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liam-b/robocup.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liam-b/robocup/issues"
+  },
+  "homepage": "https://github.com/liam-b/robocup#readme",
+  "devDependencies": {
+    "jasmine": "^2.5.3",
+    "jasmine-core": "^2.5.2",
+    "jasmine-node": "^1.14.5",
+    "jasmine-spec-reporter": "^3.2.0"
+  }
+}
