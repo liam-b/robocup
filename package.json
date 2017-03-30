@@ -4,7 +4,8 @@
   "description": "A bot that does robot things.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine",
+    "start": "node lib/main.js"
   },
   "repository": {
     "type": "git",
