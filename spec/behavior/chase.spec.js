@@ -23,7 +23,7 @@ bdescribe('ball chase', function () {
     expect(lastMotorArguments.ratio[1]).toBeGreaterThan(1);
   })
 
-  it('should try to find the ball if it losses it', function () {
+  it('should try to find the ball if it loses it', function () {
     for (var i = 0; i < 5; i += 1) {
       chase(fakeMotors, 0, 0, 100);
     }
