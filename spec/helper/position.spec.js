@@ -4,7 +4,6 @@ var hdescribe = color.hdescribe;
 
 hdescribe('bot position and rotation', function () {
   var position = require('../../lib/helper/position.js');
-  console.log(global)
 
   it('return absolute position', function () {
     expect(position.absoluteRotation(0)).toBe(0);
@@ -24,5 +23,6 @@ hdescribe('bot position and rotation', function () {
     expect(position.relativeRotation(0)).toBe(0);
     position.setRelativeNorth(180);
     expect(position.relativeRotation(180)).toBe(0);
+    expect(position.relativeRotation(0)).toBe(180);
   })
 })
