@@ -30,5 +30,17 @@ module.exports = {
 
     this.getValue = function (id) { return 5; }
     this.setProperty = function (property, value) {}
+  },
+  'LEDGroup': function (l1, r1, l2, r2) {
+    this.connected = true;
+
+    this.setColor = function (color, num) {}
+  },
+  'PowerSupply': function (l1, r1, l2, r2) {
+    this.connected = true;
+
+    this.measuredVoltage = 8;
+    this.minVoltage = 6;
+    this.maxVoltage = 8;
   }
 }

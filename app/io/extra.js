@@ -1,4 +1,5 @@
-var ev3dev = require('ev3dev-lang');
+try { var ev3dev = require('ev3dev-lang') }
+catch (e) { var ev3dev = require('../mock.js') }
 
 module.exports.Leds = function () {
   this.group = new ev3dev.LEDGroup('ev3:left:green:ev3dev', 'ev3:left:red:ev3dev', 'ev3:right:green:ev3dev', 'ev3:right:red:ev3dev');
@@ -17,7 +18,7 @@ module.exports.Leds = function () {
 
 module.exports.PowerSupply = function (output) {
   this.battery = new ev3dev.PowerSupply();
-  this.output = output;
+  this.output = (typeof output != 'undefined') ? output : new ev3dev.Logger();
 
   this.charge = function () {
     return this.battery.measuredVoltage;
@@ -25,7 +26,7 @@ module.exports.PowerSupply = function (output) {
 
   this.check = function () {
     this.output.trace('check', 'checking battery');
-    (this.percentage() > 30) ? this.output.log('check', 'battery ok at ' + output.cyan(this.percentage() + '%')) : this.output.warn('check', 'battery is low at ' + output.cyan(this.percentage() + '%'));
+    (this.percentage() > 30) ? this.output.log('check', 'battery ok at ' + this.output.cyan(this.percentage() + '%')) : this.output.warn('check', 'battery is low at ' + this.output.cyan(this.percentage() + '%'));
   }
 
   this.percentage = function () {

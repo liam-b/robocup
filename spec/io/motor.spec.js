@@ -1,7 +1,7 @@
 var detail = require('../services/color.js');
 
 detail('motor wrapper classes', 'io', __filename, function () {
-  var motor = require('../../lib/io/motor.js');
+  var motor = require('../../app/io/motor.js');
 
   describe('DriveMotors class', function () {
     var motors = new motor.DriveMotors('outA', 'outB');

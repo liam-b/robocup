@@ -1,7 +1,7 @@
 var detail = require('../services/color.js');
 
 detail('sensor wrapper classes', 'io', __filename, function () {
-  var sensor = require('../../lib/io/sensor.js');
+  var sensor = require('../../app/io/sensor.js');
 
   describe('ColorSensor class', function () {
     var colorSensor = new sensor.ColorSensor('in1');
