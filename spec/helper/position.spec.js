@@ -1,8 +1,7 @@
-var color = require('../services/color.js');
-var bdescribe = color.bdescribe;
-var hdescribe = color.hdescribe;
+var detail = require('../services/color.js');
 
-hdescribe('bot position and rotation', function () {
+detail('bot position and rotation', 'behavior', function () {
+  pending('need to be upgraded')
   var position = require('../../lib/helper/position.js');
 
   it('return absolute position', function () {

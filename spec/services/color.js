@@ -1,7 +1,3 @@
-exports.bdescribe = function (name, func) {
-  describe(name + '\x1b[34m' + ' behavior' + '\x1b[0m', func)
-}
-
-exports.hdescribe = function (name, func) {
-  describe(name + '\x1b[34m' + ' helper' + '\x1b[0m', func)
+module.exports = function (name, type, func) {
+  describe(name + '\x1b[34m ' + type + '\x1b[0m \x1b[30m' + __filename + '\x1b[0m', func)
 }

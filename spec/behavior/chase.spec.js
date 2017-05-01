@@ -1,33 +1,25 @@
-var color = require('../services/color.js');
-var bdescribe = color.bdescribe;
-var hdescribe = color.hdescribe;
+var detail = require('../services/color.js');
 
-bdescribe('ball chase', function () {
+detail('ball chase', 'behavior', function () {
   var chase = require('../../lib/behavior/chase.js');
-  var lastMotorArguments = {};
+  var motor = require('../../lib/io/motor.js')
 
-  function fakeMotorsClass () {
-    this.ratio = function (ratio, speed) {
-      lastMotorArguments = {'ratio': ratio, 'speed': speed};
-    }
-  }
-
-  var fakeMotors = new fakeMotorsClass();
+  var motors = new motor.DriveMotors()
 
   it('should point towards ball', function () {
-    chase(fakeMotors, 5, 1, 100);
-    expect(lastMotorArguments).toEqual({'ratio': [1, 1], 'speed': 100});
+    spyOn(motors, 'ratio');
 
-    chase(fakeMotors, 4, 1, 100);
-    expect(lastMotorArguments.ratio[0]).toBeLessThan(1);
-    expect(lastMotorArguments.ratio[1]).toBeGreaterThan(1);
+    chase(motors, 5, 1, 100);
+    expect(motors.ratio).toHaveBeenCalledWith([1, 1], 100);
+
+    chase(motors, 4, 1, 100);
+    expect(motors.ratio).toHaveBeenCalledWith([0.8, 1.2], 100);
   })
 
   it('should try to find the ball if it loses it', function () {
-    for (var i = 0; i < 5; i += 1) {
-      chase(fakeMotors, 0, 0, 100);
-    }
+    spyOn(motors, 'ratio');
 
-    expect(lastMotorArguments).toEqual({'ratio': [-1, 1], 'speed': 100});
+    for (var i = 0; i < 5; i += 1) chase(motors, 0, 0, 100);
+    expect(motors.ratio).toHaveBeenCalledWith([-1, 1], 100);
   })
 })
