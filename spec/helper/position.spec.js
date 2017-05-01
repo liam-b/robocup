@@ -1,6 +1,6 @@
 var detail = require('../services/color.js');
 
-detail('bot position and rotation', 'behavior', function () {
+detail('bot position and rotation', 'behavior', __filename, function () {
   pending('need to be upgraded')
   var position = require('../../lib/helper/position.js');
 

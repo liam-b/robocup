@@ -1,6 +1,6 @@
 var detail = require('../services/color.js');
 
-detail('motor wrapper classes', 'io', function () {
+detail('motor wrapper classes', 'io', __filename, function () {
   var motor = require('../../lib/io/motor.js');
 
   describe('DriveMotors class', function () {
@@ -39,27 +39,9 @@ detail('motor wrapper classes', 'io', function () {
       expect(motors.right.stop).toHaveBeenCalled();
     })
 
-    it('should be able to stop both motors', function () {
-      spyOn(motors.left, 'runForever');
-      spyOn(motors.right, 'runForever');
-
-      spyOn(motors.left, 'stop');
-      spyOn(motors.right, 'stop');
-
-      motors.run(100, 100);
-      expect(motors.left.runForever).toHaveBeenCalledWith(100);
-      expect(motors.right.runForever).toHaveBeenCalledWith(100);
-      motors.stop();
-      expect(motors.left.stop).toHaveBeenCalled();
-      expect(motors.right.stop).toHaveBeenCalled();
-    })
-
     it('should check if motors are connected', function () {
-      spyOn(motors.output, 'log');
       spyOn(motors.output, 'err');
 
-      motors.check();
-      expect(motors.output.log).toHaveBeenCalled();
       motors.left.connected = false;
       motors.right.connected = false;
       motors.check();
@@ -89,11 +71,8 @@ detail('motor wrapper classes', 'io', function () {
     })
 
     it('should check if motor is connected', function () {
-      spyOn(motors.output, 'log');
       spyOn(motors.output, 'err');
 
-      motors.check();
-      expect(motors.output.log).toHaveBeenCalled();
       motors.motor.connected = false;
       motors.check();
       expect(motors.output.err).toHaveBeenCalled();

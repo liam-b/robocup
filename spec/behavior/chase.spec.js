@@ -1,6 +1,6 @@
 var detail = require('../services/color.js');
 
-detail('ball chase', 'behavior', function () {
+detail('ball chase', 'behavior', __filename, function () {
   var chase = require('../../lib/behavior/chase.js');
   var motor = require('../../lib/io/motor.js')
 
