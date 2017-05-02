@@ -1,7 +1,7 @@
 var detail = require('../services/color.js');
 
 detail('bot position and rotation', 'behavior', __filename, function () {
-  pending('need to be upgraded')
+  pending('needs to be upgraded')
   var position = require('../../app/helper/position.js');
 
   it('return absolute position', function () {

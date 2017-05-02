@@ -19,7 +19,7 @@ output.log('start', 'seting up');
 
 var behavior = {
   'chase': require('./behavior/chase.js')
-}
+};
 
 var bot = {
   'motors': new motor.DriveMotors('outC', 'outA', output),
@@ -31,9 +31,9 @@ var bot = {
   'seeker': new sensor.SeekerSensor('in3:i2c8', output),
 
   'battery': new extra.PowerSupply(output)
-}
+};
 
-bot.output.info('start', 'checking connections');
+output.info('start', 'checking connections');
 
 bot.motors.check();
 bot.colorSensor.check();
@@ -43,11 +43,11 @@ bot.seeker.check();
 
 bot.battery.check();
 
-bot.output.info('start', 'setting modes');
+output.info('start', 'setting modes');
 
-bot.colorSensor.mode(colorSensor.REFLECTIVE);
-bot.ultrasonicSensor.mode(ultrasonicSensor.DISTANCE);
-bot.seeker.mode(seeker.MODULATED);
+bot.colorSensor.mode(bot.colorSensor.REFLECTIVE);
+bot.ultrasonicSensor.mode(bot.ultrasonicSensor.DISTANCE);
+bot.seeker.mode(bot.seeker.MODULATED);
 
 leds.color(leds.BLACK);
 
@@ -90,6 +90,6 @@ function startLoop () {
 }
 
 function loop () {
-  behavior.chase(motors, sensor.angle, sensor.distance, constants.CHASE_SPEED);
-  console.log(compass.value());
+  behavior.chase(bot.motors, sensor.angle, sensor.distance, constants.CHASE_SPEED);
+  console.log(bot.compass.value());
 }
