@@ -1,3 +1,5 @@
+var ev3dev = require('ev3dev-lang');
+
 var Logger = require('./log.js');
 var constants = require('./constants.js');
 
@@ -14,12 +16,12 @@ var speed = 0;
 
 output.log('start', 'started');
 output.info('start', 'runtime version ' + output.cyan(version));
-constants.BOT_STATE = 'setup';
+constants.BOT_STATE = 'setup'
 output.log('start', 'seting up');
 
 var behavior = {
   'chase': require('./behavior/chase.js')
-};
+}
 
 var bot = {
   'motors': new motor.DriveMotors('outC', 'outA', output),
@@ -31,9 +33,9 @@ var bot = {
   'seeker': new sensor.SeekerSensor('in3:i2c8', output),
 
   'battery': new extra.PowerSupply(output)
-};
+}
 
-output.info('start', 'checking connections');
+bot.output.info('start', 'checking connections');
 
 bot.motors.check();
 bot.colorSensor.check();
@@ -43,11 +45,11 @@ bot.seeker.check();
 
 bot.battery.check();
 
-output.info('start', 'setting modes');
+bot.output.info('start', 'setting modes');
 
-bot.colorSensor.mode(bot.colorSensor.REFLECTIVE);
-bot.ultrasonicSensor.mode(bot.ultrasonicSensor.DISTANCE);
-bot.seeker.mode(bot.seeker.MODULATED);
+bot.colorSensor.mode(colorSensor.REFLECTIVE);
+bot.ultrasonicSensor.mode(ultrasonicSensor.DISTANCE);
+bot.seeker.mode(seeker.MODULATED);
 
 leds.color(leds.BLACK);
 
@@ -56,14 +58,14 @@ output.info('start', 'other setup');
 buttons.event.pressed('up', function () {
   constants.BOT_STATE = 'role set';
   constants.ROLE = 'attack';
-  output.log('start', 'bot role set to \'attack\'');
+  output.log('start', 'bot set to play in attack');
   startLoop();
 });
 
 buttons.event.pressed('down', function () {
-  constants.BOT_STATE = 'role_set';
+  constants.BOT_STATE = 'role set';
   constants.ROLE = 'defend';
-  output.log('start', 'bot role set to \'defend\'');
+  output.log('start', 'bot set to play in defend');
   startLoop();
 });
 
@@ -79,7 +81,12 @@ buttons.event.pressed('back', function () {
   process.exit();
 });
 
-constants.BOT_STATE = 'post setup';
+buttons.event.pressed('left', function () {
+  bot.compass.setRelativeNorth(bot.compass.value());
+  output.log('set', 'relative north set');
+});
+
+constants.BOT_STATE = 'post_setup';
 output.info('start', 'finished setup');
 
 function startLoop () {
@@ -90,6 +97,5 @@ function startLoop () {
 }
 
 function loop () {
-  behavior.chase(bot.motors, sensor.angle, sensor.distance, constants.CHASE_SPEED);
-  console.log(bot.compass.value());
+  behavior.chase(motors, sensor.angle, sensor.distance, constants.CHASE_SPEED);
 }
