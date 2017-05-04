@@ -45,9 +45,9 @@ bot.battery.check();
 
 output.info('start', 'setting modes');
 
-bot.colorSensor.mode(colorSensor.REFLECTIVE);
-bot.ultrasonicSensor.mode(ultrasonicSensor.DISTANCE);
-bot.seeker.mode(seeker.MODULATED);
+bot.colorSensor.mode(bot.colorSensor.REFLECTIVE);
+bot.ultrasonicSensor.mode(bot.ultrasonicSensor.DISTANCE);
+bot.seeker.mode(bot.seeker.MODULATED);
 
 leds.color(leds.BLACK);
 
@@ -99,5 +99,5 @@ function start () {
 }
 
 function loop () {
-  behavior.chase(motors, sensor.angle, sensor.distance, constants.CHASE_SPEED);
+  behavior.chase(motors, seeker.angle, seeker.distance, constants.CHASE_SPEED);
 }
