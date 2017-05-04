@@ -35,7 +35,7 @@ var bot = {
   'battery': new extra.PowerSupply(output)
 }
 
-bot.output.info('start', 'checking connections');
+output.info('start', 'checking connections');
 
 bot.motors.check();
 bot.colorSensor.check();
