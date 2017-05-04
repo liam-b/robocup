@@ -59,14 +59,14 @@ buttons.event.pressed('up', function () {
   constants.BOT_STATE = 'role set';
   constants.ROLE = 'attack';
   output.log('start', 'bot set to play in attack');
-  startLoop();
+  start();
 });
 
 buttons.event.pressed('down', function () {
   constants.BOT_STATE = 'role set';
   constants.ROLE = 'defend';
   output.log('start', 'bot set to play in defend');
-  startLoop();
+  start();
 });
 
 buttons.event.pressed('enter', function () {
@@ -82,14 +82,18 @@ buttons.event.pressed('back', function () {
 });
 
 buttons.event.pressed('left', function () {
-  bot.compass.setRelativeNorth(bot.compass.value());
-  output.log('set', 'relative north set');
+  if (constants.PAUSED){
+    bot.compass.setRelativeNorth(bot.compass.value());
+    output.log('set', 'relative north set');
+  }
 });
 
 constants.BOT_STATE = 'post_setup';
 output.info('start', 'finished setup');
 
-function startLoop () {
+function start () {
+  bot.compass.setRelativeNorth(bot.compass.value());
+  output.log('set', 'relative north set');
   constants.BOT_STATE = 'looping';
   var loopInterval = setInterval(function () {
     if (!constants.PAUSED) loop();
