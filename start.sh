@@ -1,2 +1,2 @@
 git pull --rebase
-node lib/main.js
+node app/main.js
