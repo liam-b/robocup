@@ -1,5 +1,3 @@
-var ev3dev = require('ev3dev-lang');
-
 var Logger = require('./log.js');
 var constants = require('./constants.js');
 
