@@ -52,7 +52,7 @@ detail('motor wrapper classes', 'io', __filename, function () {
   describe('Motor class', function () {
     var motors = new motor.Motor('outA');
 
-    it('should be able to control individual motors', function () {
+    it('should be able to control one motor', function () {
       spyOn(motors.motor, 'runForever');
 
       motors.run(100);
