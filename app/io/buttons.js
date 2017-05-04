@@ -62,6 +62,39 @@ fs.createReadStream(buttonEventFile).on('data', function (chunk) {
   }
 });
 
+// var readline = require('readline');
+//
+// readline.emitKeypressEvents(process.stdin);
+// process.stdin.setRawMode(true);
+//
+// process.stdin.on('keypress', (str, key) => {
+//   switch (key.name) {
+//     case 'c':
+//       process.exit();
+//       break;
+//     case 'up':
+//       button.pressed.up()
+//       break;
+//     case 'down':
+//       button.pressed.down()
+//       break;
+//     case 'left':
+//       button.pressed.left()
+//       break;
+//     case 'right':
+//       button.pressed.right()
+//       break;
+//     case 'return':
+//       button.pressed.enter()
+//       break;
+//     case 'escape':
+//       button.pressed.back()
+//       break;
+//     default:
+//       console.log(key, str)
+//   }
+// })
+
 module.exports.event = {
   'pressed': function (buttonID, callback) {
     button.pressed[buttonID] = callback;

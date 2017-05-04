@@ -4,4 +4,4 @@ module.exports = {
   PAUSED: false,
 
   CHASE_SPEED: 200
-}
+};

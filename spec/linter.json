@@ -1,0 +1,7 @@
+{
+  "files": [
+    "app/main.js",
+    "app/constants.js",
+    "app/log.js"
+  ]
+}
