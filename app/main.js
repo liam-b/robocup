@@ -45,7 +45,7 @@ bot.seeker.check();
 
 bot.battery.check();
 
-bot.output.info('start', 'setting modes');
+output.info('start', 'setting modes');
 
 bot.colorSensor.mode(colorSensor.REFLECTIVE);
 bot.ultrasonicSensor.mode(ultrasonicSensor.DISTANCE);
