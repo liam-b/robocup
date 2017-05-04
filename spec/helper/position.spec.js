@@ -1,7 +1,6 @@
 var detail = require('../services/color.js');
 
 detail('bot position and rotation', 'behavior', __filename, function () {
-  pending('need to be upgraded')
   var position = require('../../app/helper/position.js');
 
   it('return absolute position', function () {
@@ -13,6 +12,9 @@ detail('bot position and rotation', 'behavior', __filename, function () {
     position.setRelativeNorth(0);
     expect(position._relativeNorthDirection).toBe(0);
 
+    position.setRelativeNorth(86);
+    expect(position._relativeNorthDirection).toBe(86);
+
     position.setRelativeNorth(360);
     expect(position._relativeNorthDirection).toBe(360);
   })
@@ -23,5 +25,8 @@ detail('bot position and rotation', 'behavior', __filename, function () {
     position.setRelativeNorth(180);
     expect(position.relativeRotation(180)).toBe(0);
     expect(position.relativeRotation(0)).toBe(180);
+    position.setRelativeNorth(124);
+    expect(position.relativeRotation(0)).toBe(236);
+    expect(position.relativeRotation(180)).toBe(56);
   })
 })
