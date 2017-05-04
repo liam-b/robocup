@@ -30,70 +30,70 @@ var button = {
   }
 }
 
-// function parseInputEvents (eventChunk) {
-//   var events = [];
-//   for (var i = 0; i < eventChunk.length; i += 16) {
-//     events.push({
-//       time: {
-//         sec: eventChunk.readUInt32LE(i + 0),
-//         usec: eventChunk.readUInt32LE(i + 4)
-//       },
-//       type: eventChunk.readUInt16LE(i + 8),
-//       code: eventChunk.readUInt16LE(i + 10),
-//       value: eventChunk.readUInt32LE(i + 12)
-//     });
-//   }
-//
-//   return events;
-// }
-//
-// fs.createReadStream(buttonEventFile).on('data', function (chunk) {
-//   var allEvents = parseInputEvents(chunk);
-//   var keyEvents = allEvents.filter(function (event) {
-//     return event.type == 0x01;
-//   });
-//
-//   for (var keyEventIndex in keyEvents) {
-//     var keyEvent = keyEvents[keyEventIndex];
-//     if (keyEvent.code in buttonNames) {
-//       if (keyEvent.value) button.pressed[buttonNames[keyEvent.code]]()
-//       else button.released[buttonNames[keyEvent.code]]()
-//     }
-//   }
-// });
-
-var readline = require('readline');
-
-readline.emitKeypressEvents(process.stdin);
-process.stdin.setRawMode(true);
-
-process.stdin.on('keypress', (str, key) => {
-  switch (key.name) {
-    case 'c':
-      process.exit();
-      break;
-    case 'up':
-      button.pressed.up()
-      break;
-    case 'down':
-      button.pressed.down()
-      break;
-    case 'left':
-      button.pressed.left()
-      break;
-    case 'right':
-      button.pressed.right()
-      break;
-    case 'return':
-      button.pressed.enter()
-      break;
-    case 'escape':
-      button.pressed.back()
-      break;
-    default:
-      console.log(key, str)
+function parseInputEvents (eventChunk) {
+  var events = [];
+  for (var i = 0; i < eventChunk.length; i += 16) {
+    events.push({
+      time: {
+        sec: eventChunk.readUInt32LE(i + 0),
+        usec: eventChunk.readUInt32LE(i + 4)
+      },
+      type: eventChunk.readUInt16LE(i + 8),
+      code: eventChunk.readUInt16LE(i + 10),
+      value: eventChunk.readUInt32LE(i + 12)
+    });
   }
-})
+
+  return events;
+}
+
+fs.createReadStream(buttonEventFile).on('data', function (chunk) {
+  var allEvents = parseInputEvents(chunk);
+  var keyEvents = allEvents.filter(function (event) {
+    return event.type == 0x01;
+  });
+
+  for (var keyEventIndex in keyEvents) {
+    var keyEvent = keyEvents[keyEventIndex];
+    if (keyEvent.code in buttonNames) {
+      if (keyEvent.value) button.pressed[buttonNames[keyEvent.code]]()
+      else button.released[buttonNames[keyEvent.code]]()
+    }
+  }
+});
+
+// var readline = require('readline');
+//
+// readline.emitKeypressEvents(process.stdin);
+// process.stdin.setRawMode(true);
+//
+// process.stdin.on('keypress', (str, key) => {
+//   switch (key.name) {
+//     case 'c':
+//       process.exit();
+//       break;
+//     case 'up':
+//       button.pressed.up()
+//       break;
+//     case 'down':
+//       button.pressed.down()
+//       break;
+//     case 'left':
+//       button.pressed.left()
+//       break;
+//     case 'right':
+//       button.pressed.right()
+//       break;
+//     case 'return':
+//       button.pressed.enter()
+//       break;
+//     case 'escape':
+//       button.pressed.back()
+//       break;
+//     default:
+//       console.log(key, str)
+//   }
+// })
 
 module.exports.event = {
   'pressed': function (buttonID, callback) {
