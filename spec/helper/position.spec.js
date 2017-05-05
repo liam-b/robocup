@@ -1,6 +1,6 @@
 var detail = require('../services/color.js');
 
-detail('bot position and rotation', 'behavior', __filename, function () {
+detail('bot position and rotation', 'helper', __filename, function () {
   var position = require('../../app/helper/position.js');
 
   it('return absolute position', function () {
