@@ -5,6 +5,7 @@ var motor = require('./io/motor.js');
 var sensor = require('./io/sensor.js');
 var extra = require('./io/extra.js');
 var buttons = require('./io/buttons.js');
+var position = require('./helper/position.js')
 
 var leds = new extra.Leds();
 var output = new Logger(leds, (process.argv[2] == 'quiet'));
@@ -81,7 +82,7 @@ buttons.event.pressed('back', function () {
 
 buttons.event.pressed('left', function () {
   if (constants.PAUSED || constants.BOT_STATE != 'looping'){
-    bot.compass.setRelativeNorth(bot.compass.value());
+    position.setRelativeNorth(bot.compass.value());
     output.log('set', 'relative north set');
   }
 });
