@@ -80,7 +80,7 @@ buttons.event.pressed('back', function () {
 });
 
 buttons.event.pressed('left', function () {
-  if (constants.PAUSED){
+  if (constants.PAUSED || constants.BOT_STATE != 'looping'){
     bot.compass.setRelativeNorth(bot.compass.value());
     output.log('set', 'relative north set');
   }
