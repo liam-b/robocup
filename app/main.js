@@ -108,13 +108,13 @@ function loop () {
 process.stdin.resume();//so the program will not close instantly
 
 function exitHandler(options, err) {
+    if (options.exit) process.exit(); // replace with exit function
     if (options.cleanup) console.log('clean');
     if (err) console.log(err.stack);
-    if (options.exit) process.exit(); // replace with exit function
 }
 
 //do something when app is closing
-process.on('exit', exitHandler.bind(null,{cleanup:true, exit:true}));
+process.on('exit', exitHandler.bind(null,{cleanup:true}));
 
 //catches ctrl+c event
 process.on('SIGINT', exitHandler.bind(null, {exit:true}));
