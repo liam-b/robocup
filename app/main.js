@@ -105,5 +105,6 @@ function start () {
 
 function loop () {
   var seekerValues = bot.seeker.value();
+  console.log(seekerValues);
   behavior.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
 }
