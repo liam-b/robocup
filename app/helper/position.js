@@ -1,5 +1,5 @@
 module.exports.init = function (output) {
-  var output = output
+  global var output = output
   module.exports._relativeNorthDirection = 0;
 }
 
