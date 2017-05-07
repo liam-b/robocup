@@ -110,7 +110,7 @@ process.stdin.resume();//so the program will not close instantly
 function exitHandler(options, err) {
     if (options.cleanup) console.log('clean');
     if (err) console.log(err.stack);
-    if (options.exit) console.log('process.exit()');
+    if (options.exit) process.exit(); // replace with exit function
 }
 
 //do something when app is closing
@@ -120,4 +120,4 @@ process.on('exit', exitHandler.bind(null,{cleanup:true}));
 process.on('SIGINT', exitHandler.bind(null, {exit:true}));
 
 //catches uncaught exceptions
-process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
+process.on('uncaughtException', exitHandler.bind(null));
