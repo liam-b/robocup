@@ -29,6 +29,9 @@ module.exports = function (motors, angle, distance, speed) {
     case 1:
       motors.ratio([-0.8, 0.8], speed);
       break;
+    case undefined:
+      motors.ratio([1, 1], speed);
+      break;
   }
 
   if (distance > 60 && (angle == 4 || angle == 5 || angle == 6)) motors.ratio([1, 1], speed);
