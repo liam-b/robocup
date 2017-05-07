@@ -10,7 +10,7 @@ module.exports = function (motors, angle, distance, speed) {
         motors.ratio([0.5, -0.5], speed);
         break;
       case 8:
-        motors.ratio([1.7, 0.3], speed);
+        motors.ratio([1.7, 0], speed);
         break;
       case 7:
         motors.ratio([1.5, 0.5], speed);
@@ -28,13 +28,13 @@ module.exports = function (motors, angle, distance, speed) {
         motors.ratio([0.5, 1.5], speed);
         break;
       case 2:
-        motors.ratio([0.3, 1.7], speed);
+        motors.ratio([0, 1.7], speed);
         break;
       case 1:
         motors.ratio([-0.5, 0.5], speed);
         break;
       case undefined:
-        motors.ratio([1, 1], speed);
+        motors.ratio([-1, 1], speed);
         break;
     }
   }
