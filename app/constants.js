@@ -3,5 +3,5 @@ module.exports = {
   BOT_STATE: 'initial',
   PAUSED: false,
 
-  CHASE_SPEED: 200
+  CHASE_SPEED: 600
 };
