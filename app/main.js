@@ -100,10 +100,10 @@ function start () {
   constants.BOT_STATE = 'looping';
   var loopInterval = setInterval(function () {
     if (!constants.PAUSED) loop();
-  }, 10);
+  }, 50);
 }
 
 function loop () {
-  console.log(bot.seeker.value().angle, bot.seeker.value().distance)
-  behavior.chase(bot.motors, bot.seeker.value().angle, bot.seeker.value().distance, constants.CHASE_SPEED);
+  var seekerValues = bot.seeker.value();
+  behavior.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
 }

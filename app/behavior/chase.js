@@ -1,37 +1,42 @@
 var _timeSinceLostBall = 0
 
 module.exports = function (motors, angle, distance, speed) {
-  switch (angle) {
-    case 9:
-      motors.ratio([0.8, -0.8], speed);
-      break;
-    case 8:
-      motors.ratio([1.7, 0], speed);
-      break;
-    case 7:
-      motors.ratio([1.5, 0.5], speed);
-      break;
-    case 6:
-      motors.ratio([1.2, 0.8], speed);
-      break;
-    case 5:
-      motors.ratio([1, 1], speed);
-      break;
-    case 4:
-      motors.ratio([0.8, 1.2], speed);
-      break;
-    case 3:
-      motors.ratio([0.5, 1.5], speed);
-      break;
-    case 2:
-      motors.ratio([0, 1.7], speed);
-      break;
-    case 1:
-      motors.ratio([-0.8, 0.8], speed);
-      break;
-    case undefined:
-      motors.ratio([1, 1], speed);
-      break;
+  if (distance > 23) {
+    motors.ratio([1, 1], speed);
+  }
+  else {
+    switch (angle) {
+      case 9:
+        motors.ratio([0.5, -0.5], speed);
+        break;
+      case 8:
+        motors.ratio([1.5, 0.5], speed);
+        break;
+      case 7:
+        motors.ratio([1.3, 0.7], speed);
+        break;
+      case 6:
+        motors.ratio([1.1, 0.9], speed);
+        break;
+      case 5:
+        motors.ratio([1, 1], speed);
+        break;
+      case 4:
+        motors.ratio([0.9, 1.1], speed);
+        break;
+      case 3:
+        motors.ratio([0.7, 1.3], speed);
+        break;
+      case 2:
+        motors.ratio([0.5, 1.5], speed);
+        break;
+      case 1:
+        motors.ratio([-0.5, 0.5], speed);
+        break;
+      case undefined:
+        motors.ratio([1, 1], speed);
+        break;
+    }
   }
 
   if (distance > 60 && (angle == 4 || angle == 5 || angle == 6)) motors.ratio([1, 1], speed);
