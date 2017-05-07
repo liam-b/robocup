@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from time import sleep
 import ev3dev.ev3 as ev3
 
