@@ -73,6 +73,7 @@ module.exports.SeekerSensor = function (port, output) {
   }
 
   this.value = function () {
+    console.log(this.sensor.getValue(0), this._average())
     return (this.sensor.connected) ? {'angle': this.sensor.getValue(0), 'distance': this._average()} : this.output.warn('value', 'seeker has been disconnected');
   }
 
