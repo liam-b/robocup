@@ -1,5 +1,5 @@
 from time import sleep
-import ev3dev as ev3
+import ev3dev.ev3 as ev3
 
 screen = ev3.Screen()
 
