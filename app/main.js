@@ -114,7 +114,7 @@ function exitHandler(options, err) {
 }
 
 //do something when app is closing
-process.on('exit', exitHandler.bind(null,{cleanup:true}));
+process.on('exit', exitHandler.bind(null,{cleanup:true, exit:true}));
 
 //catches ctrl+c event
 process.on('SIGINT', exitHandler.bind(null, {exit:true}));
