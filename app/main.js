@@ -1,3 +1,7 @@
+process.on('uncaughtException', function (err) {
+  output.error('Unhandled Error', 'Caught exception: ' + err + "\n" + err.stack);
+});
+
 var Logger = require('./log.js');
 var constants = require('./constants.js');
 
@@ -55,9 +59,7 @@ leds.color(leds.BLACK);
 
 output.info('start', 'other setup');
 
-process.on('uncaughtException', function (err) {
-  output.error('Unhandled Error', 'Caught exception: ' + err + "\n" + err.stack);
-});
+
 
 buttons.event.pressed('up', function () {
   constants.BOT_STATE = 'role set';
