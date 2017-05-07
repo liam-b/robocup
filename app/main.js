@@ -17,7 +17,7 @@ var speed = 0;
 output.log('start', 'started');
 output.info('start', 'runtime version ' + output.cyan(version));
 constants.BOT_STATE = 'setup';
-output.log('start', 'seting up');
+output.log('start', 'setting up');
 
 var behavior = {
   'chase': require('./behavior/chase.js')
