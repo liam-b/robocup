@@ -100,6 +100,5 @@ function start () {
 }
 
 function loop () {
-<<<<<<< HEAD
   behavior.chase(bot.motors, bot.seeker.angle, bot.seeker.distance, constants.CHASE_SPEED);
 }
