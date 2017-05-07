@@ -100,5 +100,5 @@ function start () {
 }
 
 function loop () {
-  behavior.chase(motors, seeker.angle, seeker.distance, constants.CHASE_SPEED);
+  behavior.chase(bot.motors, seeker.angle, seeker.distance, constants.CHASE_SPEED);
 }
