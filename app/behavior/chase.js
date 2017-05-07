@@ -34,6 +34,7 @@ module.exports = function (motors, angle, distance, speed) {
         motors.ratio([-0.5, 0.5], speed);
         break;
       case 0:
+        motors.ratio([0.5, 1.5], speed);
         break;
       case undefined:
         motors.ratio([-1, 1], speed);
