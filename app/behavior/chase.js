@@ -1,7 +1,7 @@
 var _timeSinceLostBall = 0
 
 module.exports = function (motors, angle, distance, speed) {
-  if (distance > 23 && angle >= 4 && angle <= 6) {
+  if (distance >= 26 && distance <= 30 && angle == 7) {
     motors.ratio([1, 1], speed);
   }
   else {
@@ -10,31 +10,31 @@ module.exports = function (motors, angle, distance, speed) {
         motors.ratio([0.5, -0.5], speed);
         break;
       case 8:
-        motors.ratio([1.5, 0.5], speed);
+        motors.ratio([1.7, 0], speed);
         break;
       case 7:
-        motors.ratio([1.3, 0.7], speed);
+        motors.ratio([1.5, 0.5], speed);
         break;
       case 6:
-        motors.ratio([1.1, 0.9], speed);
+        motors.ratio([1.3, 0.7], speed);
         break;
       case 5:
         motors.ratio([1, 1], speed);
         break;
       case 4:
-        motors.ratio([0.9, 1.1], speed);
-        break;
-      case 3:
         motors.ratio([0.7, 1.3], speed);
         break;
-      case 2:
+      case 3:
         motors.ratio([0.5, 1.5], speed);
+        break;
+      case 2:
+        motors.ratio([0, 1.7], speed);
         break;
       case 1:
         motors.ratio([-0.5, 0.5], speed);
         break;
       case undefined:
-        motors.ratio([1, 1], speed);
+        motors.ratio([-1, 1], speed);
         break;
     }
   }
