@@ -1,7 +1,11 @@
-module.exports._relativeNorthDirection = 0;
+module.exports.init = function (output) {
+  var output = output
+  module.exports._relativeNorthDirection = 0;
+}
 
-module.exports.setRelativeNorth = function (direction) {
+module.exports.setRelativeNorth = function (direction, output) {
   module.exports._relativeNorthDirection = direction;
+  output.log('set', 'relative north set to ' + position._relativeNorthDirection);
 }
 
 module.exports.relativeRotation = function (direction) {

@@ -9,13 +9,14 @@ var position = require('./helper/position.js')
 
 var leds = new extra.Leds();
 var output = new Logger(leds, (process.argv[2] == 'quiet'));
+position.init(output)
 
 var version = 'alpha 0';
 var speed = 0;
 
 output.log('start', 'started');
 output.info('start', 'runtime version ' + output.cyan(version));
-constants.BOT_STATE = 'setup'
+constants.BOT_STATE = 'setup';
 output.log('start', 'seting up');
 
 var behavior = {
@@ -81,9 +82,8 @@ buttons.event.pressed('back', function () {
 });
 
 buttons.event.pressed('left', function () {
-  if (constants.PAUSED || constants.BOT_STATE != 'looping'){
+  if (constants.PAUSED){
     position.setRelativeNorth(bot.compass.value());
-    output.log('set', 'relative north set to ' + position._relativeNorthDirection);
   }
 });
 
@@ -91,7 +91,7 @@ constants.BOT_STATE = 'post_setup';
 output.info('start', 'finished setup');
 
 function start () {
-  bot.compass.setRelativeNorth(bot.compass.value());
+  position.setRelativeNorth(bot.compass.value());
   output.log('set', 'relative north set');
   constants.BOT_STATE = 'looping';
   var loopInterval = setInterval(function () {
