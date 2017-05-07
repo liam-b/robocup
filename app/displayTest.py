@@ -16,7 +16,7 @@ def main():
 
     # draw a vertical line in column 100 (0 based index)
     for row in range(0, SCREEN_HEIGHT):
-        buf[row * LINE_LENGTH + int(89 / 8)] = 1 << (100 % 8)
+        buf[row * LINE_LENGTH + int(89 / 8)] = 1 << (89 % 8)
 
     # draw a horizontal line in row 64 (0 based index)
     for col in range(0, LINE_LENGTH):
