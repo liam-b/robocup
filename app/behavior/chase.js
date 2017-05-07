@@ -39,7 +39,7 @@ module.exports = function (motors, angle, distance, speed) {
   if (angle != 0) _timeSinceLostBall = 0;
   else _timeSinceLostBall += 1;
 
-  if (_timeSinceLostBall >= 10) {
+  if (_timeSinceLostBall >= 15) {
     motors.stop();
     process.exit();
   }
