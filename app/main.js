@@ -82,7 +82,7 @@ buttons.event.pressed('enter', function () {
 buttons.event.pressed('back', function () {
   constants.BOT_STATE = 'end';
   output.log('end', 'ending program');
-  stop();
+  quit();
 });
 
 buttons.event.pressed('left', function () {
@@ -108,15 +108,16 @@ function loop () {
   behavior.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
 }
 
-function stop () {
+function quit () {
   bot.motors.stop()
+  bot.kicker.stop()
   process.exit()
 }
 
 process.stdin.resume();//so the program will not close instantly
  
 function exitHandler(options, err) {
-    if (options.exit) stop(); // replace with exit function
+    if (options.exit) quit(); // replace with exit function
     // if (options.cleanup) console.log('clean');
     if (err) console.log(err.stack);
 }
