@@ -95,6 +95,8 @@ output.info('start', 'finished setup');
 function start () {
   position.setRelativeNorth(bot.compass.value());
   output.log('set', 'relative north set');
+  bot.motors.run(100, 100);
+
   constants.BOT_STATE = 'looping';
   var loopInterval = setInterval(function () {
     if (!constants.PAUSED) loop();
