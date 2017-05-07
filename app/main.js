@@ -71,7 +71,11 @@ buttons.event.pressed('down', function () {
 
 buttons.event.pressed('enter', function () {
   constants.PAUSED = (constants.PAUSED) ? false : true;
-  if (constants.PAUSED) output.log('interrupt', 'program paused');
+  if (constants.PAUSED) {
+    bot.motors.stop();
+    bot.kicker.stop();
+    output.log('interrupt', 'program paused');
+  }
   else output.log('interrupt', 'program resumed');
 });
 
@@ -82,9 +86,7 @@ buttons.event.pressed('back', function () {
 });
 
 buttons.event.pressed('left', function () {
-  if (constants.PAUSED){
-    position.setRelativeNorth(bot.compass.value());
-  }
+  if (constants.PAUSED) position.setRelativeNorth(bot.compass.value());
 });
 
 constants.BOT_STATE = 'post_setup';
