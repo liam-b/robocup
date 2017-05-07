@@ -109,7 +109,7 @@ process.stdin.resume();//so the program will not close instantly
 
 function exitHandler(options, err) {
     if (options.exit) process.exit(); // replace with exit function
-    if (options.cleanup) console.log('clean');
+    // if (options.cleanup) console.log('clean');
     if (err) console.log(err.stack);
 }
 
