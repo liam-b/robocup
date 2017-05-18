@@ -1,3 +1,2 @@
-sudo chvt 6
-sudo conspy
+sudo clbot
 node app/main.js
