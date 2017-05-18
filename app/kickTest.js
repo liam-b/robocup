@@ -13,7 +13,7 @@ var output = new Logger(leds, (process.argv[2] == 'quiet'));
 var motor = new motor.Motor('outD', output);
 var sensor = new sensor.SeekerSensor('in3:i2c8', output);
 
-sensor.mode(bot.seeker.MODULATED);
+sensor.mode(sensor.MODULATED);
 
 setInterval(function () {
   var values = sensor.value();
