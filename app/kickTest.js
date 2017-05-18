@@ -15,4 +15,4 @@ var motor = new motor.Motor('outD', output);
 kick.reset(motor);
 setTimeout(function () {
   kick.kick(motor);
-}, 3000);
+}, 4000);
