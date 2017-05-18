@@ -11,7 +11,7 @@ var leds = new extra.Leds();
 var output = new Logger(leds, (process.argv[2] == 'quiet'));
 
 var motor = new motor.Motor('outD', output);
-var sensor = new sensor.CompassSensor('in4:i2c1', output);
+var sensor = new sensor.CompassSensor('in3:i2c1', output);
 
 setInterval(function () {
   var values = sensor.value();
