@@ -17,5 +17,6 @@ sensor.mode(sensor.MODULATED);
 
 setInterval(function () {
   var values = sensor.value();
+  console.log(values);
   if (values.distance >= 26 && values.distance <= 30 && values.angle == 7) kick.kick(motor);
-}, 1000);
+}, 500);
