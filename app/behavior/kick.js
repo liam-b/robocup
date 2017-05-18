@@ -12,9 +12,9 @@ module.exports.reset = function (motor) {
 
 module.exports.kick = function (motor) {
   console.log('kick start');
-  motor.run(-800);
+  motor.run(800);
   setTimeout(function () {
-    motor.run(800);
+    motor.run(-800);
     setTimeout(function () {
       motor.stop();
       console.log('kick end');
