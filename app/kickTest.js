@@ -13,6 +13,8 @@ var output = new Logger(leds, (process.argv[2] == 'quiet'));
 var motor = new motor.Motor('outD', output);
 var sensor = new sensor.SeekerSensor('in3:i2c8', output);
 
+sensor.mode(bot.seeker.MODULATED);
+
 setInterval(function () {
   var values = sensor.value();
   if (values.distance >= 26 && values.distance <= 30 && values.angle == 7) kick.kick(motor);
