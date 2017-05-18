@@ -13,7 +13,7 @@ var output = new Logger(leds, (process.argv[2] == 'quiet'));
 var motor = new motor.Motor('outD', output);
 var sensor = new sensor.ColorSensor('in1', output);
 
-setTimeout(function () {
+setInterval(function () {
   var values = sensor.value();
   if (values.distance >= 26 && values.distance <= 30 && values.angle == 7) kick.kick(motor);
 }, 1000);
