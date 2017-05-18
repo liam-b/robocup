@@ -2,12 +2,14 @@
 // also specs will be needed
 
 module.exports.reset = function (motor) {
-  console.log('reset start');
-  motor.run(-40); // probbably find a speed better than this
-  setTimeout(function () {
-    motor.stop();
-    console.log('reset end');
-  }, 1000); // find a delay that won't over rotate the motor
+  module.exports.kick(motor)
+  
+  // console.log('reset start');
+  // motor.run(-40); // probbably find a speed better than this
+  // setTimeout(function () {
+  //   motor.stop();
+  //   console.log('reset end');
+  // }, 1000); // find a delay that won't over rotate the motor
 }
 
 module.exports.kick = function (motor) {
