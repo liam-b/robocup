@@ -3,7 +3,7 @@
 
 module.exports.reset = function (motor) {
   console.log('reset start');
-  motor.run(-50); // probbably find a speed better than this
+  motor.run(50); // probbably find a speed better than this
   setTimeout(function () {
     motor.stop();
     console.log('reset end');
