@@ -8,7 +8,7 @@ module.exports.reset = function (motor) {
   }, 1000); // find a delay that won't over rotate the motor
 }
 
-module.exports.kick = function () {
+module.exports.kick = function (motor) {
   motor.run(-800);
   setTimeout(function () {
     motor.run(800);
