@@ -1,7 +1,7 @@
 #!/bin/sh
 
 function write {
-  echo $1 # > in.txt
+    echo $1 # > in.txt
 }
 
 if [$1 == 'NRC1']; then
