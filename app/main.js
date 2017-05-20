@@ -114,10 +114,11 @@ function quit () {
   process.exit()
 }
 
+// The below code handles exiting the program
 process.stdin.resume();//so the program will not close instantly
- 
+
 function exitHandler(options, err) {
-    if (options.exit) quit(); // replace with exit function
+    if (options.exit) quit();
     // if (options.cleanup) console.log('clean');
     if (err) console.log(err.stack);
 }
