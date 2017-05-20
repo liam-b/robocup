@@ -1,6 +1,6 @@
 #!/bin/sh
 
-function write_text {
+write_text () {
     echo $1 # > in.txt
 }
 
