@@ -1,3 +1,5 @@
+#!/bin/sh
+
 function write {
   echo $1 > in.txt
 }
