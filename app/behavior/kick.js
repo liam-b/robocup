@@ -3,7 +3,7 @@
 
 module.exports.reset = function (motor) {
   module.exports.kick(motor)
-  
+
   // console.log('reset start');
   // motor.run(-40); // probbably find a speed better than this
   // setTimeout(function () {
@@ -16,7 +16,7 @@ module.exports.kick = function (motor) {
   console.log('kick start');
   motor.run(1000);
   setTimeout(function () {
-    motor.run(-100);
+    motor.run(-50);
     setTimeout(function () {
       motor.stop();
       console.log('kick end');
