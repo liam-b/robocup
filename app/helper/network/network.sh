@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # First argument is the bot's name, second is the command/message to be sent
 args=($1 $2)
 write_text () {
