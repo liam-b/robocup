@@ -1,10 +1,10 @@
 #!/bin/sh
 # First argument is the bot's name, second is the command/message to be sent
-
+args=($1 $2)
 write_text () {
     echo $1 > in.txt
 }
 write_text $1
-if [ $1 = "NRC1" ]; then
-  ssh robot@192.168.43.242 'cd ~/robocup/app/helper/network; echo $2 > in.txt; exit'
+if [ ${args[0]} = "NRC1" ]; then
+  ssh robot@192.168.43.242 'cd ~/robocup/app/helper/network; echo ${args[1]} > in.txt; exit'
 fi
