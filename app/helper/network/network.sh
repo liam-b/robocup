@@ -5,8 +5,8 @@
 #     echo $1 > in.txt
 # }
 # write_text $2
+in_dir="~/robocup/helper/network"
 if [ $1 = "NRC1" ]; then
-  ssh liam@192.168.43.218 "touch in.txt; echo $2 > in.txt; exit"
-  # ssh robot@192.168.43.242 "echo ${args[1]} > ~/robocup/app/helper/network/in.txt; exit"
+  ssh robot@192.168.43.242 "touch ${in_dir}/in.txt; echo $2 > ${in_dir}/in.txt; exit"
   echo 'done'
 fi
