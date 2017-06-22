@@ -6,6 +6,7 @@ var sensor = require('./io/sensor.js');
 var extra = require('./io/extra.js');
 
 var kick = require('./behavior/kick.js')
+var kick = require('./behavior/track.js')
 
 var leds = new extra.Leds();
 var output = new Logger(leds, (process.argv[2] == 'quiet'));
