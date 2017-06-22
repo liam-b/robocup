@@ -1,4 +1,4 @@
-module.exports = function (motors, speed) {
+module.exports = function (motors, angle, speed) {
   switch (angle) {
     case 9:
       motors.ratio([0.5, -0.5], speed);
@@ -28,10 +28,7 @@ module.exports = function (motors, speed) {
       motors.ratio([-0.5, 0.5], speed);
       break;
     case 0:
-      motors.ratio([0.5, 1.5], speed);
-      break;
-    case undefined:
-      motors.ratio([-1, 1], speed);
+      motors.ratio([1, -1], speed);
       break;
   }
 }

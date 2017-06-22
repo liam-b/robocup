@@ -39,6 +39,11 @@ module.exports.DriveMotors = function (left, right, output) {
     return {'left': this.left.position, 'right': this.right.position};
   }
 
+  this.averagePosition = function () {
+    var position = this.position();
+    return (position.left + position.right) / 2;
+  }
+
   this.reset = function () {
     this.left.position = 0;
     this.right.position = 0;

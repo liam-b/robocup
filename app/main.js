@@ -5,11 +5,9 @@ var motor = require('./io/motor.js');
 var sensor = require('./io/sensor.js');
 var extra = require('./io/extra.js');
 var buttons = require('./io/buttons.js');
-var position = require('./helper/position.js')
 
 var leds = new extra.Leds();
 var output = new Logger(leds, (process.argv[2] == 'quiet'));
-position.init(output)
 
 var version = 'alpha 0';
 var speed = 0;
@@ -19,9 +17,18 @@ output.info('start', 'runtime version ' + output.cyan(version));
 constants.BOT_STATE = 'setup';
 output.log('start', 'setting up');
 
-var behavior = {
-  'chase': require('./behavior/chase.js')
+var behaviors = {
+  'chase': require('./behavior/chase.js'),
+  'kick': require('./behavior/kick.js'),
+  'track': require('./behavior/track.js'),
+  'intercept': require('./behavior/intercept.js')
 }
+
+var helpers = {
+  'position': require('./helper/position.js')
+}
+
+helpers.position.init(output)
 
 var bot = {
   'motors': new motor.DriveMotors('outB', 'outA', output),
@@ -86,14 +93,14 @@ buttons.event.pressed('back', function () {
 });
 
 buttons.event.pressed('left', function () {
-  if (constants.PAUSED) position.setRelativeNorth(bot.compass.value());
+  if (constants.PAUSED) helpers.position.setRelativeNorth(bot.compass.value());
 });
 
 constants.BOT_STATE = 'post_setup';
 output.info('start', 'finished setup');
 
 function start () {
-  position.setRelativeNorth(bot.compass.value());
+  helpers.position.setRelativeNorth(bot.compass.value());
   bot.motors.run(100, 100);
 
   constants.BOT_STATE = 'looping';
@@ -105,7 +112,7 @@ function start () {
 function loop () {
   var seekerValues = bot.seeker.value();
   console.log(seekerValues);
-  behavior.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
+  behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
 }
 
 function quit () {

@@ -1,50 +1,50 @@
 var _timeSinceLostBall = 0
 
-module.exports = function (motors, angle, distance, speed) {
-  if (distance >= 26 && distance <= 30 && angle == 7) {
-    motors.ratio([1, 1], speed);
+module.exports = function (motors, constants, seeker) {
+  if (seeker.distance >= 26 && seeker.distance <= 30 && seeker.angle == 7) {
+    motors.ratio([1, 1], constants.CHASE_SPEED);
   }
   else {
-    switch (angle) {
+    switch (seeker.angle) {
       case 9:
-        motors.ratio([0.5, -0.5], speed);
+        motors.ratio([0.5, -0.5], constants.CHASE_SPEED);
         break;
       case 8:
-        motors.ratio([1.7, 0], speed);
+        motors.ratio([1.7, 0], constants.CHASE_SPEED);
         break;
       case 7:
-        motors.ratio([1.5, 0.5], speed);
+        motors.ratio([1.5, 0.5], constants.CHASE_SPEED);
         break;
       case 6:
-        motors.ratio([1.3, 0.7], speed);
+        motors.ratio([1.3, 0.7], constants.CHASE_SPEED);
         break;
       case 5:
-        motors.ratio([1, 1], speed);
+        motors.ratio([1, 1], constants.CHASE_SPEED);
         break;
       case 4:
-        motors.ratio([0.7, 1.3], speed);
+        motors.ratio([0.7, 1.3], constants.CHASE_SPEED);
         break;
       case 3:
-        motors.ratio([0.5, 1.5], speed);
+        motors.ratio([0.5, 1.5], constants.CHASE_SPEED);
         break;
       case 2:
-        motors.ratio([0, 1.7], speed);
+        motors.ratio([0, 1.7], constants.CHASE_SPEED);
         break;
       case 1:
-        motors.ratio([-0.5, 0.5], speed);
+        motors.ratio([-0.5, 0.5], constants.CHASE_SPEED);
         break;
       case 0:
-        motors.ratio([0.5, 1.5], speed);
+        motors.ratio([0.5, 1.5], constants.CHASE_SPEED);
         break;
       case undefined:
-        motors.ratio([-1, 1], speed);
+        motors.ratio([-1, 1], constants.CHASE_SPEED);
         break;
     }
   }
 
-  if (distance > 60 && (angle == 4 || angle == 5 || angle == 6)) motors.ratio([1, 1], speed);
+  if (seeker.distance > 60 && (seeker.angle == 4 || seeker.angle == 5 || seeker.angle == 6)) motors.ratio([1, 1], constants.CHASE_SPEED);
 
-  if (angle != 0) _timeSinceLostBall = 0;
+  if (seeker.angle != 0) _timeSinceLostBall = 0;
   else _timeSinceLostBall += 1;
 
   if (_timeSinceLostBall >= 15) {
@@ -52,5 +52,5 @@ module.exports = function (motors, angle, distance, speed) {
     process.exit();
   }
 
-  if (_timeSinceLostBall >= 5) motors.ratio([-1, 1], speed);
+  if (_timeSinceLostBall >= 5) motors.ratio([-1, 1], constants.CHASE_SPEED);
 }
