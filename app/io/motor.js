@@ -35,6 +35,15 @@ module.exports.DriveMotors = function (left, right, output) {
     }
   }
 
+  this.position = function () {
+    return {'left': this.left.position, 'right': this.right.position};
+  }
+
+  this.reset = function () {
+    this.left.position = 0;
+    this.right.position = 0;
+  }
+
   this.check = function () {
     this.output.trace('check', 'checking motors');
     (this.left.connected) ? this.output.log('check', 'left motor connected') : this.output.err('check', 'left motor is not connected');
