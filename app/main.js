@@ -18,17 +18,17 @@ constants.BOT_STATE = 'setup';
 output.log('start', 'setting up');
 
 var behaviors = {
-  'chase': require('./behavior/chase.js'),
-  'kick': require('./behavior/kick.js'),
-  'track': require('./behavior/track.js'),
-  'intercept': require('./behavior/intercept.js')
-}
+  'chase': require('./behaviors/chase.js'),
+  'kick': require('./behaviors/kick.js'),
+  'track': require('./behaviors/track.js'),
+  'intercept': require('./behaviors/intercept.js')
+};
 
 var helpers = {
-  'position': require('./helper/position.js')
-}
+  'position': require('./helpers/position.js')
+};
 
-helpers.position.init(output)
+helpers.position.init(output);
 
 var bot = {
   'motors': new motor.DriveMotors('outB', 'outA', output),
@@ -40,7 +40,7 @@ var bot = {
   'seeker': new sensor.SeekerSensor('in3:i2c8', output),
 
   'battery': new extra.PowerSupply(output)
-}
+};
 
 output.info('start', 'checking connections');
 
@@ -116,25 +116,18 @@ function loop () {
 }
 
 function quit () {
-  bot.motors.stop()
-  bot.kicker.stop()
-  process.exit()
+  bot.motors.stop();
+  bot.kicker.stop();
+  process.exit();
 }
 
-// The below code handles exiting the program
-process.stdin.resume();//so the program will not close instantly
+process.stdin.resume();
 
-function exitHandler(options, err) {
+function exitHandler (options, err) {
     if (options.exit) quit();
-    // if (options.cleanup) console.log('clean');
     if (err) console.log(err.stack);
 }
  
-//do something when app is closing
 process.on('exit', exitHandler.bind(null));
- 
-//catches ctrl+c event
 process.on('SIGINT', exitHandler.bind(null, {exit:true}));
- 
-//catches uncaught exceptions
 process.on('uncaughtException', exitHandler.bind(null));
