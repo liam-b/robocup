@@ -1,25 +1,30 @@
 var detail = require('../services/color.js');
 
 detail('ball chase', 'behavior', __filename, function () {
-  var chase = require('../../app/behavior/chase.js');
-  var motor = require('../../app/io/motor.js')
+  var chase = require('../../app/behaviors/chase.js');
+  var motor = require('../../app/io/motor.js');
+  var constants = require('../services/constants.mock.js');
 
   var motors = new motor.DriveMotors()
 
   it('should point towards ball', function () {
     spyOn(motors, 'ratio');
 
-    chase(motors, 5, 1, 100);
-    expect(motors.ratio).toHaveBeenCalledWith([1, 1], 100);
+    chase(motors, constants, {angle: 5, distance: 20});
+    expect(motors.ratio).toHaveBeenCalledWith([1, 1], constants.CHASE_SPEED);
 
-    chase(motors, 4, 1, 100);
-    expect(motors.ratio).toHaveBeenCalledWith([0.8, 1.2], 100);
-  })
+    var returned;
 
-  it('should try to find the ball if it loses it', function () {
-    spyOn(motors, 'ratio');
+    chase(motors, constants, {angle: 4, distance: 20});
+    returned = motors.ratio.calls.mostRecent().args;
+    expect(returned[0][0]).toBeLessThan(1);
+    expect(returned[0][1]).toBeGreaterThan(1);
+    expect(returned[1]).toBe(constants.CHASE_SPEED);
 
-    for (var i = 0; i < 5; i += 1) chase(motors, 0, 0, 100);
-    expect(motors.ratio).toHaveBeenCalledWith([-1, 1], 100);
+    chase(motors, constants, {angle: 6, distance: 20});
+    returned = motors.ratio.calls.mostRecent().args;
+    expect(returned[0][0]).toBeGreaterThan(1);
+    expect(returned[0][1]).toBeLessThan(1);
+    expect(returned[1]).toBe(constants.CHASE_SPEED);
   })
 })

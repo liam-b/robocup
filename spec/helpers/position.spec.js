@@ -1,7 +1,7 @@
 var detail = require('../services/color.js');
 
 detail('bot position and rotation', 'helper', __filename, function () {
-  var position = require('../../app/helper/position.js');
+  var position = require('../../app/helpers/position.js');
 
   it('return absolute position', function () {
     expect(position.absoluteRotation(0)).toBe(0);
