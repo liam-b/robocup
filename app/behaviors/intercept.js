@@ -18,7 +18,7 @@ module.exports.chase = function (motors, behaviors, constants, seeker) {
   else if (!kicked) {
     behaviors.chase(motors, seeker, constants.CHASE_SPEED);
   }
-  if (kicked) {
+  if (kicked) {≤
     motors.ratio([-1, -1], constants.INTERCEPT.RETURN_SPEED)
     if (rotations - motors.averagePosition() <= 10) {
       motors.stop();

@@ -3,9 +3,9 @@ module.exports.init = function (output) {
   module.exports._relativeNorthDirection = 0;
 }
 
-module.exports.setRelativeNorth = function (direction, output) {
+module.exports.setRelativeNorth = function (direction) {
   module.exports._relativeNorthDirection = direction;
-  global.output.log('set', 'relative north set to ' + module.exports._relativeNorthDirection);
+  // global.output.log('set', 'relative north set to ' + module.exports._relativeNorthDirection);
 }
 
 module.exports.relativeRotation = function (direction) {
