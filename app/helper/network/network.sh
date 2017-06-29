@@ -7,7 +7,7 @@ name="$(hostname)"
 in_dir="~/robocup/app/helper/network"
 if [ ${name} == 'NRC1' ]
 then
-  ssh robot@192.168.43.242 "touch ${in_dir}/in.txt; echo $2 > ${in_dir}/in.txt; exit;"
+  ssh robot@192.168.43.242 "touch ${in_dir}/in.txt; echo $1 > ${in_dir}/in.txt; exit;"
   echo 'done'
 else if [ ${name} == 'NRC2' ]
 then
@@ -15,3 +15,4 @@ then
 else
   echo 'nein'
 fi
+exit
