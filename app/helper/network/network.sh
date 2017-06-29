@@ -8,6 +8,6 @@
 in_dir="~/robocup/app/helper/network"
 if [ $1 == 'NRC1' ]
 then
-  ssh robot@192.168.43.242 "touch ${in_dir}/in.txt; echo $2 > ${in_dir}/in.txt; exit" #TEST!!!
+  ssh robot@192.168.43.242 "touch ${in_dir}/in.txt; echo $2 > ${in_dir}/in.txt; exit"
   echo 'done'
 fi
