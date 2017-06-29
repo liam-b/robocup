@@ -10,10 +10,10 @@ module.exports.Leds = function () {
 
   this.color = function (color) {
     this.group.setColor(color, 1);
-  }
+  };
 
   this.color(this.BLACK);
-}
+};
 
 module.exports.PowerSupply = function (output) {
   this.battery = new ev3dev.PowerSupply();
@@ -21,14 +21,14 @@ module.exports.PowerSupply = function (output) {
 
   this.charge = function () {
     return this.battery.measuredVoltage;
-  }
+  };
 
   this.check = function () {
     this.output.trace('check', 'checking battery');
     (this.percentage() > 30) ? this.output.log('check', 'battery ok at ' + output.cyan(this.percentage() + '%')) : this.output.warn('check', 'battery is low at ' + output.cyan(this.percentage() + '%'));
-  }
+  };
 
   this.percentage = function () {
-    return parseInt(100 * ((this.battery.measuredVoltage - this.battery.minVoltage) / (this.battery.maxVoltage - this.battery.minVoltage)))
-  }
-}
+    return parseInt(100 * ((this.battery.measuredVoltage - this.battery.minVoltage) / (this.battery.maxVoltage - this.battery.minVoltage)));
+  };
+};

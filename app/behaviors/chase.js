@@ -1,4 +1,4 @@
-var _timeSinceLostBall = 0
+var _timeSinceLostBall = 0;
 
 module.exports = function (motors, constants, seeker) {
   if (seeker.distance >= 26 && seeker.distance <= 30 && seeker.angle == 7) {
@@ -53,4 +53,4 @@ module.exports = function (motors, constants, seeker) {
   }
 
   if (_timeSinceLostBall >= 5) motors.ratio([-1, 1], constants.CHASE_SPEED);
-}
+};

@@ -5,8 +5,8 @@ var motor = require('./io/motor.js');
 var sensor = require('./io/sensor.js');
 var extra = require('./io/extra.js');
 
-var kick = require('./behaviors/kick.js')
-var track = require('./behaviors/track.js')
+var kick = require('./behaviors/kick.js');
+var track = require('./behaviors/track.js');
 
 var leds = new extra.Leds();
 var output = new Logger(leds, (process.argv[2] == 'quiet'));

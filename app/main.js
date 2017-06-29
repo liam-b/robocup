@@ -99,6 +99,8 @@ buttons.event.pressed('left', function () {
 constants.BOT_STATE = 'post_setup';
 output.info('start', 'finished setup');
 
+// TODO: wow
+
 function start () {
   helpers.position.setRelativeNorth(bot.compass.value());
   bot.motors.run(100, 100);

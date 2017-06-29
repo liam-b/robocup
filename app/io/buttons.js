@@ -9,7 +9,7 @@ var buttonNames = {
   106: 'right',
   28: 'enter',
   14: 'back'
-}
+};
 
 var button = {
   pressed: {
@@ -28,7 +28,7 @@ var button = {
     'enter': function () {},
     'back': function () {}
   }
-}
+};
 
 function parseInputEvents (eventChunk) {
   var events = [];
@@ -56,8 +56,8 @@ fs.createReadStream(buttonEventFile).on('data', function (chunk) {
   for (var keyEventIndex in keyEvents) {
     var keyEvent = keyEvents[keyEventIndex];
     if (keyEvent.code in buttonNames) {
-      if (keyEvent.value) button.pressed[buttonNames[keyEvent.code]]()
-      else button.released[buttonNames[keyEvent.code]]()
+      if (keyEvent.value) button.pressed[buttonNames[keyEvent.code]]();
+      else button.released[buttonNames[keyEvent.code]]();
     }
   }
 });
@@ -102,4 +102,4 @@ module.exports.event = {
   'released': function (buttonID, callback) {
     button.released[buttonID] = callback;
   }
-}
+};

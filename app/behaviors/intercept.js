@@ -1,7 +1,7 @@
 var rotations = 0;
 
-var startedIntercepting = false
-var kicked = false
+var startedIntercepting = false;
+var kicked = false;
 
 module.exports.chase = function (motors, behaviors, constants, seeker) {
   if (!startedIntercepting) {
@@ -19,15 +19,15 @@ module.exports.chase = function (motors, behaviors, constants, seeker) {
     behaviors.chase(motors, seeker, constants.CHASE_SPEED);
   }
   if (kicked) {
-    motors.ratio([-1, -1], constants.INTERCEPT.RETURN_SPEED)
+    motors.ratio([-1, -1], constants.INTERCEPT.RETURN_SPEED);
     if (rotations - motors.averagePosition() <= 10) {
       motors.stop();
       module.exports.reset();
     }
   }
-}
+};
 
 module.exports.reset = function () {
-  startedIntercepting = false
-  kicked = false
-}
+  startedIntercepting = false;
+  kicked = false;
+};
