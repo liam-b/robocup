@@ -1,13 +1,15 @@
 #!/bin/bash
 
 # First argument is the bot's name, second is the command/message to be sent
-# write_text () {
-#     echo $1 > in.txt
-# }
-# write_text $2
+
+name=hostname
+
 in_dir="~/robocup/app/helper/network"
-if [ $1 == 'NRC1' ]
+if [ ${name} == 'NRC1' ]
 then
   ssh robot@192.168.43.242 "touch ${in_dir}/in.txt; echo $2 > ${in_dir}/in.txt; exit"
   echo 'done'
+else if [ ${name} == 'NRC2' ]
+then
+  echo 'nrc2'
 fi
