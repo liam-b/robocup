@@ -2,7 +2,7 @@
 
 # First argument is the bot's name, second is the command/message to be sent
 
-name=hostname
+name="$(hostname)"
 
 in_dir="~/robocup/app/helper/network"
 if [ ${name} == 'NRC1' ]
