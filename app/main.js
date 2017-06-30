@@ -20,12 +20,16 @@ output.log('start', 'setting up');
 var behaviors = {
   'chase': require('./behaviors/chase.js'),
   'kick': require('./behaviors/kick.js'),
-  'track': require('./behaviors/track.js'),
-  'intercept': require('./behaviors/intercept.js')
+  'track': require('./behaviors/track.js')
 };
 
 var helpers = {
   'position': require('./helpers/position.js')
+};
+
+var controllers = {
+  'attacker': require('./controllers/attacker.js'),
+  'defender': require('./controllers/defender.js')
 };
 
 helpers.position.init(output);
@@ -98,8 +102,6 @@ buttons.event.pressed('left', function () {
 
 constants.BOT_STATE = 'post_setup';
 output.info('start', 'finished setup');
-
-// TODO: wow
 
 function start () {
   helpers.position.setRelativeNorth(bot.compass.value());

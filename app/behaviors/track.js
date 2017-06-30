@@ -1,8 +1,7 @@
-module.exports = function (motors, angle, speed) {
+module.exports = function (motors, seeker, speed) {
+  var values = seeker.value();
 
-  //TODO: make it better
-
-  switch (angle) {
+  switch (values.angle) {
     case 9:
       motors.ratio([0.5, -0.5], speed);
       break;
