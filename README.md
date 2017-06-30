@@ -1,7 +1,10 @@
-# robocup
+# Robocup
 
-[wiki](https://app.nuclino.com/p/Home-cZJRp8e7aWmqdF-UFIqdiq)
+[![Build Status](https://travis-ci.org/liam-b/robocup.svg?branch=master)](https://travis-ci.org/liam-b/robocup)
 
-A bot that does robot things.
+A robot that does robot things.
 
-Using [ev3dev](https://www.ev3dev.org) running node es5 on an EV3 (mindstorms) for [robocup](http://robocupjunior.org.au) soccer standard league.
+## Links
+ - [Wiki](https://app.nuclino.com/p/Home-cZJRp8e7aWmqdF-UFIqdiq)
+ - [Travis CI](https://travis-ci.org/liam-b/robocup)
+ - [RCJDA](http://robocupjunior.org.au)
