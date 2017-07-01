@@ -4,7 +4,7 @@
   "description": "A bot that does robot things.",
   "main": "index.js",
   "scripts": {
-    "test": ". test.sh",
+    "test": "jasmine",
     "start": "node app/main.js"
   },
   "repository": {
