@@ -3,4 +3,4 @@ node_js:
   - "5"
 
 after_failure:
-  - node "travis.js" $TRAVIS_JOB_NUMBER
+  - node "travis.js" $TRAVIS_JOB_NUMBER $TRAVIS_COMMIT $TRAVIS_COMMIT_MESSAGE

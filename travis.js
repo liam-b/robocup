@@ -5,27 +5,11 @@ var request = require('request');
 
 var todoist = {
   failed: {
-    content: 'Robocup build ' + process.argv[2] + ' failed',
+    content: 'Robocup build ' + process.argv[2] + '[' + process.argv[3] + ']' + ' failed',
     priority: 4,
     labels: [2148074807]
   }
 };
-
-var notification = {
-  failed: {
-    title: 'Travis CI build failed',
-    message: 'Robocup build failed'
-  }
-};
-
-// request.post({
-//   url: 'https://liam-server-3000.herokuapp.com/notification',
-//   form: {
-//     data: JSON.stringify(notification.failed)
-//   }
-// }, function (error, response, body) {
-//   console.log(body);
-// });
 
 request.post({
   url: 'https://liam-server-3000.herokuapp.com/todoist',
