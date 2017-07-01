@@ -4,7 +4,7 @@
   "description": "A bot that does robot things.",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine",
+    "test": ". test.sh",
     "start": "node app/main.js"
   },
   "repository": {
@@ -23,5 +23,8 @@
     "jasmine-node": "^1.14.5",
     "jasmine-spec-reporter": "^3.2.0",
     "jshint": "^2.9.4"
+  },
+  "dependencies": {
+    "request": "^2.81.0"
   }
 }
