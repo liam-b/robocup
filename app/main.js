@@ -9,9 +9,6 @@ var buttons = require('./io/buttons.js');
 var leds = new extra.Leds();
 var output = new Logger(leds, (process.argv[2] == 'quiet'));
 
-var version = 'alpha 0';
-var speed = 0;
-
 output.log('start', 'started');
 output.info('start', 'runtime version ' + output.cyan(version));
 constants.BOT_STATE = 'setup';

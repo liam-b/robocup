@@ -16,7 +16,7 @@ var STATE = {
   },
   'intercept': function (bot, behaviors, helpers, constants) {
     if (bot.sensor.seeker > constants.KICK_RANGE) {
-      behaviors.kick.kick(bot.motors);
+      behaviors.kick(bot.motors);
       constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
       constants.DEFENDER.STATE = 'return';
     }

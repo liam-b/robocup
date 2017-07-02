@@ -24,7 +24,7 @@ process.stdin.on('data', function (text) {
   console.log('> received:', util.inspect(text));
   switch (text) {
     case '#kick':
-      kick.kick(motor);
+      kick(motor);
       break;
     case '#reset':
       kick.reset(motor);
