@@ -30,8 +30,6 @@ var trello = {
   }
 };
 
-//
-
 var services = [
   {service: 'trello', data: (values.status == 'success') ? trello.passed : trello.failed},
   {service: 'todoist', data: (values.status == 'success') ? null : todoist.failed}
