@@ -1,8 +1,6 @@
 var Logger = require('./log.js');
 var constants = require('./constants.js');
 
-//main
-
 var motor = require('./io/motor.js');
 var sensor = require('./io/sensor.js');
 var extra = require('./io/extra.js');
