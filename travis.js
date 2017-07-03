@@ -6,7 +6,8 @@ var request = require('request');
 var values = {
   status: process.argv[2],
   build: process.argv[3],
-  commit: process.argv[4].substr(0, 7)
+  commit: process.argv[4].substr(0, 7),
+  message: process.argv[5]
 };
 
 var todoist = {
@@ -21,12 +22,14 @@ var trello = {
   failed: {
     id: values.build,
     commit: values.commit,
-    status: 'failing'
+    status: 'failing',
+    message: values.message
   },
   passed: {
     id: values.build,
     commit: values.commit,
-    status: 'passing'
+    status: 'passing',
+    message: values.message
   }
 };
 
