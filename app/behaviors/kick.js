@@ -6,5 +6,5 @@ module.exports = function (motor) {
       motor.stop();
     }, 1000);
   }, 150);
-};//
+};
 
