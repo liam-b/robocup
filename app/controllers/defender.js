@@ -1,11 +1,12 @@
-
-module.exports.default = function (bot, behaviors, helpers, constants) { STATE[constants.DEFENDER.STATE](bot, behaviors, helpers, constants); };
+module.exports = function (bot, behaviors, helpers, constants) { STATE[constants.DEFENDER.STATE](bot, behaviors, helpers, constants); };
 
 var STATE = {
   'initial': function (bot, behaviors, helpers, constants) {
+    console.log('initial');
     constants.DEFENDER.STATE = 'track';
   },
   'track': function (bot, behaviors, helpers, constants) {
+    console.log('track');
     if (bot.sensor.seeker > constants.INTERCEPT.CLEAR_DISTANCE) {
       bot.motors.reset();
       constants.DEFENDER.STATE = 'intercept';
@@ -15,6 +16,7 @@ var STATE = {
     }
   },
   'intercept': function (bot, behaviors, helpers, constants) {
+    console.log('intercept');
     if (bot.sensor.seeker > constants.KICK_RANGE) {
       behaviors.kick(bot.motors);
       constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
@@ -25,6 +27,7 @@ var STATE = {
     }
   },
   'return': function (bot, behaviors, helpers, constants) {
+    console.log('return');
     if (bot.motors.averagePosition() + constants.DEFENDER.MOTOR_ROTATIONS == 0) {
       bot.motors.stop();
       constants.DEFENDER.STATE = 'track';
