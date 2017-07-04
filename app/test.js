@@ -47,9 +47,3 @@ function runArbitrary (text) {
     console.log('< evaluated');
   }
 }
-
-// setInterval(function () {
-//   var values = sensor.value();
-//   console.log(values);
-//   if (values.distance >= 30 && values.angle >= 5 && values.angle <= 6) setTimeout(function () { kick.kick(motor); }, 500);
-// }, 500);
