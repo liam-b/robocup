@@ -9,4 +9,5 @@ after_success:
   - node "travis.js" "success" $TRAVIS_BUILD_NUMBER $TRAVIS_COMMIT "$TRAVIS_COMMIT_MESSAGE" 'after'
 
 before_install:
+  - npm install request --save
   - node "travis.js" "success" $TRAVIS_BUILD_NUMBER $TRAVIS_COMMIT "$TRAVIS_COMMIT_MESSAGE" 'before'
