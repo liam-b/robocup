@@ -113,7 +113,7 @@ function loop () {
   // var seekerValues = bot.seeker.value();
   // console.log(seekerValues);
   // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
-
+  console.log('looping');
   controllers.defender(bot, behaviors, helpers, constants);
 }
 
