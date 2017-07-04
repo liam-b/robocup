@@ -105,6 +105,7 @@ function start () {
 
   constants.BOT_STATE = 'looping';
   var loopInterval = setInterval(function () {
+    console.log('interval', constants.PAUSED);
     if (!constants.PAUSED) loop();
   }, 100);
 }
