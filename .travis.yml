@@ -8,5 +8,5 @@ after_failure:
 after_success:
   - node "travis.js" "success" $TRAVIS_BUILD_NUMBER $TRAVIS_COMMIT "$TRAVIS_COMMIT_MESSAGE" 'after'
 
-before_script:
+before_install:
   - node "travis.js" "success" $TRAVIS_BUILD_NUMBER $TRAVIS_COMMIT "$TRAVIS_COMMIT_MESSAGE" 'before'
