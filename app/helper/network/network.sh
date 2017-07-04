@@ -12,6 +12,6 @@ then
 else if [ ${name} == 'NRC2' ]
 then
   echo 'nrc2'
-# else
-#   echo 'nein'
-# fi
+else
+  echo 'nein'
+fi
