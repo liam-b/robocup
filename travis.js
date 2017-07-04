@@ -7,7 +7,8 @@ var values = {
   status: process.argv[2],
   build: process.argv[3],
   commit: process.argv[4].substr(0, 7),
-  message: process.argv[5]
+  message: process.argv[5],
+  time: process.argv[6]
 };
 
 var todoist = {
@@ -30,13 +31,26 @@ var trello = {
     commit: values.commit,
     status: 'passing',
     message: values.message
+  },
+  pending: {
+    id: values.build,
+    commit: values.commit,
+    status: 'pending',
+    message: values.message
   }
 };
 
-var services = [
-  {service: 'trello', data: (values.status == 'success') ? trello.passed : trello.failed},
-  {service: 'todoist', data: (values.status == 'success') ? null : todoist.failed}
-];
+var availableServices = {
+  after: [
+    {service: 'trello', data: (values.status == 'success') ? trello.passed : trello.failed},
+    {service: 'todoist', data: (values.status == 'success') ? null : todoist.failed}
+  ],
+  before: [
+    {service: 'trello', data: trello.pending},
+  ]
+};
+
+var services = (values.time == 'before') ? availableServices.before : availableServices.after;
 
 for (var i = 0; i < services.length; i += 1) {
   if (services[i].data != null) {
