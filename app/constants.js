@@ -11,6 +11,9 @@ module.exports = {
     RETURN_SPEED: 500,
     CLEAR_DISTANCE: 20
   },
+  ATTACKER: {
+    STATE: 'dribble'
+  },
   DEFENDER: {
     STATE: 'initial',
     RETURN_SPEED: 300,
