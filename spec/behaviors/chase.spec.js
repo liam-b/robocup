@@ -15,13 +15,13 @@ detail('ball chase', 'behavior', __filename, function () {
 
     var returned;
 
-    chase(motors, constants, {angle: 4, distance: 20});
+    chase(motors, constants, function () { return {angle: 4, distance: 20}; });
     returned = motors.ratio.calls.mostRecent().args;
     expect(returned[0][0]).toBeLessThan(1);
     expect(returned[0][1]).toBeGreaterThan(1);
     expect(returned[1]).toBe(constants.CHASE_SPEED);
 
-    chase(motors, constants, {angle: 6, distance: 20});
+    chase(motors, constants, function () { return {angle: 6, distance: 20}; });
     returned = motors.ratio.calls.mostRecent().args;
     expect(returned[0][0]).toBeGreaterThan(1);
     expect(returned[0][1]).toBeLessThan(1);
