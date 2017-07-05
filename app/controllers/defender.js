@@ -28,7 +28,6 @@ var STATE = {
       constants.DEFENDER.STATE = 'track';
     }
     else {
-      console.log(bot.seeker.value());
       behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     }
   },
