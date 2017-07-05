@@ -2,6 +2,7 @@ module.exports.default = function (bot, behaviors, helpers, constants) { STATE[c
 
 var STATE = {
   'dribble': function (bot, behaviors, helpers, constants) {
+    console.log("chase?")
     behaviors.chase(bot.motors, constants, bot.seeker)
   }
 }
