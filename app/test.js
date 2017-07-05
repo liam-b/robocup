@@ -113,6 +113,7 @@ function loop () {
   // var seekerValues = bot.seeker.value();
   // console.log(seekerValues);
   // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
+  output.info('debug', 'distance: ' + seeker.value().distance)
   if (constants.ROLE == 'defend') {
     output.trace('state', constants.DEFENDER.STATE);
     controllers.defender(bot, behaviors, helpers, constants);
@@ -138,5 +139,5 @@ function exitHandler (options, err) {
 }
  
 process.on('exit', exitHandler.bind(null));
-process.on('SIGINT', exitHandler.bind({exit:true}, null));
+process.on('SIGINT', exitHandler.bind({null, exit:true}));
 process.on('uncaughtException', exitHandler.bind(null));
