@@ -5,27 +5,15 @@ var STATE = {
     console.log('initial');
     constants.DEFENDER.STATE = 'track';
   },
-  // 'track': function (bot, behaviors, helpers, constants) {
-  //   console.log('track');
-  //   var values = bot.sensor.seeker.value();
-  //   console.log('got seeker values');
-  //   console.log('values', values);
-  //   console.log('dist', constants.INTERCEPT.CLEAR_DISTANCE);
-  //   if (values.distance > constants.INTERCEPT.CLEAR_DISTANCE) {
-  //     console.log('going to intercept');
-  //     bot.motors.reset();
-  //     constants.DEFENDER.STATE = 'intercept';
-  //   }
-  //   else {
-  //     console.log('going to track');
-  //     behaviors.track(bot.motors, bot.seeker, constants.TRACK_SPEED);
-  //   }
-  //   console.log('end of track loop');
-  // },
   'track': function (bot, behaviors, helpers, constants) {
-    console.log('track');
-      var values = bot.seeker.value();
-      console.log('values', values);
+    var values = bot.seeker.value();
+    if (values.distance > constants.INTERCEPT.CLEAR_DISTANCE) {
+      bot.motors.reset();
+      constants.DEFENDER.STATE = 'intercept';
+    }
+    else {
+      behaviors.track(bot.motors, bot.seeker, constants.TRACK_SPEED);
+    }
   },
   'intercept': function (bot, behaviors, helpers, constants) {
     console.log('intercept');

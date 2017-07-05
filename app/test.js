@@ -105,7 +105,6 @@ function start () {
 
   constants.BOT_STATE = 'looping';
   var loopInterval = setInterval(function () {
-    console.log('interval', constants.PAUSED);
     if (!constants.PAUSED) loop();
   }, 100);
 }
@@ -114,7 +113,6 @@ function loop () {
   // var seekerValues = bot.seeker.value();
   // console.log(seekerValues);
   // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
-  console.log('looping');
   controllers.defender(bot, behaviors, helpers, constants);
 }
 
