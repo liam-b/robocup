@@ -138,5 +138,5 @@ function exitHandler (options, err) {
 }
  
 process.on('exit', exitHandler.bind(null));
-process.on('SIGINT', exitHandler.bind({exit:true}));
+process.on('SIGINT', exitHandler.bind({exit:true}, null));
 process.on('uncaughtException', exitHandler.bind(null));
