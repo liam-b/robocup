@@ -107,6 +107,7 @@ function start () {
   constants.BOT_STATE = 'looping';
   output.info('main', 'looping')
   var loopInterval = setInterval(function () {
+    output.info('main', 'interval')
     if (!constants.PAUSED) loop();
   }, 100);
 }
@@ -116,7 +117,7 @@ function loop () {
   // console.log(seekerValues);
   // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
 
-  controllers.attacker(bot, behaviors, helpers, constants);
+  controllers.attacker(bot, behaviors, helpers, constants, output);
   output.info('main', 'chasing')
 }
 

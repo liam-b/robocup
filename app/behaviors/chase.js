@@ -1,8 +1,9 @@
 var _timeSinceLostBall = 0;
 
-module.exports = function (motors, constants, seeker) {
+module.exports = function (motors, constants, seeker, output) { //output is temporary
   if (seeker.distance >= 26 && seeker.distance <= 30 && seeker.angle == 7) {
     motors.ratio([1, 1], constants.CHASE_SPEED);
+    output.info('main', 'where is ball')
   }
   else {
     switch (seeker.angle) {
