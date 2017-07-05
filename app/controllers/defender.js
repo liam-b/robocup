@@ -1,9 +1,9 @@
-// module.exports = function (bot, behaviors, helpers, constants) { STATE[constants.DEFENDER.STATE](bot, behaviors, helpers, constants); };
+module.exports = function (bot, behaviors, helpers, constants) { STATE[constants.DEFENDER.STATE](bot, behaviors, helpers, constants); };
 
-module.exports = function (bot, behaviors, helpers, constants) {
-  constants.DEFENDER.STATE = 'track';
-  STATE.track(bot, behaviors, helpers, constants);
-};
+// module.exports = function (bot, behaviors, helpers, constants) {
+//   constants.DEFENDER.STATE = 'track';
+//   STATE.track(bot, behaviors, helpers, constants);
+// };
 
 var STATE = {
   'initial': function (bot, behaviors, helpers, constants) {
@@ -24,7 +24,8 @@ var STATE = {
     if (values.distance > constants.KICK_RANGE) {
       behaviors.kick(bot.motors);
       constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
-      constants.DEFENDER.STATE = 'return';
+      // constants.DEFENDER.STATE = 'return';
+      constants.DEFENDER.STATE = 'track';
     }
     else {
       behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
