@@ -2,7 +2,6 @@ module.exports = function (bot, behaviors, helpers, constants) { STATE[constants
 
 var STATE = {
   'initial': function (bot, behaviors, helpers, constants) {
-    console.log('initial');
     constants.DEFENDER.STATE = 'track';
   },
   'track': function (bot, behaviors, helpers, constants) {
@@ -16,7 +15,6 @@ var STATE = {
     }
   },
   'intercept': function (bot, behaviors, helpers, constants) {
-    console.log('intercept');
     var values = bot.seeker.value();
     if (values.distance > constants.KICK_RANGE) {
       behaviors.kick(bot.motors);
@@ -28,8 +26,7 @@ var STATE = {
     }
   },
   'return': function (bot, behaviors, helpers, constants) {
-    console.log('return');
-    if (bot.motors.averagePosition() + constants.DEFENDER.MOTOR_ROTATIONS == 0) {
+    if (abs(bot.motors.averagePosition()) - abs(constants.DEFENDER.MOTOR_ROTATIONS) >= 0) {
       bot.motors.stop();
       constants.DEFENDER.STATE = 'track';
     }
@@ -38,3 +35,7 @@ var STATE = {
     }
   }
 };
+
+function abs (value) {
+  return (value < 0) ? (value * -1) : (value);
+}
