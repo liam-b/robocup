@@ -1,4 +1,9 @@
-module.exports = function (bot, behaviors, helpers, constants) { STATE[constants.DEFENDER.STATE](bot, behaviors, helpers, constants); };
+// module.exports = function (bot, behaviors, helpers, constants) { STATE[constants.DEFENDER.STATE](bot, behaviors, helpers, constants); };
+
+module.exports = function (bot, behaviors, helpers, constants) {
+  constants.DEFENDER.STATE = 'track';
+  STATE.track(bot, behaviors, helpers, constants);
+};
 
 var STATE = {
   'initial': function (bot, behaviors, helpers, constants) {
