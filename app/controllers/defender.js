@@ -17,7 +17,7 @@ var STATE = {
   },
   'intercept': function (bot, behaviors, helpers, constants) {
     console.log('intercept');
-    var values = bot.sensor.seeker.value();
+    var values = bot.seeker.value();
     if (values.distance > constants.KICK_RANGE) {
       behaviors.kick(bot.motors);
       constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
