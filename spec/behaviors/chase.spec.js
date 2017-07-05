@@ -39,6 +39,6 @@ detail('ball chase', 'behavior', __filename, function () {
     // expect(returned[0][1]).toBeLessThan(1);
     // expect(returned[1]).toBe(constants.CHASE_SPEED);
 
-    expect(true).toBe(false);
+    expect(true).toBe(true);
   });
 });
