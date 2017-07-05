@@ -8,6 +8,9 @@ var STATE = {
   'track': function (bot, behaviors, helpers, constants) {
     console.log('track');
     var values = bot.sensor.seeker.value();
+    console.log('got seeker values');
+    console.log('values', values);
+    console.log('dist', constants.INTERCEPT.CLEAR_DISTANCE);
     if (values.distance > constants.INTERCEPT.CLEAR_DISTANCE) {
       console.log('going to intercept');
       bot.motors.reset();
@@ -17,6 +20,7 @@ var STATE = {
       console.log('going to track');
       behaviors.track(bot.motors, bot.seeker, constants.TRACK_SPEED);
     }
+    console.log('end of track loop');
   },
   'intercept': function (bot, behaviors, helpers, constants) {
     console.log('intercept');
