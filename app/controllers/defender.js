@@ -7,17 +7,21 @@ var STATE = {
   },
   'track': function (bot, behaviors, helpers, constants) {
     console.log('track');
-    if (bot.sensor.seeker > constants.INTERCEPT.CLEAR_DISTANCE) {
+    var values = bot.sensor.seeker.value();
+    if (values.distance > constants.INTERCEPT.CLEAR_DISTANCE) {
+      console.log('going to intercept');
       bot.motors.reset();
       constants.DEFENDER.STATE = 'intercept';
     }
     else {
+      console.log('going to track');
       behaviors.track(bot.motors, bot.seeker, constants.TRACK_SPEED);
     }
   },
   'intercept': function (bot, behaviors, helpers, constants) {
     console.log('intercept');
-    if (bot.sensor.seeker > constants.KICK_RANGE) {
+    var values = bot.sensor.seeker.value();
+    if (values.distance > constants.KICK_RANGE) {
       behaviors.kick(bot.motors);
       constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
       constants.DEFENDER.STATE = 'return';
