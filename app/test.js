@@ -114,7 +114,7 @@ function loop () {
   // console.log(seekerValues);
   // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
 
-  controllers.defender(bot, behaviors, helpers, constants);
+  controllers.attacker(bot, behaviors, helpers, constants);
 }
 
 function quit () {
