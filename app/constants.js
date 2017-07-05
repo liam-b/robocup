@@ -3,7 +3,7 @@ module.exports = {
   BOT_STATE: 'initial',
   PAUSED: false,
 
-  CHASE_SPEED: 500,
+  CHASE_SPEED: 300,
   TRACK_SPEED: 500,
   KICK_RANGE: 30,
 
