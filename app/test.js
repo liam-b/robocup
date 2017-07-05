@@ -115,6 +115,7 @@ function loop () {
   // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
 
   controllers.attacker(bot, behaviors, helpers, constants);
+  output.info('main', 'chasing')
 }
 
 function quit () {
