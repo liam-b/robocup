@@ -4,7 +4,7 @@ module.exports = function (motors, constants, seeker, output) {
   var values = seeker.value();
   if (values.distance >= 26 && values.distance <= 30 && values.angle == 7) {
     motors.ratio([1, 1], constants.CHASE_SPEED);
-    output.info('main', 'where is ball')
+    output.info('chase', 'where is the ball');
   }
   else {
     switch (values.angle) {

@@ -102,12 +102,12 @@ output.info('start', 'finished setup');
 function start () {
   helpers.position.setRelativeNorth(bot.compass.value());
   bot.motors.run(100, 100);
-  output.info('main', 'starting')
+  output.info('main', 'starting');
 
   constants.BOT_STATE = 'looping';
-  output.info('main', 'looping')
+  output.info('main', 'looping');
   var loopInterval = setInterval(function () {
-    output.info('main', 'interval')
+    output.info('main', 'interval');
     if (!constants.PAUSED) loop();
   }, 100);
 }
@@ -116,9 +116,9 @@ function loop () {
   // var seekerValues = bot.seeker.value();
   // console.log(seekerValues);
   // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
-  output.info('main', 'pls chase')
+  output.info('main', 'pls chase');
   controllers.attacker(bot, behaviors, helpers, constants, output); // output is temporary
-  output.info('main', 'chasing')
+  output.info('main', 'chasing');
 }
 
 function quit () {
