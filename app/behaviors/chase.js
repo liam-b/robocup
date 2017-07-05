@@ -8,7 +8,7 @@ module.exports = function (motors, constants, seeker) {
   // if (values.distance >= 26 && values.distance <= 30 && values.angle == 7) {
   //   motors.ratio([1, 1], constants.CHASE_SPEED);
   // }
-  if (true) {
+  if (values.distance < 28) {
     switch (values.angle) {
       case 9:
         motors.ratio([0.5, -0.5], constants.CHASE_SPEED);
@@ -41,6 +41,8 @@ module.exports = function (motors, constants, seeker) {
         motors.ratio([0.5, 1.5], constants.CHASE_SPEED);
         break;
     }
+  } else {
+    motors.ratio([1, 1], constants.CHASE_SPEED);
   }
 
   // if (values.distance > 60 && (values.angle == 4 || values.angle == 5 || values.angle == 6)) motors.ratio([1, 1], constants.CHASE_SPEED);
