@@ -4,7 +4,7 @@ module.exports = {
   PAUSED: false,
 
   CHASE_SPEED: 500,
-  TRACK_SPEED: 300,
+  TRACK_SPEED: 500,
   KICK_RANGE: 30,
 
   INTERCEPT: {
