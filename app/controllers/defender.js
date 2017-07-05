@@ -22,7 +22,7 @@ var STATE = {
   'intercept': function (bot, behaviors, helpers, constants) {
     var values = bot.seeker.value();
     if (values.distance > constants.KICK_RANGE) {
-      // behaviors.kick(bot.motors);
+      behaviors.kick(bot.motors);
       constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
       // constants.DEFENDER.STATE = 'return';
       constants.DEFENDER.STATE = 'track';
