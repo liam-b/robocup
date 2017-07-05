@@ -1,7 +1,7 @@
 var _timeSinceLostBall = 0;
 
-module.exports = function (motors, constants, seeker, output) {
-  output.info('chase', 'hopefully chasing')
+module.exports = function (motors, constants, seeker) {
+  // output.info('chase', 'hopefully chasing')
   var values = seeker.value();
   // if (values.distance >= 26 && values.distance <= 30 && values.angle == 7) {
   //   motors.ratio([1, 1], constants.CHASE_SPEED);
