@@ -23,7 +23,9 @@ var STATE = {
   //   console.log('end of track loop');
   // },
   'track': function (bot, behaviors, helpers, constants) {
-    console.log('hey');
+    console.log('track');
+      var values = bot.sensor.seeker.value();
+      console.log('values', values);
   },
   'intercept': function (bot, behaviors, helpers, constants) {
     console.log('intercept');
