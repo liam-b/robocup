@@ -120,7 +120,7 @@ function loop () {
 
   if (constants.ROLE == 'attack') {
     output.trace('state', constants.ATTACKER.STATE);
-    controllers.attacker(bot, behaviors, helpers, constants);
+    controllers.attacker(bot, behaviors, helpers, constants, output);
   }
 }
 
