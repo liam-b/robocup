@@ -4,7 +4,7 @@ module.exports = function (motors, constants, seeker) {
   // output.info('chase', 'hopefully chasing')
   var values = seeker.value();
 
-  console.log(values.angle);
+  console.log(values.angle, values.distance);
   // if (values.distance >= 26 && values.distance <= 30 && values.angle == 7) {
   //   motors.ratio([1, 1], constants.CHASE_SPEED);
   // }
