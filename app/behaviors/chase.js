@@ -6,7 +6,7 @@ module.exports = function (motors, constants, seeker, output) {
   // if (values.distance >= 26 && values.distance <= 30 && values.angle == 7) {
   //   motors.ratio([1, 1], constants.CHASE_SPEED);
   // }
-  else {
+  if (true) {
     switch (values.angle) {
       case 9:
         motors.ratio([0.5, -0.5], constants.CHASE_SPEED);
