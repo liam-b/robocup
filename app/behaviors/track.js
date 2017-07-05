@@ -14,13 +14,13 @@ module.exports = function (motors, seeker, speed) {
       motors.ratio([0.6, -0.6], speed);
       break;
     case 6:
-      motors.ratio([0.4, -0.4], speed);
+      motors.ratio([0.2, -0.2], speed);
       break;
     case 5:
       motors.ratio([0, 0], speed);
       break;
     case 4:
-      motors.ratio([-0.4, 0.4], speed);
+      motors.ratio([-0.2, 0.2], speed);
       break;
     case 3:
       motors.ratio([-0.6, 0.6], speed);
@@ -31,8 +31,8 @@ module.exports = function (motors, seeker, speed) {
     case 1:
       motors.ratio([-1, 1], speed);
       break;
-    // case 0:
-    //   motors.ratio([1, -1], speed);
-    //   break;
+    case 0:
+      motors.ratio([-0.3, 0.3], speed);
+      break;
   }
 };
