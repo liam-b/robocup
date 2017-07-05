@@ -24,7 +24,7 @@ var STATE = {
       constants.DEFENDER.STATE = 'return';
     }
     else {
-      behaviors.chase(bot.motors, bot.seeker, constants.CHASE_SPEED);
+      behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     }
   },
   'return': function (bot, behaviors, helpers, constants) {
