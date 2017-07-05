@@ -102,8 +102,10 @@ output.info('start', 'finished setup');
 function start () {
   helpers.position.setRelativeNorth(bot.compass.value());
   bot.motors.run(100, 100);
+  output.info('main', 'starting')
 
   constants.BOT_STATE = 'looping';
+  output.info('main', 'looping')
   var loopInterval = setInterval(function () {
     if (!constants.PAUSED) loop();
   }, 100);
