@@ -24,7 +24,7 @@ var STATE = {
   // },
   'track': function (bot, behaviors, helpers, constants) {
     console.log('track');
-      var values = bot.sensor.seeker.value();
+      var values = bot.seeker.value();
       console.log('values', values);
   },
   'intercept': function (bot, behaviors, helpers, constants) {
