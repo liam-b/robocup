@@ -1,7 +1,7 @@
-module.exports.default = function (bot, behaviors, helpers, constants, output) { STATE[constants.ATTACKER.STATE](bot, behaviors, helpers, constants, output); };
+module.exports = function (bot, behaviors, helpers, constants) { STATE[constants.ATTACKER.STATE](bot, behaviors, helpers, constants); };
 
 var STATE = {
   'dribble': function (bot, behaviors, helpers, constants) {
-    behaviors.chase(bot.motors, constants, bot.seeker, output)
+    behaviors.chase(bot.motors, constants, bot.seeker)
   }
 }
