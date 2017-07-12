@@ -106,7 +106,7 @@ function start () {
   constants.BOT_STATE = 'looping';
   var loopInterval = setInterval(function () {
     if (!constants.PAUSED) loop();
-  }, 17);
+  }, 10);
 }
 
 function loop () {
