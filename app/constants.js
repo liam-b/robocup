@@ -8,8 +8,8 @@ module.exports = {
   KICK_RANGE: 30,
 
   INTERCEPT: {
-    RETURN_SPEED: 500,
-    CLEAR_DISTANCE: 25
+    RETURN_SPEED: 300,
+    CLEAR_DISTANCE: 23
   },
   ATTACKER: {
     STATE: 'dribble',
