@@ -19,6 +19,7 @@ var STATE = {
     if (value.distance > constants.KICK_RANGE) {
       behaviors.kick(bot.motors);
       constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
+      bot.motors.reset();
       constants.DEFENDER.STATE = 'return';
     }
     else {
