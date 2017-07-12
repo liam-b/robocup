@@ -22,7 +22,8 @@ module.exports = {
     MOTOR_ROTATIONS: 0
   },
   FIELD: {
-    GREEN_PCT: null,
-    BLACK_PCT: 40
+    // Both of these are max values
+    GREEN_PCT: 45,
+    BLACK_PCT: 10
   }
 };
