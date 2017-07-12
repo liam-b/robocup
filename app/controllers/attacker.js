@@ -8,7 +8,7 @@ var STATE = {
     }
   },
   'shoot': function (bot, behaviors, helpers, constants) {
-    if (!constants.ATTACKER.SHOOTING) {
+    if (!constants.ATTACKER.SHOOTING && bot.compass.value() > 315 && bot.compass.value() < 45) {
       constants.ATTACKER.SHOOTING = true;
       bot.motors.ratio([1, 1], constants.ATTACKER.SHOOT_SPEED);
       setTimeout(behaviors.kick(bot.kicker), 250);
