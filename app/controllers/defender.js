@@ -6,7 +6,8 @@ var STATE = {
   },
   'track': function (bot, behaviors, helpers, constants) {
     console.log('working');
-    if (bot.sensor.seeker > constants.INTERCEPT.CLEAR_DISTANCE) {
+    var value = bot.sensor.seeker.value();
+    if (value.distance > constants.INTERCEPT.CLEAR_DISTANCE) {
       console.log('other');
       bot.motors.reset();
       constants.DEFENDER.STATE = 'intercept';
@@ -17,7 +18,8 @@ var STATE = {
     }
   },
   'intercept': function (bot, behaviors, helpers, constants) {
-    if (bot.sensor.seeker > constants.KICK_RANGE) {
+    var value = bot.sensor.seeker.value();
+    if (value.distance > constants.KICK_RANGE) {
       behaviors.kick(bot.motors);
       constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
       constants.DEFENDER.STATE = 'return';
