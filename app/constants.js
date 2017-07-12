@@ -24,6 +24,6 @@ module.exports = {
   FIELD: {
     // Both of these are max values
     GREEN_PCT: 45,
-    BLACK_PCT: 10
+    BLACK_PCT: 15
   }
 };

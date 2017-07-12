@@ -3,7 +3,7 @@ var _timeSinceLostBall = 0;
 module.exports = function (motors, constants, seeker) {
   var values = seeker.value();
 
-  console.log(values.angle);
+  // console.log(values.angle);
 
   if (true) {
     switch (values.angle) {
