@@ -10,7 +10,6 @@ var leds = new extra.Leds();
 var output = new Logger(leds, (process.argv[2] == 'quiet'));
 
 output.log('start', 'started');
-output.info('start', 'runtime version ' + output.cyan(version));
 constants.BOT_STATE = 'setup';
 output.log('start', 'setting up');
 
