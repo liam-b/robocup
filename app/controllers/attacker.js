@@ -2,7 +2,7 @@ module.exports = function (bot, behaviors, helpers, constants) { STATE[constants
 
 var STATE = {
   'dribble': function (bot, behaviors, helpers, constants) {
-    console.log('dribbing')
+    console.log('dribbing');
     behaviors.chase(bot.motors, constants, bot.seeker);
     if (bot.ColorSensor.value() < constants.FIELD.BLACK_PCT) {
       constants.ATTACKER.STATE = 'shoot';
@@ -10,7 +10,7 @@ var STATE = {
   },
   'shoot': function (bot, behaviors, helpers, constants) {
     if (!constants.ATTACKER.SHOOTING) {
-      console.log('shooting')
+      console.log('shooting');
       constants.ATTACKER.SHOOTING = true;
       bot.motors.ratio([1, 1], constants.ATTACKER.SHOOT_SPEED);
       setTimeout(behaviors.kick(bot.kicker), 500);
