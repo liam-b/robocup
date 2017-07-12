@@ -3,7 +3,7 @@ module.exports = function (bot, behaviors, helpers, constants) { STATE[constants
 var STATE = {
   'dribble': function (bot, behaviors, helpers, constants) {
     behaviors.chase(bot.motors, constants, bot.seeker);
-    if (bot.ColorSensor.value() < constants.) {
+    if (bot.ColorSensor.value() < constants.FIELD.GREEN_PCT) {
       constants.ATTACKER.STATE = 'shoot';
     }
   },
