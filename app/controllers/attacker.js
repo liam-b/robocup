@@ -6,6 +6,7 @@ var STATE = {
     behaviors.chase(bot.motors, constants, bot.seeker);
     console.log('ahhh...')
     if (bot.ColorSensor.value() < constants.FIELD.BLACK_PCT) {
+      console.log('what')
       constants.ATTACKER.STATE = 'shoot';
     }
     console.log('hmmm')
