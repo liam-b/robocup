@@ -40,6 +40,22 @@ var trello = {
   }
 };
 
+var discord_travis = {
+  passed: {
+    build: {
+      number: values.build,
+      status: values.status
+    },
+    id: values.build,
+    commit: {
+      short: values.commit,
+      long: process.argv[4]
+    },
+    status: 'passing',
+    message: values.message
+  }
+};
+
 var availableServices = {
   after: [
     {service: 'trello', data: (values.status == 'success') ? trello.passed : trello.failed},
