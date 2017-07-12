@@ -20,5 +20,9 @@ module.exports = {
     STATE: 'initial',
     RETURN_SPEED: 300,
     MOTOR_ROTATIONS: 0
-   }
+  },
+  FIELD: {
+    GREEN_PCT: null,
+    BLACK_PCT: 40
+  }
 };
