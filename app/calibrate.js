@@ -48,7 +48,7 @@ function loop() {
     case 'ultrasonic':
       output.log('calibrate', 'ultrasonic sensor value: ' + ultrasonicSensor.value());
       break;
-    case 'seeker'
+    case 'seeker':
       output.log('calibrate', 'seeker value: ' + seeker.value());
       break;
   }
