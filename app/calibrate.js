@@ -21,9 +21,9 @@ seeker.check()
 
 output.info('start', 'setting modes');
 
-bot.colorSensor.mode(bot.colorSensor.REFLECTIVE);
-bot.ultrasonicSensor.mode(bot.ultrasonicSensor.DISTANCE);
-bot.seeker.mode(bot.seeker.MODULATED);
+colorSensor.mode(colorSensor.REFLECTIVE);
+ultrasonicSensor.mode(ultrasonicSensor.DISTANCE);
+seeker.mode(seeker.MODULATED);
 
 buttons.event.pressed('back', function () {
   output.log('end', 'ending program');
