@@ -19,14 +19,15 @@ var STATE = {
     if (value.distance > constants.KICK_RANGE) {
       behaviors.kick(bot.motors);
       constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
+      bot.motors.reset();
       constants.DEFENDER.STATE = 'return';
     }
     else {
-      behaviors.chase(bot.motors, bot.seeker, constants.CHASE_SPEED);
+      behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     }
   },
   'return': function (bot, behaviors, helpers, constants) {
-    if (bot.motors.averagePosition() + constants.DEFENDER.MOTOR_ROTATIONS == 0) {
+    if (Math.abs(bot.motors.averagePosition()) - Math.abs(constants.DEFENDER.MOTOR_ROTATIONS) > 0) {
       bot.motors.stop();
       constants.DEFENDER.STATE = 'track';
     }
