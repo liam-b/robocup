@@ -1,13 +1,10 @@
 var _timeSinceLostBall = 0;
 
 module.exports = function (motors, constants, seeker) {
-  // output.info('chase', 'hopefully chasing')
   var values = seeker.value();
 
   console.log(values.angle);
-  // if (values.distance >= 26 && values.distance <= 30 && values.angle == 7) {
-  //   motors.ratio([1, 1], constants.CHASE_SPEED);
-  // }
+  
   if (true) {
     switch (values.angle) {
       case 9:
@@ -42,16 +39,4 @@ module.exports = function (motors, constants, seeker) {
         break;
     }
   }
-
-  // if (values.distance > 60 && (values.angle == 4 || values.angle == 5 || values.angle == 6)) motors.ratio([1, 1], constants.CHASE_SPEED);
-  //
-  // if (values.angle != 0) _timeSinceLostBall = 0;
-  // else _timeSinceLostBall += 1;
-  //
-  // if (_timeSinceLostBall >= 15) {
-  //   motors.stop();
-  //   process.exit();
-  // }
-  //
-  // if (_timeSinceLostBall >= 5) motors.ratio([-1, 1], constants.CHASE_SPEED);
 };
