@@ -4,7 +4,7 @@ module.exports = function (motors, constants, seeker) {
   var values = seeker.value();
 
   console.log(values.angle);
-  
+
   if (true) {
     switch (values.angle) {
       case 9:
@@ -38,5 +38,7 @@ module.exports = function (motors, constants, seeker) {
         motors.ratio([0.5, 1.5], constants.CHASE_SPEED);
         break;
     }
+  } else {
+    motors.ratio([1, 1], constants.CHASE_SPEED);
   }
 };

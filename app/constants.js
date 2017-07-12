@@ -12,11 +12,18 @@ module.exports = {
     CLEAR_DISTANCE: 19
   },
   ATTACKER: {
-    STATE: 'dribble'
+    STATE: 'dribble',
+    SHOOT_SPEED: 650,
+    SHOOTING: false
   },
   DEFENDER: {
     STATE: 'initial',
     RETURN_SPEED: 300,
     MOTOR_ROTATIONS: 0
-   }
+  },
+  FIELD: {
+    // Both of these are max values
+    GREEN_PCT: 45,
+    BLACK_PCT: 10
+  }
 };
