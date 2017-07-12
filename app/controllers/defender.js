@@ -11,7 +11,7 @@ var STATE = {
       constants.DEFENDER.STATE = 'intercept';
     }
     else {
-      behaviors.track(bot.motors, constants.TRACK_SPEED, bot.seeker);
+      behaviors.track(bot.motors, bot.seeker, constants.TRACK_SPEED);
     }
   },
   'intercept': function (bot, behaviors, helpers, constants) {
@@ -22,7 +22,7 @@ var STATE = {
       constants.DEFENDER.STATE = 'return';
     }
     else {
-      behaviors.chase(bot.motors, bot.seeker, constants.CHASE_SPEED);
+      behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     }
   },
   'return': function (bot, behaviors, helpers, constants) {
