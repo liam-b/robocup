@@ -2,7 +2,9 @@ module.exports.default = function (bot, behaviors, helpers, constants) { STATE[c
 
 var STATE = {
   'initial': function (bot, behaviors, helpers, constants) {
+    console.log('before');
     constants.DEFENDER.STATE = 'track';
+    console.log('after');
   },
   'track': function (bot, behaviors, helpers, constants) {
     if (bot.sensor.seeker > constants.INTERCEPT.CLEAR_DISTANCE) {
