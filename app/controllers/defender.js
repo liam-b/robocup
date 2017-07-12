@@ -1,4 +1,3 @@
-
 module.exports.default = function (bot, behaviors, helpers, constants) { STATE[constants.DEFENDER.STATE](bot, behaviors, helpers, constants); };
 
 var STATE = {
