@@ -135,7 +135,7 @@ process.stdin.resume();
 
 function exitHandler (options, err) {
     if (options.exit) quit();
-    if (err) console.log(err.stack);
+//     if (err) console.log(err.stack);
 }
  
 process.on('exit', exitHandler.bind(null));
