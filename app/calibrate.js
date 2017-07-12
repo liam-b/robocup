@@ -2,7 +2,9 @@ var Logger = require('./log.js');
 var constants = require('./constants.js');
 var sensor = require('./io/sensor.js');
 var buttons = require('./io/buttons.js');
+var extra = require('./io/extra.js');
 
+var leds = new extra.Leds();
 var output = new Logger(leds, (process.argv[2] == 'quiet'));
 
 output.log('start', 'started');
