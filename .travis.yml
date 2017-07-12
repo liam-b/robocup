@@ -6,11 +6,6 @@ notifications:
   webhooks:
     - https://liam-server-3000.herokuapp.com/travis/discord
     - https://discordapp.com/api/webhooks/334519811344433164/SPFDHkPNJpsZKUxb_JWVTzHZjdeUsZuEU9yDP67TVGO_Ax3cTgNJ93fKT0m2zZVcp6Nv
-    on_success: always
-    on_failure: always
-    on_start: always
-    on_cancel: always
-    on_error: always
 
 after_failure:
   - node "travis.js" "fail" $TRAVIS_BUILD_NUMBER $TRAVIS_COMMIT "$TRAVIS_COMMIT_MESSAGE" 'after'
