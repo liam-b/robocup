@@ -15,7 +15,7 @@ var STATE = {
       bot.motors.ratio([1, 1], constants.ATTACKER.SHOOT_SPEED);
       setTimeout(behaviors.kick(bot.kicker), 500);
       setTimeout(function (){
-        bot.motors.stop;
+        bot.motors.stop();
         constants.ATTACKER.SHOOTING = false;
         constants.ATTACKER.STATE = 'dribble';
       }, 1000);
