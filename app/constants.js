@@ -12,7 +12,9 @@ module.exports = {
     CLEAR_DISTANCE: 19
   },
   ATTACKER: {
-    STATE: 'dribble'
+    STATE: 'dribble',
+    SHOOT_SPEED: 650,
+    SHOOTING: false
   },
   DEFENDER: {
     STATE: 'initial',
