@@ -7,6 +7,7 @@ var STATE = {
     if (bot.ColorSensor.value() < constants.FIELD.BLACK_PCT) {
       constants.ATTACKER.STATE = 'shoot';
     }
+    console.log('hmmm')
   },
   'shoot': function (bot, behaviors, helpers, constants) {
     if (!constants.ATTACKER.SHOOTING) {
