@@ -4,6 +4,7 @@ var STATE = {
   'dribble': function (bot, behaviors, helpers, constants) {
     console.log('dribbing');
     behaviors.chase(bot.motors, constants, bot.seeker);
+    console.log('ahhh...')
     if (bot.ColorSensor.value() < constants.FIELD.BLACK_PCT) {
       constants.ATTACKER.STATE = 'shoot';
     }
