@@ -25,7 +25,7 @@ module.exports.DriveMotors = function (left, right, output) {
     console.log('what')
     if (this.left.connected && this.right.connected) {
       console.log('hmmm')
-      this.left.runForever((parseInt(ratio[0] * power) <= 1000) ? parseInt(ratio[0] * power) : 10000);
+      this.left.runForever((parseInt(ratio[0] * power) <= 1000) ? parseInt(ratio[0] * power) : 1000);
       this.right.runForever((parseInt(ratio[1] * power) <= 1000) ? parseInt(ratio[1] * power) : 1000);
     }
   };
