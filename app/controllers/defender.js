@@ -26,7 +26,7 @@ var STATE = {
     }
   },
   'return': function (bot, behaviors, helpers, constants) {
-    if (bot.motors.averagePosition() + constants.DEFENDER.MOTOR_ROTATIONS == 0) {
+    if (Math.abs(bot.motors.averagePosition()) - Math.abs(constants.DEFENDER.MOTOR_ROTATIONS) > 0) {
       bot.motors.stop();
       constants.DEFENDER.STATE = 'track';
     }
