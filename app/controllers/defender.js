@@ -5,11 +5,14 @@ var STATE = {
     constants.DEFENDER.STATE = 'track';
   },
   'track': function (bot, behaviors, helpers, constants) {
+    console.log('working');
     if (bot.sensor.seeker > constants.INTERCEPT.CLEAR_DISTANCE) {
+      console.log('other');
       bot.motors.reset();
       constants.DEFENDER.STATE = 'intercept';
     }
     else {
+      console.log('tracking');
       behaviors.track(bot.motors, bot.seeker, constants.TRACK_SPEED);
     }
   },
