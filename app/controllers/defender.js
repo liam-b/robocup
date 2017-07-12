@@ -1,15 +1,18 @@
-module.exports.default = function (bot, behaviors, helpers, constants) { STATE[constants.DEFENDER.STATE](bot, behaviors, helpers, constants); };
+module.exports = function (bot, behaviors, helpers, constants) { STATE[constants.DEFENDER.STATE](bot, behaviors, helpers, constants); };
 
 var STATE = {
   'initial': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.STATE = 'track';
   },
   'track': function (bot, behaviors, helpers, constants) {
+    console.log('working');
     if (bot.sensor.seeker > constants.INTERCEPT.CLEAR_DISTANCE) {
+      console.log('other');
       bot.motors.reset();
       constants.DEFENDER.STATE = 'intercept';
     }
     else {
+      console.log('tracking');
       behaviors.track(bot.motors, bot.seeker, constants.TRACK_SPEED);
     }
   },
