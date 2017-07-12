@@ -3,9 +3,11 @@ module.exports = function (bot, behaviors, helpers, constants) { STATE[constants
 var STATE = {
   'dribble': function (bot, behaviors, helpers, constants) {
     behaviors.chase(bot.motors, constants, bot.seeker);
+    console.log('chase?')
     if (bot.colorSensor.value() <= constants.FIELD.BLACK_PCT && (helpers.position.relativeRotation() > 315 || helpers.position.relativeRotation() < 45)) {
       constants.ATTACKER.STATE = 'shoot';
     }
+    console.log('chase')
   },
   'shoot': function (bot, behaviors, helpers, constants) {
     if (!constants.ATTACKER.SHOOTING) {
