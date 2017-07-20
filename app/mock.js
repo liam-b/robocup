@@ -1,3 +1,4 @@
+console.log('Using  mock, fyi.')
 module.exports = {
   'Logger': function () {
     this.cyan = function (text) { return text; };

@@ -131,13 +131,13 @@ function quit () {
   process.exit();
 }
 
-process.stdin.resume();
-
-function exitHandler (options, err) {
-    if (options.exit) quit();
-//     if (err) console.log(err.stack);
-}
- 
-process.on('exit', exitHandler.bind(null));
-process.on('SIGINT', exitHandler.bind(null, {exit:true}));
+// process.stdin.resume();
+//
+// function exitHandler (options, err) {
+//     if (options.exit) quit();
+// //     if (err) console.log(err.stack);
+// }
+//  
+// process.on('exit', exitHandler.bind(null));
+// process.on('SIGINT', exitHandler.bind(null, {exit:true}));
 // process.on('uncaughtException', exitHandler.bind(null));
