@@ -9,7 +9,8 @@ module.exports = {
 
   INTERCEPT: {
     RETURN_SPEED: 300,
-    CLEAR_DISTANCE: 23
+    CLEAR_DISTANCE: 23,
+    TIMER: 0
   },
   ATTACKER: {
     STATE: 'dribble',
@@ -19,7 +20,11 @@ module.exports = {
   DEFENDER: {
     STATE: 'initial',
     RETURN_SPEED: 300,
-    MOTOR_ROTATIONS: 0
+    MOTOR_ROTATIONS: 0,
+    RETURN_WAIT: 100,
+    RETURN_WAIT_TIMER: 0,
+    INTERCEPT_DELAY_WAIT: 50,
+    INTERCEPT_DELAY_TIMER: 0
   },
   FIELD: {
     // Both of these are max values
