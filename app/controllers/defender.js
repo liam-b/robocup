@@ -8,6 +8,7 @@ var STATE = {
     var value = bot.seeker.value();
     if (value.distance > constants.INTERCEPT.CLEAR_DISTANCE) {
       bot.motors.reset();
+      constants.INTERCEPT.TIMER = 0;
       constants.DEFENDER.STATE = 'intercept';
     }
     else {
@@ -16,6 +17,11 @@ var STATE = {
   },
   'intercept': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
+    constants.INTERCEPT.TIMER += 1;
+
+    if (constants.INTERCEPT.TIMER > constants.INTERCEPT.PAST_TIME || value.angle > 7 || value.angle < 3) {
+      constants.DEFENDER.STATE = 'return';
+    }
     if (value.distance > constants.KICK_RANGE) {
       behaviors.kick(bot.motors);
       constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
