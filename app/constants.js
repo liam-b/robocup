@@ -30,7 +30,7 @@ module.exports = {
   },
   FIELD: {
     // Both of these are max values
-    GREEN_PCT: 45,
-    BLACK_PCT: 15
+    GREEN_PCT: 45, // Never used; value from school
+    BLACK_PCT: 20
   }
 };
