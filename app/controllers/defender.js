@@ -21,17 +21,24 @@ var STATE = {
     var value = bot.seeker.value();
     constants.INTERCEPT.TIMER += 1;
 
-    if (constants.INTERCEPT.TIMER > constants.INTERCEPT.PAST_TIME || value.angle > 7 || value.angle < 3) {
+    if (constants.INTERCEPT.TIMER > constants.INTERCEPT.PAST_TIME) {
       constants.DEFENDER.RETURN_WAIT_TIMER = 0;
+      console.log('stopped from timer');
       constants.DEFENDER.STATE = 'return';
     }
-    if (value.distance > constants.KICK_RANGE) {
-      behaviors.kick(bot.motors);
-      constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
-      bot.motors.reset();
+    if (value.angle > 7 || value.angle < 3) {
       constants.DEFENDER.RETURN_WAIT_TIMER = 0;
+      console.log('stopped from angle');
       constants.DEFENDER.STATE = 'return';
     }
+    // if (value.distance > constants.KICK_RANGE) {
+    //   behaviors.kick(bot.motors);
+    //   constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
+    //   bot.motors.reset();
+    //   constants.DEFENDER.RETURN_WAIT_TIMER = 0;
+    //   console.log('stopped from default');
+    //   constants.DEFENDER.STATE = 'return';
+    // }
     else {
       behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     }
