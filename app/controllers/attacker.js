@@ -2,7 +2,7 @@ module.exports = function (bot, behaviors, helpers, constants) { STATE[constants
 
 var STATE = {
   'dribble': function (bot, behaviors, helpers, constants) {
-    bot.motors.ratio([1,1],250);
+    // bot.motors.ratio([1,1],250);
     behaviors.chase(bot.motors, constants, bot.seeker);
     if (bot.colorSensor.value() <= constants.FIELD.BLACK_PCT && (helpers.position.relativeRotation() > 315 || helpers.position.relativeRotation() < 45)) {
       constants.ATTACKER.STATE = 'shoot';
