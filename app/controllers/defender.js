@@ -43,10 +43,10 @@ var STATE = {
     //   behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     // }
     setTimeout(function () {
-      bot.motors.ratio([1, 1], constants.CHASE_SPEED);
+      bot.motors.ratio([1, 1], 800);
       setTimeout(function () {
-        bot.motors.ratio([-1, -1], constants.CHASE_SPEED);
-        constants.DEFENDER.STATE = 'return';
+        bot.motors.ratio([-1, -1], 800);
+        constants.DEFENDER.STATE = 'track';
       }, 500);
     }, 500);
   },
