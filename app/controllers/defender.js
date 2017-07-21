@@ -19,18 +19,18 @@ var STATE = {
   },
   'intercept': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
-    constants.INTERCEPT.TIMER += 1;
-
-    if (constants.INTERCEPT.TIMER > constants.INTERCEPT.PAST_TIME) {
-      constants.DEFENDER.RETURN_WAIT_TIMER = 0;
-      console.log('stopped from timer');
-      constants.DEFENDER.STATE = 'return';
-    }
-    if (value.angle > 7 || value.angle < 3) {
-      constants.DEFENDER.RETURN_WAIT_TIMER = 0;
-      console.log('stopped from angle');
-      constants.DEFENDER.STATE = 'return';
-    }
+    // constants.INTERCEPT.TIMER += 1;
+    //
+    // if (constants.INTERCEPT.TIMER > constants.INTERCEPT.PAST_TIME) {
+    //   constants.DEFENDER.RETURN_WAIT_TIMER = 0;
+    //   console.log('stopped from timer');
+    //   constants.DEFENDER.STATE = 'return';
+    // }
+    // if (value.angle > 7 || value.angle < 3) {
+    //   constants.DEFENDER.RETURN_WAIT_TIMER = 0;
+    //   console.log('stopped from angle');
+    //   constants.DEFENDER.STATE = 'return';
+    // }
     // if (value.distance > constants.KICK_RANGE) {
     //   behaviors.kick(bot.motors);
     //   constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
@@ -39,9 +39,16 @@ var STATE = {
     //   console.log('stopped from default');
     //   constants.DEFENDER.STATE = 'return';
     // }
-    else {
-      behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
-    }
+    // else {
+    //   behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
+    // }
+    setTimeout(function () {
+      bot.motors.ratio([1, 1], constants.CHASE_SPEED);
+      setTimeout(function () {
+        bot.motors.ratio([-1, -1], constants.CHASE_SPEED);
+        constants.DEFENDER.STATE = 'return';
+      }, 500);
+    }, 500);
   },
   'return': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.RETURN_WAIT_TIMER += 1;
