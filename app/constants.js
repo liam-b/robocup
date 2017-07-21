@@ -12,7 +12,7 @@ module.exports = {
     CLEAR_DISTANCE: 27,
     TIMER: 0,
     PAST_TIME: 30,
-    NEXT = false
+    NEXT: false
   },
   ATTACKER: {
     STATE: 'dribble',
