@@ -10,9 +10,13 @@ var STATE = {
     constants.DEFENDER.INTERCEPT_DELAY_TIMER += 1;
 
     if (value.distance > constants.INTERCEPT.CLEAR_DISTANCE && constants.DEFENDER.INTERCEPT_DELAY_TIMER >= constants.DEFENDER.INTERCEPT_DELAY_WAIT) {
-      bot.motors.reset();
-      constants.INTERCEPT.TIMER = 0;
-      constants.DEFENDER.STATE = 'intercept';
+      if (constants.INTERCEPT.NEXT) {
+        bot.motors.reset();
+        constants.INTERCEPT.TIMER = 0;
+        constants.DEFENDER.STATE = 'intercept';
+        constants.INTERCEPT.NEXT = false;
+      }
+      constants.INTERCEPT.NEXT = true;
     }
     else {
       behaviors.track(bot.motors, bot.seeker, constants.TRACK_SPEED);
@@ -43,10 +47,11 @@ var STATE = {
     // else {
     //   behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     // }
+    bot.motors.ratio([1, 1], 800);
     setTimeout(function () {
-      bot.motors.ratio([1, 1], 800);
+      bot.motors.ratio([-1, -1], 800);
       setTimeout(function () {
-        bot.motors.ratio([-1, -1], 800);
+        bot.motors.stop();
         constants.DEFENDER.STATE = 'track';
       }, 500);
     }, 500);
