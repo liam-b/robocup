@@ -52,7 +52,10 @@ var STATE = {
       bot.motors.ratio([-1, -1], 500);
       setTimeout(function () {
         bot.motors.stop();
-        constants.DEFENDER.STATE = 'track';
+        setTimeout(function () {
+          bot.motors.stop();
+          constants.DEFENDER.STATE = 'track';
+        }, 500);
       }, 500);
     }, 500);
   },
