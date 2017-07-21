@@ -13,7 +13,7 @@ var STATE = {
       constants.ATTACKER.SHOOTING = true;
       output.info('attack', 'shooting')
       bot.motors.ratio([1, 1], constants.ATTACKER.SHOOT_SPEED);
-      setTimeout(behaviors.kick(bot.kicker), 250);
+      setTimeout(behaviors.kick(bot.kicker), 200);
       setTimeout(function (){
         bot.motors.stop();
         constants.ATTACKER.SHOOTING = false;
