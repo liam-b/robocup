@@ -6,12 +6,17 @@ var STATE = {
   },
   'track': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
+    console.log(value.distance);
     constants.DEFENDER.INTERCEPT_DELAY_TIMER += 1;
 
     if (value.distance > constants.INTERCEPT.CLEAR_DISTANCE && constants.DEFENDER.INTERCEPT_DELAY_TIMER >= constants.DEFENDER.INTERCEPT_DELAY_WAIT) {
-      bot.motors.reset();
-      constants.INTERCEPT.TIMER = 0;
-      constants.DEFENDER.STATE = 'intercept';
+      if (constants.INTERCEPT.NEXT) {
+        bot.motors.reset();
+        constants.INTERCEPT.TIMER = 0;
+        constants.DEFENDER.STATE = 'intercept';
+        constants.INTERCEPT.NEXT = false;
+      }
+      constants.INTERCEPT.NEXT = true;
     }
     else {
       behaviors.track(bot.motors, bot.seeker, constants.TRACK_SPEED);
@@ -19,18 +24,18 @@ var STATE = {
   },
   'intercept': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
-    constants.INTERCEPT.TIMER += 1;
-
-    if (constants.INTERCEPT.TIMER > constants.INTERCEPT.PAST_TIME) {
-      constants.DEFENDER.RETURN_WAIT_TIMER = 0;
-      console.log('stopped from timer');
-      constants.DEFENDER.STATE = 'return';
-    }
-    if (value.angle > 7 || value.angle < 3) {
-      constants.DEFENDER.RETURN_WAIT_TIMER = 0;
-      console.log('stopped from angle');
-      constants.DEFENDER.STATE = 'return';
-    }
+    // constants.INTERCEPT.TIMER += 1;
+    //
+    // if (constants.INTERCEPT.TIMER > constants.INTERCEPT.PAST_TIME) {
+    //   constants.DEFENDER.RETURN_WAIT_TIMER = 0;
+    //   console.log('stopped from timer');
+    //   constants.DEFENDER.STATE = 'return';
+    // }
+    // if (value.angle > 7 || value.angle < 3) {
+    //   constants.DEFENDER.RETURN_WAIT_TIMER = 0;
+    //   console.log('stopped from angle');
+    //   constants.DEFENDER.STATE = 'return';
+    // }
     // if (value.distance > constants.KICK_RANGE) {
     //   behaviors.kick(bot.motors);
     //   constants.DEFENDER.MOTOR_ROTATIONS = bot.motors.averagePosition();
@@ -39,9 +44,17 @@ var STATE = {
     //   console.log('stopped from default');
     //   constants.DEFENDER.STATE = 'return';
     // }
-    else {
-      behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
-    }
+    // else {
+    //   behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
+    // }
+    bot.motors.ratio([1, 1], 800);
+    setTimeout(function () {
+      bot.motors.ratio([-1, -1], 800);
+      setTimeout(function () {
+        bot.motors.stop();
+        constants.DEFENDER.STATE = 'track';
+      }, 500);
+    }, 500);
   },
   'return': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.RETURN_WAIT_TIMER += 1;
