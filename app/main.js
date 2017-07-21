@@ -83,7 +83,12 @@ buttons.event.pressed('enter', function () {
     bot.kicker.stop();
     output.log('interrupt', 'program paused');
   }
-  else output.log('interrupt', 'program resumed');
+  else {
+    constants.ATTACKER.STATE = 'dribble';
+    constants.DEFENDER.STATE = 'intital';
+    
+    output.log('interrupt', 'program resumed');
+  }
 });
 
 buttons.event.pressed('back', function () {
