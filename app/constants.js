@@ -9,7 +9,7 @@ module.exports = {
 
   INTERCEPT: {
     RETURN_SPEED: 300,
-    CLEAR_DISTANCE: 27,
+    CLEAR_DISTANCE: 29,
     TIMER: 0,
     PAST_TIME: 30,
     NEXT: false

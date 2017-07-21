@@ -47,9 +47,9 @@ var STATE = {
     // else {
     //   behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     // }
-    bot.motors.ratio([1, 1], 800);
+    bot.motors.ratio([1, 1], 500);
     setTimeout(function () {
-      bot.motors.ratio([-1, -1], 800);
+      bot.motors.ratio([-1, -1], 500);
       setTimeout(function () {
         bot.motors.stop();
         constants.DEFENDER.STATE = 'track';
