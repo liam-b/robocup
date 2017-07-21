@@ -6,6 +6,7 @@ var STATE = {
   },
   'track': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
+    console.log(value.distance);
     constants.DEFENDER.INTERCEPT_DELAY_TIMER += 1;
 
     if (value.distance > constants.INTERCEPT.CLEAR_DISTANCE && constants.DEFENDER.INTERCEPT_DELAY_TIMER >= constants.DEFENDER.INTERCEPT_DELAY_WAIT) {
