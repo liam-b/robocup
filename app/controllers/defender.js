@@ -49,20 +49,36 @@ var STATE = {
     //   behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     // }
 
-    constants.INTERCEPT.INTERCEPT_RETREAT_TIMER += 1;
+    // constants.INTERCEPT.INTERCEPT_RETREAT_TIMER += 1;
+    //
+    // if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < RETURN_AT) {
+    //   bot.motors.ratio([1, 1], 400);
+    // }
+    //
+    // if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > RETURN_AT && constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < STOP_AT) {
+    //   bot.motors.ratio([-1, -1], 400);
+    // }
+    //
+    // if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > STOP_AT) {
+    //   bot.motors.stop();
+    //   constants.DEFENDER.STATE = 'track';
+    // }
 
-    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < RETURN_AT) {
-      bot.motors.ratio([1, 1], 400);
-    }
-
-    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > RETURN_AT && constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < STOP_AT) {
-      bot.motors.ratio([-1, -1], 400);
-    }
-
-    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > STOP_AT) {
+    bot.motors.stop();
+    bot.motors.ratio([1, 1], 400);
+    setTimeout(function () {
       bot.motors.stop();
-      constants.DEFENDER.STATE = 'track';
-    }
+      setTimeout(function () {
+        bot.motors.ratio([-1, -1], 400);
+        setTimeout(function () {
+          bot.motors.stop();
+          setTimeout(function () {
+            bot.motors.stop();
+            constants.DEFENDER.STATE = 'track';
+          }, 400);
+        }, 400);
+      }, 400);
+    }, 400);
   },
   'return': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.RETURN_WAIT_TIMER += 1;
