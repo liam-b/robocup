@@ -50,7 +50,6 @@ var STATE = {
     //   behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     // }
 
-    console.log('t', constants.INTERCEPT.INTERCEPT_RETREAT_TIMER);
     constants.INTERCEPT.INTERCEPT_RETREAT_TIMER += 1;
 
     if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < constants.INTERCEPT.RETURN_AT) {
@@ -61,6 +60,17 @@ var STATE = {
       bot.motors.ratio([-1, -1], 400);
     }
 
+    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER == constants.INTERCEPT.KICK_AT) {
+      bot.kicker.run(800);
+    }
+
+    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER == constants.INTERCEPT.RESET_KICK_AT) {
+      bot.kicker.run(-400);
+    }
+    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER == constants.INTERCEPT.STOP_RESET) {
+      bot.kicker.stop();
+    }
+
     if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > constants.INTERCEPT.STOP_AT) {
       constants.INTERCEPT.INTERCEPT_RETREAT_TIMER = 0;
       bot.motors.stop();
@@ -68,6 +78,20 @@ var STATE = {
     }
   },
   'return': function (bot, behaviors, helpers, constants) {
+    constants.DEFENDER.RETURN_WAIT_TIMER += 1;
+    if (Math.abs(bot.motors.averagePosition()) - Math.abs(constants.DEFENDER.MOTOR_ROTATIONS) > 0) {
+      if (constants.DEFENDER.RETURN_WAIT_TIMER > constants.DEFENDER.RETURN_WAIT) {
+        bot.motors.stop();
+        constants.DEFENDER.INTERCEPT_DELAY_TIMER = 0;
+        constants.DEFENDER.STATE = 'track';
+      }
+      else {}
+    }
+    else {
+      bot.motors.ratio([-1, -1], constants.DEFENDER.RETURN_SPEED);
+    }
+  },
+  'clear': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.RETURN_WAIT_TIMER += 1;
     if (Math.abs(bot.motors.averagePosition()) - Math.abs(constants.DEFENDER.MOTOR_ROTATIONS) > 0) {
       if (constants.DEFENDER.RETURN_WAIT_TIMER > constants.DEFENDER.RETURN_WAIT) {
