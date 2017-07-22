@@ -19,5 +19,5 @@ var STATE = {
         // constants.ATTACKER.SHOOTING = false;
     constants.ATTACKER.STATE = 'dribble';
       // }, 500);
-    }
   }
+}
