@@ -49,6 +49,12 @@ var STATE = {
       bot.kicker.stop();
     }
 
+    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < constants.INTERCEPT.CHECK_SENSOR) {
+      if (value.distance < constants.INTERCEPT.CLEAR_DISTANCE) {
+        constants.INTERCEPT.INTERCEPT_RETREAT_TIMER = constants.INTERCEPT.RETURN_AT + constants.INTERCEPT.CHECK_SENSOR;
+      }
+    }
+
     if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > constants.INTERCEPT.STOP_AT) {
       constants.INTERCEPT.INTERCEPT_RETREAT_TIMER = 0;
       bot.motors.stop();
