@@ -13,14 +13,15 @@ module.exports = {
     TIMER: 0,
     PAST_TIME: 30,
     CLEAR_TIMER: 0,
-    CLEAR_WAIT: 3,
+    CLEAR_WAIT: 2,
 
     INTERCEPT_RETREAT_TIMER: 0,
     RETURN_AT: 5,
     STOP_AT: 10,
     KICK_AT: 5,
     RESET_KICK_AT: 6,
-    STOP_RESET: 7
+    STOP_RESET: 7,
+    CHECK_SENSOR: 3
   },
   ATTACKER: {
     STATE: 'dribble',
