@@ -7,11 +7,11 @@ var STATE = {
     // bot.motors.ratio([1,1],250);
     behaviors.chase(bot.motors, constants, bot.seeker);
     if (bot.seeker.value().distance < constants.KICK_RANGE && (helpers.position.relativeRotation() > 315 || helpers.position.relativeRotation() < 45)) {
+      timer = 0
       constants.ATTACKER.STATE = 'shoot';
     }
   },
   'shoot': function (bot, behaviors, helpers, constants) {
-    timer = 0
     // if (!constants.ATTACKER.SHOOTING) {
     //   constants.ATTACKER.SHOOTING = true;
     output.info('attack', 'shooting');
