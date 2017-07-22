@@ -21,7 +21,7 @@ module.exports = {
     KICK_AT: 5,
     RESET_KICK_AT: 6,
     STOP_RESET: 7,
-    CHECK_SENSOR: 3
+    CHECK_SENSOR: 2
   },
   ATTACKER: {
     STATE: 'dribble',
