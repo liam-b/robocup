@@ -14,7 +14,6 @@ module.exports = function (motors, constants, seeker) {
       motors.ratio([1.3, 0.7], constants.CHASE_SPEED);
       break;
     case 5:
-      // console.log('eh?'); // s
       motors.ratio([1, 1], constants.CHASE_SPEED);
       break;
     case 4:
