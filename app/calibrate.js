@@ -9,15 +9,15 @@ var output = new Logger(leds, (process.argv[2] == 'quiet'));
 
 output.log('start', 'started');
 
-var colorSensor = new sensor.ColorSensor('in1', output)
-var ultrasonicSensor = new sensor.UltrasonicSensor('in2', output)
-var seeker = new sensor.SeekerSensor('in3:i2c8', output)
+var colorSensor = new sensor.ColorSensor('in1', output);
+var ultrasonicSensor = new sensor.UltrasonicSensor('in2', output);
+var seeker = new sensor.SeekerSensor('in3:i2c8', output);
 
 output.info('start', 'checking connections');
 
-colorSensor.check()
-ultrasonicSensor.check()
-seeker.check()
+colorSensor.check();
+ultrasonicSensor.check();
+seeker.check();
 
 output.info('start', 'setting modes');
 
