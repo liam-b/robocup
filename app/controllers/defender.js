@@ -3,6 +3,7 @@ module.exports = function (bot, behaviors, helpers, constants) { STATE[constants
 var STATE = {
   'initial': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.STATE = 'track';
+    bot.motors.stop();
   },
   'track': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
@@ -10,13 +11,13 @@ var STATE = {
     constants.DEFENDER.INTERCEPT_DELAY_TIMER += 1;
 
     if (value.distance > constants.INTERCEPT.CLEAR_DISTANCE && constants.DEFENDER.INTERCEPT_DELAY_TIMER >= constants.DEFENDER.INTERCEPT_DELAY_WAIT) {
-      if (constants.INTERCEPT.NEXT) {
+      if (constants.INTERCEPT.CLEAR_TIMER >= constants.INTERCEPT.CLEAR_WAIT) {
         bot.motors.reset();
         constants.INTERCEPT.TIMER = 0;
         constants.DEFENDER.STATE = 'intercept';
-        constants.INTERCEPT.NEXT = false;
+        constants.INTERCEPT.CLEAR_TIMER = 0;
       }
-      constants.INTERCEPT.NEXT = true;
+      constants.INTERCEPT.CLEAR_TIMER += 1;
     }
     else {
       behaviors.track(bot.motors, bot.seeker, constants.TRACK_SPEED);
@@ -47,14 +48,18 @@ var STATE = {
     // else {
     //   behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     // }
-    bot.motors.ratio([1, 1], 500);
+    bot.motors.stop();
+    bot.motors.ratio([1, 1], 400);
     setTimeout(function () {
-      bot.motors.ratio([-1, -1], 500);
+      bot.motors.stop();
       setTimeout(function () {
-        bot.motors.stop();
+        bot.motors.ratio([-1, -1], 400);
         setTimeout(function () {
           bot.motors.stop();
-          constants.DEFENDER.STATE = 'track';
+          setTimeout(function () {
+            bot.motors.stop();
+            constants.DEFENDER.STATE = 'track';
+          }, 500);
         }, 500);
       }, 500);
     }, 500);
