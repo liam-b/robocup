@@ -3,6 +3,7 @@ module.exports = function (bot, behaviors, helpers, constants) { STATE[constants
 var STATE = {
   'initial': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.STATE = 'track';
+    bot.motors.stop();
   },
   'track': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
