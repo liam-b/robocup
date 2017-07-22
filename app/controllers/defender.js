@@ -50,6 +50,7 @@ var STATE = {
     //   behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     // }
 
+    console.log('t', constants.INTERCEPT.INTERCEPT_RETREAT_TIMER);
     constants.INTERCEPT.INTERCEPT_RETREAT_TIMER += 1;
 
     if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < constants.INTERCEPT.TURN_AT) {
