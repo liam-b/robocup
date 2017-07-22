@@ -13,7 +13,7 @@ module.exports = {
     TIMER: 0,
     PAST_TIME: 30,
     CLEAR_TIMER: 0,
-    CLEAR_WAIT: 3,
+    CLEAR_WAIT: 2,
 
     INTERCEPT_RETREAT_TIMER: 0,
     RETURN_AT: 5,
