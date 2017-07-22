@@ -85,8 +85,8 @@ buttons.event.pressed('enter', function () {
   }
   else {
     constants.ATTACKER.STATE = 'dribble';
-    constants.DEFENDER.STATE = 'intital';
-    
+    constants.DEFENDER.STATE = 'track';
+
     output.log('interrupt', 'program resumed');
   }
 });
