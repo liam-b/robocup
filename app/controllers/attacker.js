@@ -1,5 +1,7 @@
 module.exports = function (bot, behaviors, helpers, constants) { STATE[constants.ATTACKER.STATE](bot, behaviors, helpers, constants); };
 
+var timer = 0
+
 var STATE = {
   'dribble': function (bot, behaviors, helpers, constants) {
     // bot.motors.ratio([1,1],250);
@@ -9,6 +11,7 @@ var STATE = {
     }
   },
   'shoot': function (bot, behaviors, helpers, constants) {
+    timer = 0
     // if (!constants.ATTACKER.SHOOTING) {
     //   constants.ATTACKER.SHOOTING = true;
     output.info('attack', 'shooting');
@@ -17,7 +20,10 @@ var STATE = {
       // setTimeout(function (){
         // bot.motors.stop();
         // constants.ATTACKER.SHOOTING = false;
-    constants.ATTACKER.STATE = 'dribble';
-      // }, 500);
+    if (timer >= 10) {
+      constants.ATTACKER.STATE = 'dribble';
+    } else {
+      timer += 1;
+    }
   }
 }
