@@ -3,7 +3,7 @@ module.exports = {
   BOT_STATE: 'initial',
   PAUSED: false,
 
-  CHASE_SPEED: 300,
+  CHASE_SPEED: 550,
   TRACK_SPEED: 500,
   KICK_RANGE: 30,
 
@@ -16,7 +16,7 @@ module.exports = {
   },
   ATTACKER: {
     STATE: 'dribble',
-    SHOOT_SPEED: 650,
+    SHOOT_SPEED: 850,
     SHOOTING: false
   },
   DEFENDER: {
