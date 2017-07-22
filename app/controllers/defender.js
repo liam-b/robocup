@@ -14,6 +14,7 @@ var STATE = {
       if (constants.INTERCEPT.CLEAR_TIMER >= constants.INTERCEPT.CLEAR_WAIT) {
         bot.motors.reset();
         constants.INTERCEPT.TIMER = 0;
+        constants.INTERCEPT.INTERCEPT_RETREAT_TIMER = 0;
         constants.DEFENDER.STATE = 'intercept';
         constants.INTERCEPT.CLEAR_TIMER = 0;
       }
@@ -60,6 +61,7 @@ var STATE = {
     }
 
     if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > STOP_AT) {
+      constants.INTERCEPT.INTERCEPT_RETREAT_TIMER = 0;
       bot.motors.stop();
       constants.DEFENDER.STATE = 'track';
     }
