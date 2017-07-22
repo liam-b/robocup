@@ -9,10 +9,11 @@ module.exports = {
 
   INTERCEPT: {
     RETURN_SPEED: 300,
-    CLEAR_DISTANCE: 29,
+    CLEAR_DISTANCE: 30,
     TIMER: 0,
     PAST_TIME: 30,
-    NEXT: false
+    CLEAR_TIMER: 0,
+    CLEAR_WAIT: 4
   },
   ATTACKER: {
     STATE: 'dribble',
