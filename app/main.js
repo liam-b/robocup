@@ -35,7 +35,7 @@ var bot = {
   'kicker': new motor.Motor('outD', output),
 
   'colorSensor': new sensor.ColorSensor('in1', output),
-  'ultrasonicSensor': new sensor.UltrasonicSensor('in2', output),
+  // 'ultrasonicSensor': new sensor.UltrasonicSensor('in2', output),
   'compass': new sensor.CompassSensor('in4:i2c1', output),
   'seeker': new sensor.SeekerSensor('in3:i2c8', output),
 
@@ -46,7 +46,7 @@ output.info('start', 'checking connections');
 
 bot.motors.check();
 bot.colorSensor.check();
-bot.ultrasonicSensor.check();
+// bot.ultrasonicSensor.check();
 bot.compass.check();
 bot.seeker.check();
 
@@ -55,7 +55,7 @@ bot.battery.check();
 output.info('start', 'setting modes');
 
 bot.colorSensor.mode(bot.colorSensor.REFLECTIVE);
-bot.ultrasonicSensor.mode(bot.ultrasonicSensor.DISTANCE);
+// bot.ultrasonicSensor.mode(bot.ultrasonicSensor.DISTANCE);
 bot.seeker.mode(bot.seeker.MODULATED);
 
 leds.color(leds.BLACK);
