@@ -59,10 +59,10 @@ var STATE = {
           setTimeout(function () {
             bot.motors.stop();
             constants.DEFENDER.STATE = 'track';
-          }, 500);
-        }, 500);
-      }, 500);
-    }, 500);
+          }, 2000);
+        }, 2000);
+      }, 2000);
+    }, 2000);
   },
   'return': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.RETURN_WAIT_TIMER += 1;
