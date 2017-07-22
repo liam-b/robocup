@@ -20,7 +20,7 @@ module.exports = {
     STOP_AT: 10,
     KICK_AT: 5,
     RESET_KICK_AT: 6,
-    STOP_RESET: 8
+    STOP_RESET: 7
   },
   ATTACKER: {
     STATE: 'dribble',

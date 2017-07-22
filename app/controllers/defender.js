@@ -61,11 +61,11 @@ var STATE = {
     }
 
     if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER == constants.INTERCEPT.KICK_AT) {
-      bot.kicker.run(800);
+      bot.kicker.run(700);
     }
 
     if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER == constants.INTERCEPT.RESET_KICK_AT) {
-      bot.kicker.run(-400);
+      bot.kicker.run(-300);
     }
     if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER == constants.INTERCEPT.STOP_RESET) {
       bot.kicker.stop();
