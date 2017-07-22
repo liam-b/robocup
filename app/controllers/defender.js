@@ -48,21 +48,21 @@ var STATE = {
     // else {
     //   behaviors.chase(bot.motors, constants.CHASE_SPEED, bot.seeker);
     // }
-    bot.motors.stop();
-    bot.motors.ratio([1, 1], 400);
-    setTimeout(function () {
+
+    constants.INTERCEPT.INTERCEPT_RETREAT_TIMER += 1;
+
+    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < RETURN_AT) {
+      bot.motors.ratio([1, 1], 400);
+    }
+
+    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > RETURN_AT && constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < STOP_AT) {
+      bot.motors.ratio([-1, -1], 400);
+    }
+
+    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > STOP_AT) {
       bot.motors.stop();
-      setTimeout(function () {
-        bot.motors.ratio([-1, -1], 400);
-        setTimeout(function () {
-          bot.motors.stop();
-          setTimeout(function () {
-            bot.motors.stop();
-            constants.DEFENDER.STATE = 'track';
-          }, 2000);
-        }, 2000);
-      }, 2000);
-    }, 2000);
+      constants.DEFENDER.STATE = 'track';
+    }
   },
   'return': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.RETURN_WAIT_TIMER += 1;
