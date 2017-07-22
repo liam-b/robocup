@@ -29,6 +29,7 @@ module.exports = function (motors, constants, seeker) {
       motors.ratio([-0.5, 0.5], constants.CHASE_SPEED);
       break;
     case 0:
+      motors.ratio([-1, -1], constants.CHASE_SPEED)
       motors.ratio([0.5, 1.5], constants.CHASE_SPEED);
       break;
   }
