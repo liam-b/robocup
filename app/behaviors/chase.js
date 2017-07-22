@@ -11,13 +11,13 @@ module.exports = function (motors, constants, seeker) {
       motors.ratio([1.5, 0.5], constants.CHASE_SPEED);
       break;
     case 6:
-      motors.ratio([1.3, 0.7], constants.CHASE_SPEED);
+      motors.ratio([1.3, 0.6], constants.CHASE_SPEED);
       break;
     case 5:
       motors.ratio([1, 1], constants.CHASE_SPEED);
       break;
     case 4:
-      motors.ratio([0.7, 1.3], constants.CHASE_SPEED);
+      motors.ratio([0.6, 1.3], constants.CHASE_SPEED);
       break;
     case 3:
       motors.ratio([0.5, 1.5], constants.CHASE_SPEED);
