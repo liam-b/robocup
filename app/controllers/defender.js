@@ -52,15 +52,15 @@ var STATE = {
 
     constants.INTERCEPT.INTERCEPT_RETREAT_TIMER += 1;
 
-    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < RETURN_AT) {
+    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < constants.INTERCEPTRE.TURN_AT) {
       bot.motors.ratio([1, 1], 400);
     }
 
-    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > RETURN_AT && constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < STOP_AT) {
+    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > constants.INTERCEPTRE.TURN_AT && constants.INTERCEPT.INTERCEPT_RETREAT_TIMER < constants.INTERCEPT.STOP_AT) {
       bot.motors.ratio([-1, -1], 400);
     }
 
-    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > STOP_AT) {
+    if (constants.INTERCEPT.INTERCEPT_RETREAT_TIMER > constants.INTERCEPT.STOP_AT) {
       constants.INTERCEPT.INTERCEPT_RETREAT_TIMER = 0;
       bot.motors.stop();
       constants.DEFENDER.STATE = 'track';
