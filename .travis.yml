@@ -4,4 +4,4 @@ node_js:
 
 notifications:
   webhooks:
-    - https://liam-server-3000.herokuapp.com/robocup/discord/travis
+    - http://101.167.6.177:8591/robocup/discord/travis
