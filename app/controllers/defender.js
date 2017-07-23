@@ -60,19 +60,5 @@ var STATE = {
       bot.motors.stop();
       constants.DEFENDER.STATE = 'track';
     }
-  },
-  'return': function (bot, behaviors, helpers, constants) {
-    constants.DEFENDER.RETURN_WAIT_TIMER += 1;
-    if (Math.abs(bot.motors.averagePosition()) - Math.abs(constants.DEFENDER.MOTOR_ROTATIONS) > 0) {
-      if (constants.DEFENDER.RETURN_WAIT_TIMER > constants.DEFENDER.RETURN_WAIT) {
-        bot.motors.stop();
-        constants.DEFENDER.INTERCEPT_DELAY_TIMER = 0;
-        constants.DEFENDER.STATE = 'track';
-      }
-      else {}
-    }
-    else {
-      bot.motors.ratio([-1, -1], constants.DEFENDER.RETURN_SPEED);
-    }
   }
 };
