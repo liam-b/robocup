@@ -4,25 +4,8 @@ module.exports = {
   PAUSED: false,
 
   CHASE_SPEED: 700,
-  TRACK_SPEED: 500,
   KICK_RANGE: 30,
 
-  INTERCEPT: {
-    RETURN_SPEED: 300,
-    CLEAR_DISTANCE: 30,
-    TIMER: 0,
-    PAST_TIME: 30,
-    CLEAR_TIMER: 0,
-    CLEAR_WAIT: 2,
-
-    INTERCEPT_RETREAT_TIMER: 0,
-    RETURN_AT: 5,
-    STOP_AT: 10,
-    KICK_AT: 5,
-    RESET_KICK_AT: 6,
-    STOP_RESET: 7,
-    CHECK_SENSOR: 2
-  },
   ATTACKER: {
     STATE: 'dribble',
     SHOOT_SPEED: 850,
@@ -30,12 +13,38 @@ module.exports = {
   },
   DEFENDER: {
     STATE: 'initial',
-    RETURN_SPEED: 300,
-    MOTOR_ROTATIONS: 0,
-    RETURN_WAIT: 10,
-    RETURN_WAIT_TIMER: 0,
-    INTERCEPT_DELAY_WAIT: 10,
-    INTERCEPT_DELAY_TIMER: 0
+    TRACK: {
+      SPEED: 500
+    },
+
+    CONFIRM: {
+      COUNT: 0,
+      INTERCEPT_COUNT: 2
+    },
+
+    INTERCEPT: {
+      SPEED: 400,
+      TIMER: 0,
+      KICK_TIME: 5
+    },
+
+    KICK: {
+      POWER: 800,
+      RESET_SPEED: 300,
+      KICK_TIME: 1,
+      RESET_TIME: 2,
+      RETREAT_TIME: 3,
+      TIMER: 0
+    },
+
+    RETREAT: {
+      SPEED: 400
+    },
+
+    COOLDOWN: {
+      TIMER: 0,
+      TRACK_TIME: 2
+    }
   },
   FIELD: {
     // Both of these are max values
