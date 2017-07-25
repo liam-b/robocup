@@ -1,12 +1,12 @@
 module.exports = function (bot, behaviors, helpers, constants) { STATE[constants.ATTACKER.STATE](bot, behaviors, helpers, constants); };
 
-var timer = 0
+var timer = 0;
 
 var STATE = {
   'dribble': function (bot, behaviors, helpers, constants) {
     behaviors.chase(bot.motors, constants, bot.seeker);
     if (bot.seeker.value().distance < constants.KICK_RANGE && (helpers.position.relativeRotation() > 315 || helpers.position.relativeRotation() < 45)) {
-      timer = 0
+      timer = 0;
       constants.ATTACKER.STATE = 'shoot';
     }
   },
@@ -20,4 +20,4 @@ var STATE = {
       timer += 1;
     }
   }
-}
+};
