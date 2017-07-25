@@ -1,4 +1,6 @@
-console.log('Using  mock, fyi.')
+console.log('----------------');
+console.log('Using mock, fyi.');
+console.log('----------------');
 module.exports = {
   'Logger': function () {
     this.cyan = function (text) { return text; };
