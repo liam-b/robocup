@@ -4,4 +4,4 @@ node_js:
 
 notifications:
   webhooks:
-    - http://101.167.6.177:8591/robocup/discord/travis
+    - http://101.167.6.177:25924/robocup/discord/travis
