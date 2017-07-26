@@ -12,13 +12,13 @@ module.exports.ColorSensor = function (port, output) {
   };
 
   this.mode = function (mode) {
-    this.output.log('mode', 'changing color sensor mode to ' + this.output.cyan(mode));
+    this.output.debug('mode', 'changing color sensor mode to ' + mode);
     (this.sensor.connected) ? this.sensor.setProperty('mode', mode) : this.output.err('mode', 'color sensor is not connected');
   };
 
   this.check = function () {
     this.output.trace('check', 'checking color sensor');
-    (this.sensor.connected) ? this.output.log('check', 'color sensor connected') : this.output.err('check', 'color sensor is not connected');
+    (this.sensor.connected) ? this.output.debug('check', 'color sensor connected') : this.output.err('check', 'color sensor is not connected');
   };
 };
 
@@ -33,13 +33,13 @@ module.exports.UltrasonicSensor = function (port, output) {
   };
 
   this.mode = function (mode) {
-    this.output.log('mode', 'changing ultrasonic sensor mode to ' + this.output.cyan(mode));
+    this.output.debug('mode', 'changing ultrasonic sensor mode to ' + mode);
     (this.sensor.connected) ? this.sensor.setProperty('mode', mode) : this.output.err('mode', 'ultrasonic sensor is not connected');
   };
 
   this.check = function () {
     this.output.trace('check', 'checking ultrasonic sensor');
-    (this.sensor.connected) ? this.output.log('check', 'ultrasonic sensor connected') : this.output.err('check', 'ultrasonic sensor is not connected');
+    (this.sensor.connected) ? this.output.debug('check', 'ultrasonic sensor connected') : this.output.err('check', 'ultrasonic sensor is not connected');
   };
 };
 
@@ -53,7 +53,7 @@ module.exports.CompassSensor = function (port, output) {
 
   this.check = function () {
     this.output.trace('check', 'checking compass');
-    (this.sensor.connected) ? this.output.log('check', 'compass connected') : this.output.err('check', 'compass is not connected');
+    (this.sensor.connected) ? this.output.debug('check', 'compass connected') : this.output.err('check', 'compass is not connected');
   };
 };
 
@@ -77,13 +77,13 @@ module.exports.SeekerSensor = function (port, output) {
   };
 
   this.mode = function (mode) {
-    this.output.log('mode', 'changing seeker mode to ' + this.output.cyan(mode));
+    this.output.debug('mode', 'changing seeker mode to ' + mode);
     (this.sensor.connected) ? this.sensor.setProperty('mode', mode) : this.output.err('mode', 'seeker is not connected');
   };
 
   this.check = function () {
     this.output.trace('check', 'checking seeker');
-    (this.sensor.connected) ? this.output.log('check', 'seeker connected') : this.output.err('check', 'seeker is not connected');
+    (this.sensor.connected) ? this.output.debug('check', 'seeker connected') : this.output.err('check', 'seeker is not connected');
   };
 
   this._average = function () {

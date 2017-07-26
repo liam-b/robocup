@@ -1,7 +1,7 @@
 module.exports = function (motors, seeker, speed) {
   var values = seeker.value();
 
-  console.log(values.angle);
+  console.debug(values.angle);
 
   switch (values.angle) {
     case 9:

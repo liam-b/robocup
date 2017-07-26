@@ -7,11 +7,11 @@ var extra = require('./io/extra.js');
 var buttons = require('./io/buttons.js');
 
 var leds = new extra.Leds();
-var output = new Logger(leds, (process.argv[2] == 'quiet'));
+var output = new Logger('robot');
 
-output.log('start', 'started');
+output.debug('start', 'started');
 constants.BOT_STATE = 'setup';
-output.log('start', 'setting up');
+output.debug('start', 'setting up');
 
 var behaviors = {
   'chase': require('./behaviors/chase.js'),
@@ -65,14 +65,14 @@ output.info('start', 'other setup');
 buttons.event.pressed('up', function () {
   constants.BOT_STATE = 'role set';
   constants.ROLE = 'attack';
-  output.log('start', 'bot set to play in attack');
+  output.debug('start', 'bot set to play in attack');
   start();
 });
 
 buttons.event.pressed('down', function () {
   constants.BOT_STATE = 'role set';
   constants.ROLE = 'defend';
-  output.log('start', 'bot set to play in defend');
+  output.debug('start', 'bot set to play in defend');
   start();
 });
 
@@ -81,19 +81,19 @@ buttons.event.pressed('enter', function () {
   if (constants.PAUSED) {
     bot.motors.stop();
     bot.kicker.stop();
-    output.log('interrupt', 'program paused');
+    output.debug('interrupt', 'program paused');
   }
   else {
     constants.ATTACKER.STATE = 'dribble';
     constants.DEFENDER.STATE = 'track';
 
-    output.log('interrupt', 'program resumed');
+    output.debug('interrupt', 'program resumed');
   }
 });
 
 buttons.event.pressed('back', function () {
   constants.BOT_STATE = 'end';
-  output.log('end', 'ending program');
+  output.debug('end', 'ending program');
   quit();
 });
 
@@ -116,16 +116,16 @@ function start () {
 
 function loop () {
   // var seekerValues = bot.seeker.value();
-  // console.log(seekerValues);
+  // console.debug(seekerValues);
   // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
 
   if (constants.ROLE == 'defend') {
-    output.trace('state', constants.DEFENDER.STATE);
+    output.trace('state', 'looping', constants.DEFENDER.STATE);
     controllers.defender(bot, behaviors, helpers, constants);
   }
 
   if (constants.ROLE == 'attack') {
-    output.trace('state', constants.ATTACKER.STATE);
+    output.trace('state', 'looping', constants.ATTACKER.STATE);
     controllers.attacker(bot, behaviors, helpers, constants);
   }
 }
@@ -140,7 +140,7 @@ process.stdin.resume();
 
 function exitHandler (options, err) {
     if (options.exit) quit();
-    if (err) console.log(err.stack);
+    if (err) console.debug(err.stack);
 }
  
 process.on('exit', exitHandler.bind(null));

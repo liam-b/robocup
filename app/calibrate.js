@@ -1,4 +1,4 @@
-var Logger = require('./log.js');
+var Logger = require('./debug.js');
 var constants = require('./constants.js');
 var sensor = require('./io/sensor.js');
 var buttons = require('./io/buttons.js');
@@ -7,7 +7,7 @@ var extra = require('./io/extra.js');
 var leds = new extra.Leds();
 var output = new Logger(leds, (process.argv[2] == 'quiet'));
 
-output.log('start', 'started');
+output.debug('start', 'started');
 
 var colorSensor = new sensor.ColorSensor('in1', output);
 var ultrasonicSensor = new sensor.UltrasonicSensor('in2', output);
@@ -26,16 +26,16 @@ ultrasonicSensor.mode(ultrasonicSensor.DISTANCE);
 seeker.mode(seeker.MODULATED);
 
 buttons.event.pressed('back', function () {
-  output.log('end', 'ending program');
+  output.debug('end', 'ending program');
   process.exit();
 });
 
 buttons.event.pressed('enter', function () {
   constants.PAUSED = (constants.PAUSED) ? false : true;
   if (constants.PAUSED) {
-    output.log('interrupt', 'program paused');
+    output.debug('interrupt', 'program paused');
   }
-  else output.log('interrupt', 'program resumed');
+  else output.debug('interrupt', 'program resumed');
 });
 
 var loopInterval = setInterval(function () {
@@ -45,13 +45,13 @@ var loopInterval = setInterval(function () {
 function loop() {
   switch (process.argv[2]) {
     case 'color':
-      output.log('calibrate', 'color sensor value: ' + colorSensor.value());
+      output.debug('calibrate', 'color sensor value: ' + colorSensor.value());
       break;
     case 'ultrasonic':
-      output.log('calibrate', 'ultrasonic sensor value: ' + ultrasonicSensor.value());
+      output.debug('calibrate', 'ultrasonic sensor value: ' + ultrasonicSensor.value());
       break;
     case 'seeker':
-      output.log('calibrate', 'seeker value: ' + seeker.value());
+      output.debug('calibrate', 'seeker value: ' + seeker.value());
       break;
   }
 }

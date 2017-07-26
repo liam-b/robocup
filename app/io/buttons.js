@@ -91,7 +91,7 @@ fs.createReadStream(buttonEventFile).on('data', function (chunk) {
 //       button.pressed.back()
 //       break;
 //     default:
-//       console.log(key, str)
+//       console.debug(key, str)
 //   }
 // })
 

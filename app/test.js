@@ -1,4 +1,4 @@
-var Logger = require('./log.js');
+var Logger = require('./debug.js');
 var constants = require('./constants.js');
 
 var motor = require('./io/motor.js');
@@ -9,9 +9,9 @@ var buttons = require('./io/buttons.js');
 var leds = new extra.Leds();
 var output = new Logger(leds, (process.argv[2] == 'quiet'));
 
-output.log('start', 'started');
+output.debug('start', 'started');
 constants.BOT_STATE = 'setup';
-output.log('start', 'setting up');
+output.debug('start', 'setting up');
 
 var behaviors = {
   'chase': require('./behaviors/chase.js'),
@@ -65,14 +65,14 @@ output.info('start', 'other setup');
 buttons.event.pressed('up', function () {
   constants.BOT_STATE = 'role_set';
   constants.ROLE = 'attack';
-  output.log('start', 'bot set to play in attack');
+  output.debug('start', 'bot set to play in attack');
   start();
 });
 
 buttons.event.pressed('down', function () {
   constants.BOT_STATE = 'role_set';
   constants.ROLE = 'defend';
-  output.log('start', 'bot set to play in defend');
+  output.debug('start', 'bot set to play in defend');
   start();
 });
 
@@ -81,14 +81,14 @@ buttons.event.pressed('enter', function () {
   if (constants.PAUSED) {
     bot.motors.stop();
     bot.kicker.stop();
-    output.log('interrupt', 'program paused');
+    output.debug('interrupt', 'program paused');
   }
-  else output.log('interrupt', 'program resumed');
+  else output.debug('interrupt', 'program resumed');
 });
 
 buttons.event.pressed('back', function () {
   constants.BOT_STATE = 'end';
-  output.log('end', 'ending program');
+  output.debug('end', 'ending program');
   quit();
 });
 
@@ -111,7 +111,7 @@ function start () {
 
 function loop () {
   // var seekerValues = bot.seeker.value();
-  // console.log(seekerValues);
+  // console.debug(seekerValues);
   // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
   // output.info('debug', seeker.value().distance);
   if (constants.ROLE == 'defend') {
@@ -135,7 +135,7 @@ function quit () {
 //
 // function exitHandler (options, err) {
 //     if (options.exit) quit();
-// //     if (err) console.log(err.stack);
+// //     if (err) console.debug(err.stack);
 // }
 //  
 // process.on('exit', exitHandler.bind(null));

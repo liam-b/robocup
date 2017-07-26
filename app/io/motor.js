@@ -51,8 +51,8 @@ module.exports.DriveMotors = function (left, right, output) {
 
   this.check = function () {
     this.output.trace('check', 'checking motors');
-    (this.left.connected) ? this.output.log('check', 'left motor connected') : this.output.err('check', 'left motor is not connected');
-    (this.right.connected) ? this.output.log('check', 'right motor connected') : this.output.err('check', 'right motor is not connected');
+    (this.left.connected) ? this.output.debug('check', 'left motor connected') : this.output.err('check', 'left motor is not connected');
+    (this.right.connected) ? this.output.debug('check', 'right motor connected') : this.output.err('check', 'right motor is not connected');
   };
 
   this.stop();
@@ -76,7 +76,7 @@ module.exports.Motor = function (port, output) {
 
   this.check = function () {
     this.output.trace('check', 'checking motor');
-    (this.motor.connected) ? this.output.log('check', 'motor connected') : this.output.err('check', 'motor is not connected');
+    (this.motor.connected) ? this.output.debug('check', 'motor connected') : this.output.err('check', 'motor is not connected');
   };
 
   this.stop();
