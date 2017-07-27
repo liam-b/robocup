@@ -61,6 +61,8 @@ var STATE = {
   'retreat': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.INTERCEPT.TIMER -= 1;
 
+    console.log(value);
+
     if (constants.DEFENDER.INTERCEPT.TIMER == (-3 - constants.DEFENDER.KICK.TIMER)) {
       bot.motors.stop();
       constants.DEFENDER.COOLDOWN.TIMER = 0;
@@ -71,7 +73,9 @@ var STATE = {
   'retreat_early': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.INTERCEPT.TIMER -= 1;
 
-    if (constants.DEFENDER.INTERCEPT.TIMER == 0) {
+    console.log(value);
+
+    if (constants.DEFENDER.INTERCEPT.TIMER == -3) {
       bot.motors.stop();
       constants.DEFENDER.COOLDOWN.TIMER = 0;
       constants.DEFENDER.STATE = 'cooldown';
