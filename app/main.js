@@ -147,4 +147,5 @@ process.on('SIGINT', function (err) {
 process.on('uncaughtException', function (err) {
   output.fatal('uncaught', 'fatal error, stopping');
   exitHandler('exit', err);
+  process.exit();
 });

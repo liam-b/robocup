@@ -11,7 +11,7 @@ var STATE = {
     if (value.distance > constants.DEFENDER.TRACK.CLEAR_DISTANCE) constants.DEFENDER.STATE = 'confirm_ball';
     else behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK.SPEED);
   },
-  'confirm_ball': function () {
+  'confirm_ball': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
 
     constants.DEFENDER.CONFIRM.COUNT += 1;
@@ -34,7 +34,7 @@ var STATE = {
     else if (value.distance < constants.DEFENDER.CLEAR_DISTANCE) constants.DEFENDER.STATE = 'retreat_early';
     else bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
   },
-  'kick': function () {
+  'kick': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.KICK.TIMER += 1;
 
     if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.KICK_TIME) bot.kicker.run(constants.DEFENDER.KICK.POWER);
@@ -47,7 +47,7 @@ var STATE = {
 
     bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
   },
-  'retreat': function () {
+  'retreat': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.INTERCEPT.TIMER -= 1;
 
     if (constants.DEFENDER.INTERCEPT.TIMER == -constants.DEFENDER.KICK.RETREAT_TIME) {
@@ -57,7 +57,7 @@ var STATE = {
     }
     else bot.motors.ratio([-1, -1], constants.DEFENDER.RETREAT.SPEED);
   },
-  'retreat_early': function () {
+  'retreat_early': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.INTERCEPT.TIMER -= 1;
 
     if (constants.DEFENDER.INTERCEPT.TIMER == 0) {
@@ -67,7 +67,7 @@ var STATE = {
     }
     else bot.motors.ratio([-1, -1], constants.DEFENDER.RETREAT.SPEED);
   },
-  'cooldown': function () {
+  'cooldown': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.COOLDOWN.TIMER += 1;
 
     if (constants.DEFENDER.COOLDOWN.TIMER == constants.DEFENDER.COOLDOWN.TRACK_TIME) constants.DEFENDER.STATE = 'track';
