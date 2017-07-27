@@ -8,6 +8,8 @@ var STATE = {
   'track': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
 
+    console.log(value);
+
     if (value.distance > constants.DEFENDER.TRACK.CLEAR_DISTANCE) constants.DEFENDER.STATE = 'confirm_ball';
     else behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK.SPEED);
   },
@@ -16,7 +18,10 @@ var STATE = {
 
     constants.DEFENDER.CONFIRM.COUNT += 1;
 
-    if (constants.DEFENDER.CONFIRM.COUNT > constants.DEFENDER.CONFIRM.INTERCEPT_COUNT) {
+    if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
+      constants.DEFENDER.STATE = 'track';
+    }
+    else if (constants.DEFENDER.CONFIRM.COUNT > constants.DEFENDER.CONFIRM.INTERCEPT_COUNT) {
       constants.DEFENDER.INTERCEPT.TIMER = 0;
       constants.DEFENDER.STATE = 'intercept';
     }

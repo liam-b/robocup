@@ -1,8 +1,6 @@
 module.exports = function (motors, seeker, speed) {
   var values = seeker.value();
 
-  console.log(values.angle);
-
   switch (values.angle) {
     case 9:
       motors.ratio([0.9, -0.9], speed);
