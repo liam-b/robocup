@@ -65,14 +65,14 @@ output.info('start', 'other setup');
 buttons.event.pressed('up', function () {
   constants.BOT_STATE = 'role set';
   constants.ROLE = 'attack';
-  output.debug('start', 'bot set to play in attack');
+  output.info('start', 'bot set to play in attack');
   start();
 });
 
 buttons.event.pressed('down', function () {
   constants.BOT_STATE = 'role set';
   constants.ROLE = 'defend';
-  output.debug('start', 'bot set to play in defend');
+  output.info('start', 'bot set to play in defend');
   start();
 });
 
@@ -81,19 +81,19 @@ buttons.event.pressed('enter', function () {
   if (constants.PAUSED) {
     bot.motors.stop();
     bot.kicker.stop();
-    output.debug('interrupt', 'program paused');
+    output.info('interrupt', 'program paused');
   }
   else {
     constants.ATTACKER.STATE = 'dribble';
     constants.DEFENDER.STATE = 'track';
 
-    output.debug('interrupt', 'program resumed');
+    output.info('interrupt', 'program resumed');
   }
 });
 
 buttons.event.pressed('back', function () {
   constants.BOT_STATE = 'end';
-  output.debug('end', 'ending program');
+  output.info('interrupt', 'caught escape press on bot, stopping');
   quit();
 });
 
@@ -115,10 +115,6 @@ function start () {
 }
 
 function loop () {
-  // var seekerValues = bot.seeker.value();
-  // console.log(seekerValues);
-  // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
-
   if (constants.ROLE == 'defend') {
     output.trace('state', '', constants.DEFENDER.STATE);
     controllers.defender(bot, behaviors, helpers, constants);
@@ -138,11 +134,16 @@ function quit () {
 
 process.stdin.resume();
 
-function exitHandler (options, err) {
-    if (options.exit) quit();
-    if (err) console.log(err.stack);
+function exitHandler (action, err) {
+  if (error) console.log(err.stack);
+  if (action == 'exit') quit();
 }
- 
-process.on('exit', exitHandler.bind(null));
-process.on('SIGINT', exitHandler.bind(null, {exit:true}));
-// process.on('uncaughtException', exitHandler.bind(null));
+
+process.on('SIGINT', function (err) {
+  output.info('SIGINT', 'caught ctrl-c, stopping');
+  exitHandler('exit');
+});
+process.on('uncaughtException', function (err) {
+  output.fatal('uncaught', 'stopping');
+  exitHandler('exit', err);
+});
