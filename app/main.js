@@ -120,12 +120,12 @@ function loop () {
   // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
 
   if (constants.ROLE == 'defend') {
-    output.trace('state', 'looping', constants.DEFENDER.STATE);
+    output.trace('state', '', constants.DEFENDER.STATE);
     controllers.defender(bot, behaviors, helpers, constants);
   }
 
   if (constants.ROLE == 'attack') {
-    output.trace('state', 'looping', constants.ATTACKER.STATE);
+    output.trace('state', '', constants.ATTACKER.STATE);
     controllers.attacker(bot, behaviors, helpers, constants);
   }
 }
@@ -145,4 +145,4 @@ function exitHandler (options, err) {
  
 process.on('exit', exitHandler.bind(null));
 process.on('SIGINT', exitHandler.bind(null, {exit:true}));
-process.on('uncaughtException', exitHandler.bind(null));
+// process.on('uncaughtException', exitHandler.bind(null));
