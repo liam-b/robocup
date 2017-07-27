@@ -67,7 +67,7 @@ var STATE = {
       constants.DEFENDER.COOLDOWN.TIMER = 0;
       constants.DEFENDER.STATE = 'cooldown';
     }
-    else bot.motors.ratio([-1, -1], constants.DEFENDER.RETREAT.SPEED);
+    else bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
   },
   'retreat_early': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.INTERCEPT.TIMER -= 1;
