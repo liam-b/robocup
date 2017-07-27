@@ -19,7 +19,7 @@ module.exports = {
     },
 
     CONFIRM: {
-      COUNT: 3,
+      COUNT: 2,
       INTERCEPT_COUNT: 2
     },
 
@@ -31,7 +31,7 @@ module.exports = {
 
     KICK: {
       POWER: 800,
-      RESET_SPEED: 200,
+      RESET_SPEED: 100,
       KICK_TIME: 1,
       RESET_TIME: 2,
       RETREAT_TIME: 3,
