@@ -30,14 +30,20 @@ var STATE = {
   'intercept': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
 
+    console.log(value);
+
     constants.DEFENDER.INTERCEPT.TIMER += 1;
 
     if (constants.DEFENDER.INTERCEPT.TIMER == constants.DEFENDER.INTERCEPT.KICK_TIME) {
       constants.DEFENDER.KICK.TIMER = 0;
+      bot.motors.stop();
       constants.DEFENDER.STATE = 'kick';
     }
-    else if (value.distance < constants.DEFENDER.CLEAR_DISTANCE) constants.DEFENDER.STATE = 'retreat_early';
-    else bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
+    if (value.distance < constants.DEFENDER.CLEAR_DISTANCE) {
+      bot.motors.stop();
+      constants.DEFENDER.STATE = 'retreat_early';
+    }
+    bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
   },
   'kick': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.KICK.TIMER += 1;
@@ -56,7 +62,7 @@ var STATE = {
   'retreat': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.INTERCEPT.TIMER -= 1;
 
-    if (constants.DEFENDER.INTERCEPT.TIMER == 0) {
+    if (constants.DEFENDER.INTERCEPT.TIMER == -1) {
       bot.motors.stop();
       constants.DEFENDER.COOLDOWN.TIMER = 0;
       constants.DEFENDER.STATE = 'cooldown';
