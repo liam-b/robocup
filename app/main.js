@@ -93,7 +93,7 @@ buttons.event.pressed('enter', function () {
 
 buttons.event.pressed('back', function () {
   constants.BOT_STATE = 'end';
-  output.info('interrupt', 'caught escape press on bot, stopping');
+  output.info('interrupt', 'caught escape, stopping');
   quit();
 });
 
@@ -129,6 +129,7 @@ function loop () {
 function quit () {
   bot.motors.stop();
   bot.kicker.stop();
+  output.debug('exit', 'exiting');
   process.exit();
 }
 
