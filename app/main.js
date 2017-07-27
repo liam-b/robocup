@@ -136,7 +136,7 @@ function quit () {
 process.stdin.resume();
 
 function exitHandler (action, err) {
-  if (error) console.log(err.stack);
+  if (err) console.log(err.stack);
   if (action == 'exit') quit();
 }
 
