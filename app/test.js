@@ -111,7 +111,7 @@ function start () {
 
 function loop () {
   // var seekerValues = bot.seeker.value();
-  // console.debug(seekerValues);
+  // console.log(seekerValues);
   // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
   // output.info('debug', seeker.value().distance);
   if (constants.ROLE == 'defend') {
@@ -135,7 +135,7 @@ function quit () {
 //
 // function exitHandler (options, err) {
 //     if (options.exit) quit();
-// //     if (err) console.debug(err.stack);
+// //     if (err) console.log(err.stack);
 // }
 //  
 // process.on('exit', exitHandler.bind(null));

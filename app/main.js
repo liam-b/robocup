@@ -116,7 +116,7 @@ function start () {
 
 function loop () {
   // var seekerValues = bot.seeker.value();
-  // console.debug(seekerValues);
+  // console.log(seekerValues);
   // behaviors.chase(bot.motors, seekerValues.angle, seekerValues.distance, constants.CHASE_SPEED);
 
   if (constants.ROLE == 'defend') {
@@ -140,7 +140,7 @@ process.stdin.resume();
 
 function exitHandler (options, err) {
     if (options.exit) quit();
-    if (err) console.debug(err.stack);
+    if (err) console.log(err.stack);
 }
  
 process.on('exit', exitHandler.bind(null));
