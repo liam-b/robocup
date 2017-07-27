@@ -50,12 +50,13 @@ var STATE = {
       constants.DEFENDER.STATE = 'retreat';
     }
 
-    bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
+    // bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
+    bot.motors.stop();
   },
   'retreat': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.INTERCEPT.TIMER -= 1;
 
-    if (constants.DEFENDER.INTERCEPT.TIMER == -constants.DEFENDER.KICK.RETREAT_TIME) {
+    if (constants.DEFENDER.INTERCEPT.TIMER == 0) {
       bot.motors.stop();
       constants.DEFENDER.COOLDOWN.TIMER = 0;
       constants.DEFENDER.STATE = 'cooldown';
