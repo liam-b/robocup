@@ -39,11 +39,11 @@ var STATE = {
       bot.motors.stop();
       constants.DEFENDER.STATE = 'kick';
     }
-    if (value.distance < constants.DEFENDER.CLEAR_DISTANCE) {
+    else if (value.distance < constants.DEFENDER.CLEAR_DISTANCE) {
       bot.motors.stop();
       constants.DEFENDER.STATE = 'retreat_early';
     }
-    bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
+    else bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
   },
   'kick': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.KICK.TIMER += 1;
