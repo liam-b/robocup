@@ -31,11 +31,10 @@ var STATE = {
     var value = bot.seeker.value();
 
     console.log(value);
-    console.log(value.distance < constants.DEFENDER.CLEAR_DISTANCE);
 
     constants.DEFENDER.INTERCEPT.TIMER += 1;
 
-    if (value.distance < constants.DEFENDER.CLEAR_DISTANCE) {
+    if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
       bot.motors.stop();
       constants.DEFENDER.STATE = 'retreat_early';
     }
@@ -62,7 +61,7 @@ var STATE = {
   'retreat': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.INTERCEPT.TIMER -= 1;
 
-    if (constants.DEFENDER.INTERCEPT.TIMER == (-1 - constants.DEFENDER.KICK.TIMER)) {
+    if (constants.DEFENDER.INTERCEPT.TIMER == (-3 - constants.DEFENDER.KICK.TIMER)) {
       bot.motors.stop();
       constants.DEFENDER.COOLDOWN.TIMER = 0;
       constants.DEFENDER.STATE = 'cooldown';
