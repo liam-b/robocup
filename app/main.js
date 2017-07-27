@@ -126,18 +126,19 @@ function loop () {
   }
 }
 
-function quit () {
+function quit (err) {
   bot.motors.stop();
   bot.kicker.stop();
-  output.debug('exit', 'exiting');
-  process.exit();
+  if (!err) output.debug('exit', 'exiting');
+  if (err) process.exit(1);
+  else process.exit(0);
 }
 
 process.stdin.resume();
 
 function exitHandler (action, err) {
   if (err) console.log(err.stack);
-  if (action == 'exit') quit();
+  if (action == 'exit') quit(err);
 }
 
 process.on('SIGINT', function (err) {
@@ -147,5 +148,5 @@ process.on('SIGINT', function (err) {
 process.on('uncaughtException', function (err) {
   output.fatal('uncaught', 'fatal error, stopping');
   exitHandler('exit', err);
-  process.exit();
+  process.exit(1);
 });
