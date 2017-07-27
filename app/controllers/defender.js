@@ -8,7 +8,7 @@ var STATE = {
   'track': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
 
-    if (value.distance > constants.DEFENDER.CLEAR_DISTANCE) constants.DEFENDER.STATE = 'confirm_ball';
+    if (value.distance > constants.DEFENDER.TRACK.CLEAR_DISTANCE) constants.DEFENDER.STATE = 'confirm_ball';
     else behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK.SPEED);
   },
   'confirm_ball': function () {

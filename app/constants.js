@@ -14,7 +14,8 @@ module.exports = {
   DEFENDER: {
     STATE: 'initial',
     TRACK: {
-      SPEED: 500
+      SPEED: 500,
+      CLEAR_DISTANCE: 28
     },
 
     CONFIRM: {
