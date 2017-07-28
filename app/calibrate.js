@@ -61,6 +61,6 @@ function loop() {
       output.debug('calibrate', 'seeker value: ' + seeker.value());
       break;
     case 'direction':
-        output.debug('calibrate', 'direction: ' + helpers.position.relativeRotation(compass.value()))
+      output.debug('calibrate', 'direction: ' + helpers.position.relativeRotation(compass.value()));
   }
 }
