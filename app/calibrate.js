@@ -1,4 +1,4 @@
-var Logger = require('./debug.js');
+var Logger = require('./log.js');
 var constants = require('./constants.js');
 var sensor = require('./io/sensor.js');
 var buttons = require('./io/buttons.js');
