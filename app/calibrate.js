@@ -30,7 +30,7 @@ output.info('start', 'setting modes');
 colorSensor.mode(colorSensor.REFLECTIVE);
 ultrasonicSensor.mode(ultrasonicSensor.DISTANCE);
 seeker.mode(seeker.MODULATED);
-helpers.position.setRelativeNorth(bot.compass.value())
+helpers.position.setRelativeNorth(compass.value())
 
 buttons.event.pressed('back', function () {
   output.debug('end', 'ending program');
