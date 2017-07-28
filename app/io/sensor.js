@@ -34,12 +34,12 @@ module.exports.UltrasonicSensor = function (port, output) {
 
   this.mode = function (mode) {
     this.output.debug('mode', 'changing ultrasonic sensor mode to ' + mode);
-    (this.sensor.connected) ? this.sensor.setProperty('mode', mode) : this.output.error('mode', 'ultrasonic sensor is not connected');
+    (this.sensor.connected) ? this.sensor.setProperty('mode', mode) : this.output.err('mode', 'ultrasonic sensor is not connected');
   };
 
   this.check = function () {
     this.output.trace('check', 'checking ultrasonic sensor');
-    (this.sensor.connected) ? this.output.debug('check', 'ultrasonic sensor connected') : this.output.err('check', 'ultrasonic sensor is not connected');
+    (this.sensor.connected) ? this.output.debug('check', 'ultrasonic sensor connected') : this.output.error('check', 'ultrasonic sensor is not connected');
   };
 };
 
