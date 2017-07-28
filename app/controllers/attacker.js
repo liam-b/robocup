@@ -8,6 +8,7 @@ var STATE = {
     if (bot.seeker.value().distance < constants.KICK_RANGE && (helpers.position.relativeRotation() > 315 || helpers.position.relativeRotation() < 45)) {
       timer = 0;
       constants.ATTACKER.STATE = 'shoot';
+      console.log("shooting")
     }
   },
   'shoot': function (bot, behaviors, helpers, constants) {
