@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var Logger = require('./log.js');
 var constants = require('./constants.js');
 

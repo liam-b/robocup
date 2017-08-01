@@ -1,2 +1,1 @@
 case for ball infront of bot attacker
-relativeRotation output is really weird
