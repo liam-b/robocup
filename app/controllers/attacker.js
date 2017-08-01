@@ -15,8 +15,8 @@ var STATE = {
   'shoot': function (bot, behaviors, helpers, constants) {
     // output.info('attack', 'shooting'); // Somehow this was working...
     bot.motors.ratio([1, 1], constants.ATTACKER.SHOOT_SPEED);
-    behaviors.kick(bot.kicker);
     if (timer >= 10) {
+      behaviors.kick(bot.kicker);
       constants.ATTACKER.STATE = 'dribble';
     } else {
       timer += 1;
