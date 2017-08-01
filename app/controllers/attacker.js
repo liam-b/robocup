@@ -5,10 +5,11 @@ var timer = 0;
 var STATE = {
   'dribble': function (bot, behaviors, helpers, constants) {
     behaviors.chase(bot.motors, constants, bot.seeker);
-    if ((helpers.position.relativeRotation() > 315 || helpers.position.relativeRotation() < 45)) { //bot.seeker.value().distance < constants.KICK_RANGE && 
+    console.log(helpers.position.relativeRotation());
+    if ((helpers.position.relativeRotation() > 315 || helpers.position.relativeRotation() < 45)) { //bot.seeker.value().distance < constants.KICK_RANGE &&
       timer = 0;
       constants.ATTACKER.STATE = 'shoot';
-      console.log("shooting")
+      console.log("shooting");
     }
   },
   'shoot': function (bot, behaviors, helpers, constants) {
