@@ -46,6 +46,7 @@ module.exports.UltrasonicSensor = function (port, output) {
 module.exports.CompassSensor = function (port, output) {
   this.sensor = new ev3dev.Sensor(port, 'ht-nxt-compass');
   this.output = (typeof output != 'undefined') ? output : new ev3dev.Logger();
+  this.sensor.setProperty('mode', 'COMPASS')
 
   this.value = function () {
     return (this.sensor.connected) ? this.sensor.getValue(0) : this.output.warn('value', 'compass has been disconnected');
