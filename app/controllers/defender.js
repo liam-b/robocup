@@ -12,7 +12,8 @@ var STATE = {
       constants.DEFENDER.CONFIRM.COUNT = 0;
       constants.DEFENDER.STATE = 'confirm_ball';
     }
-    else behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK.SPEED);
+    else if (value.distance > constants.DEFENDER.TRACK.TRACK_DISTANCE) behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK.SPEED);
+    else bot.motors.stop();
   },
   'confirm_ball': function () {
     var value = bot.seeker.value();
@@ -48,7 +49,7 @@ var STATE = {
 
     constants.DEFENDER.KICK.TIMER += 1;
 
-    if (constants.DEFENDER.KICK.TIMER > constants.DEFENDER.KICK.RESET_TIME - 3 && constants.DEFENDER.STATE == 'kick') bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
+    if (constants.DEFENDER.KICK.TIMER > constants.DEFENDER.KICK.RESET_TIME && constants.DEFENDER.STATE == 'kick') bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
     else bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
 
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {

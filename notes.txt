@@ -2,12 +2,14 @@ case for ball infront of bot attacker
 
 wilson hall
 
-make all thing global
+// make all thing global
 
-fully switch over to motor rotations
+// fully switch over to motor rotations
 
-fix return infrequent checking
+// fix return infrequent checking
 
-bump intercept distance
+// bump intercept distance
 
-make track slower
+// make track slower
+
+// distance too far, don't move
