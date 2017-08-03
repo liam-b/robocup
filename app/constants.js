@@ -16,7 +16,7 @@ module.exports = {
     STATE: 'initial',
     TRACK: {
       SPEED: 500,
-      CLEAR_DISTANCE: 30
+      CLEAR_DISTANCE: 27
     },
 
     CONFIRM: {
