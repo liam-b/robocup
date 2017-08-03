@@ -116,8 +116,7 @@ buttons.event.pressed('enter', function () {
 
 buttons.event.pressed('back', function () {
   constants.BOT_STATE = 'end';
-  output.info('interrupt', 'caught escape');
-  quit();
+  output.exit('SIGINT', 'caught escape', 'info');
 });
 
 buttons.event.pressed('left', function () {
