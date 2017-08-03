@@ -26,7 +26,10 @@ module.exports.PowerSupply = function (output) {
 
   this.check = function () {
     this.output.trace('check', 'checking battery');
-    (this.percentage() > 30) ? this.output.debug('check', 'battery ok at ' + this.percentage() + '%') : this.output.warn('check', 'battery is low at ' + this.percentage() + '%');
+    if (this.percentage() > 0) {
+      this.output.warn('check', 'battery is low!');
+      this.output.warn('check', 'not fit for comp!');
+    }
   };
 
   this.percentage = function () {
