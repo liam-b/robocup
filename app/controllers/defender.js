@@ -25,7 +25,8 @@ var STATE = {
       constants.DEFENDER.INTERCEPT.TIMER = 0;
       constants.DEFENDER.STATE = 'intercept';
     }
-    else behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK_SPEED);
+    // else behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK_SPEED);
+    else bot.motors.stop();
   },
   'intercept': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
@@ -42,8 +43,7 @@ var STATE = {
       constants.DEFENDER.KICK.TIMER = 0;
       constants.DEFENDER.STATE = 'kick';
     }
-    // else bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
-    else bot.motors.stop();
+    else bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
   },
   'kick': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
