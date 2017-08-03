@@ -51,8 +51,22 @@ module.exports.DriveMotors = function (left, right, output) {
 
   this.check = function () {
     this.output.trace('check', 'checking motors');
-    (this.left.connected) ? this.output.debug('check', 'left motor connected') : this.output.error('check', 'left motor is not connected');
-    (this.right.connected) ? this.output.debug('check', 'right motor connected') : this.output.error('check', 'right motor is not connected');
+
+    if (this.left.connected) {
+      this.output.debug('check', 'left motor connected');
+    }
+    else {
+      this.output.error('check', 'left motor is not connected');
+      robocupError({type: 'io', text: 'left motor is not connected'});
+    }
+
+    if (this.right.connected) {
+      this.output.debug('check', 'right motor connected');
+    }
+    else {
+      this.output.error('check', 'right motor is not connected');
+      robocupError({type: 'io', text: 'right motor is not connected'});
+    }
   };
 
   this.stop();

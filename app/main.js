@@ -46,6 +46,8 @@ var bot = {
 
 output.info('start', 'checking connections');
 
+var checkErrorTracker = false;
+
 bot.motors.check();
 bot.colorSensor.check();
 // bot.ultrasonicSensor.check();
@@ -141,6 +143,11 @@ process.stdin.resume();
 function exitHandler (action, err) {
   if (err) console.log(err.stack);
   if (action == 'exit') quit(err);
+}
+
+function robocupError (err) {
+  output.fatal('error/' + err.type, err.text);
+  quit(true);
 }
 
 process.on('SIGINT', function (err) {
