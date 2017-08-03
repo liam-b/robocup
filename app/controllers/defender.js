@@ -48,7 +48,7 @@ var STATE = {
 
     constants.DEFENDER.KICK.TIMER += 1;
 
-    if (constants.DEFENDER.KICK.TIMER > constants.DEFENDER.KICK.RESET_TIME - 3 && constants.DEFENDER.STATE == 'intercept') bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
+    if (constants.DEFENDER.KICK.TIMER > constants.DEFENDER.KICK.RESET_TIME - 3 && constants.DEFENDER.STATE == 'kick') bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
     else bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
 
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
