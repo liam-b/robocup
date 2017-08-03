@@ -144,11 +144,11 @@ function exitHandler (action, err) {
 }
 
 process.on('SIGINT', function (err) {
-  output.info('SIGINT', 'caught ctrl-c, stopping');
+  output.info('SIGINT', 'caught ctrl-c');
   exitHandler('exit');
 });
 process.on('uncaughtException', function (err) {
-  output.fatal('uncaught', 'fatal error, stopping');
+  output.fatal('uncaught', 'fatal uncaught error');
   exitHandler('exit', err);
   process.exit(1);
 });
