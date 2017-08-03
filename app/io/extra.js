@@ -1,6 +1,3 @@
-try { var ev3dev = require('ev3dev-lang'); }
-catch (e) { var ev3dev = require('../mock.js'); }
-
 module.exports.Leds = function () {
   this.group = new ev3dev.LEDGroup('ev3:left:green:ev3dev', 'ev3:left:red:ev3dev', 'ev3:right:green:ev3dev', 'ev3:right:red:ev3dev');
 

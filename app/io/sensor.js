@@ -1,6 +1,3 @@
-try { var ev3dev = require('ev3dev-lang'); }
-catch (e) { var ev3dev = require('../mock.js'); }
-
 module.exports.ColorSensor = function (port, output) {
   this.sensor = new ev3dev.ColorSensor(port);
   this.output = (typeof output != 'undefined') ? output : new ev3dev.Logger();

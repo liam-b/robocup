@@ -1,8 +1,17 @@
 #!/usr/bin/env node
 
+try {
+  global.ev3dev = require('ev3dev-lang');
+}
+catch (e) {
+  var ev3dev = require('../mock.js');
+}
+
 var Logger = require('./log.js');
 global.constants = require('./constants.js');
 constants.COMPETITION = process.argv[2] == '-comp' || process.argv[2] == '-competition';
+
+console.log(constants.COMPETITION);
 
 var motor = require('./io/motor.js');
 var sensor = require('./io/sensor.js');

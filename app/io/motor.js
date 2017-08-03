@@ -1,6 +1,3 @@
-try { var ev3dev = require('ev3dev-lang'); }
-catch (e) { var ev3dev = require('../mock.js'); }
-
 module.exports.DriveMotors = function (left, right, output) {
   this.left = new ev3dev.LargeMotor(left);
   this.right = new ev3dev.LargeMotor(right);
