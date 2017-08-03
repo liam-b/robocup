@@ -26,7 +26,7 @@ module.exports = {
 
     INTERCEPT: {
       SPEED: 400,
-      KICK_ROTATIONS: 1000
+      KICK_ROTATIONS: 350
     },
 
     KICK: {
