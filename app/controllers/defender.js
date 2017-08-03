@@ -42,7 +42,8 @@ var STATE = {
       constants.DEFENDER.KICK.TIMER = 0;
       constants.DEFENDER.STATE = 'kick';
     }
-    else bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
+    // else bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
+    else bot.motors.stop();
   },
   'kick': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
