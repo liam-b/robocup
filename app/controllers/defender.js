@@ -35,7 +35,6 @@ var STATE = {
 
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
       constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
-      bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
       constants.DEFENDER.STATE = 'retreat';
     }
     else if (bot.motors.averagePosition() >= constants.DEFENDER.INTERCEPT.KICK_ROTATIONS) {
@@ -55,7 +54,6 @@ var STATE = {
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
       bot.kicker.stop();
       constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
-      bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
       constants.DEFENDER.STATE = 'retreat';
     }
 
@@ -64,11 +62,12 @@ var STATE = {
     if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.RETREAT_TIME) {
       bot.kicker.stop();
       constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
-      bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
       constants.DEFENDER.STATE = 'retreat';
     }
   },
   'retreat': function () {
+    bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
+    
     if (bot.motors.averagePosition() <= constants.DEFENDER.RETREAT.STOP_FUDGE) {
       bot.motors.stop();
       constants.DEFENDER.COOLDOWN.TIMER = 0;
