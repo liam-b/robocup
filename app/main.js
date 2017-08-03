@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var Logger = require('./log.js');
-var constants = require('./constants.js');
+global.constants = require('./constants.js');
 
 var motor = require('./io/motor.js');
 var sensor = require('./io/sensor.js');
@@ -23,7 +23,8 @@ process.on('SIGINT', function (err) {
 });
 
 process.on('uncaughtException', function (err) {
-  console.log(err)
+  console.log(err);
+  console.log(err.stack);
   output.exit('uncaught', 'fatal uncaught error', 'fatal');
   process.exit(1);
 });
