@@ -32,16 +32,12 @@ var STATE = {
   'intercept': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
 
-    console.log(value);
-
-    constants.DEFENDER.INTERCEPT.TIMER += 1;
-
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
       bot.motors.stop();
       constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
       constants.DEFENDER.STATE = 'retreat';
     }
-    else if (constants.DEFENDER.INTERCEPT.TIMER == constants.DEFENDER.INTERCEPT.KICK_TIME) {
+    else if (bot.motors.averagePosition() == constants.DEFENDER.INTERCEPT.KICK_ROTATIONS) {
       constants.DEFENDER.KICK.TIMER = 0;
       constants.DEFENDER.STATE = 'kick';
     }
@@ -50,6 +46,12 @@ var STATE = {
   'kick': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
     constants.DEFENDER.KICK.TIMER += 1;
+
+    if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
+      bot.motors.stop();
+      constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
+      constants.DEFENDER.STATE = 'retreat';
+    }
 
     if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.KICK_TIME) bot.kicker.run(constants.DEFENDER.KICK.POWER);
     if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.RESET_TIME) bot.kicker.run(constants.DEFENDER.KICK.RESET_SPEED);

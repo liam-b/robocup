@@ -3,3 +3,5 @@ case for ball infront of bot attacker
 wilson hall
 
 make all thing global
+
+fully switch over to motor rotations
