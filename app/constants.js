@@ -40,7 +40,8 @@ module.exports = {
     },
 
     RETREAT: {
-      SPEED: 400
+      SPEED: 400,
+      MOTOR_ROTATIONS: 0
     },
 
     COOLDOWN: {

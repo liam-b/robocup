@@ -23,6 +23,7 @@ var STATE = {
     }
     else if (constants.DEFENDER.CONFIRM.COUNT > constants.DEFENDER.CONFIRM.INTERCEPT_COUNT) {
       constants.DEFENDER.INTERCEPT.TIMER = 0;
+      bot.motors.reset();
       constants.DEFENDER.STATE = 'intercept';
     }
     // else behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK_SPEED);
@@ -37,7 +38,8 @@ var STATE = {
 
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
       bot.motors.stop();
-      constants.DEFENDER.STATE = 'retreat_early';
+      constants.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
+      constants.DEFENDER.STATE = 'retreat';
     }
     else if (constants.DEFENDER.INTERCEPT.TIMER == constants.DEFENDER.INTERCEPT.KICK_TIME) {
       constants.DEFENDER.KICK.TIMER = 0;
@@ -54,6 +56,7 @@ var STATE = {
     if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.RETREAT_TIME) {
       bot.kicker.stop();
       constants.DEFENDER.RETREAT.TIMER = 0;
+      constants.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
       constants.DEFENDER.STATE = 'retreat';
     }
 
@@ -63,30 +66,14 @@ var STATE = {
   'retreat': function (bot, behaviors, helpers, constants) {
     var value = bot.seeker.value();
 
-    constants.DEFENDER.INTERCEPT.TIMER -= 1;
-
     console.log(value);
 
-    if (constants.DEFENDER.INTERCEPT.TIMER == -constants.DEFENDER.KICK.TIMER) {
+    if (bot.motors.averagePosition() <= 0) {
       bot.motors.stop();
       constants.DEFENDER.COOLDOWN.TIMER = 0;
       constants.DEFENDER.STATE = 'cooldown';
     }
     else bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
-  },
-  'retreat_early': function (bot, behaviors, helpers, constants) {
-    var value = bot.seeker.value();
-
-    constants.DEFENDER.INTERCEPT.TIMER -= 1;
-
-    console.log(value);
-
-    if (constants.DEFENDER.INTERCEPT.TIMER == 0) {
-      bot.motors.stop();
-      constants.DEFENDER.COOLDOWN.TIMER = 0;
-      constants.DEFENDER.STATE = 'cooldown';
-    }
-    else bot.motors.ratio([-1, -1], constants.DEFENDER.RETREAT.SPEED);
   },
   'cooldown': function (bot, behaviors, helpers, constants) {
     constants.DEFENDER.COOLDOWN.TIMER += 1;
