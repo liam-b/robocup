@@ -8,7 +8,10 @@ var STATE = {
   'track': function () {
     var value = bot.seeker.value();
 
-    if (value.distance > constants.DEFENDER.TRACK.CLEAR_DISTANCE && value.angle == 5) constants.DEFENDER.STATE = 'confirm_ball';
+    if (value.distance > constants.DEFENDER.TRACK.CLEAR_DISTANCE && value.angle == 5) {
+      constants.DEFENDER.CONFIRM.COUNT = 0;
+      constants.DEFENDER.STATE = 'confirm_ball';
+    }
     else behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK.SPEED);
   },
   'confirm_ball': function () {
@@ -49,7 +52,7 @@ var STATE = {
     bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
 
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
-      bot.motors.stop();
+      bot.kicker.stop();
       constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
       bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
       constants.DEFENDER.STATE = 'retreat';
@@ -59,7 +62,6 @@ var STATE = {
     if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.RESET_TIME) bot.kicker.run(-constants.DEFENDER.KICK.RESET_SPEED);
     if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.RETREAT_TIME) {
       bot.kicker.stop();
-      constants.DEFENDER.RETREAT.TIMER = 0;
       constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
       bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
       constants.DEFENDER.STATE = 'retreat';
