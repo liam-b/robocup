@@ -23,9 +23,9 @@ module.exports.PowerSupply = function (output) {
 
   this.check = function () {
     this.output.trace('check', 'checking battery');
-    if (this.percentage() > 0) {
-      this.output.warn('check', 'battery is low!');
-      this.output.warn('check', 'not fit for comp!');
+    if (this.battery.measuredVoltage > 7.0) {
+      if (constants.COMPETITION) output.exit('check', 'battery is too low for comp', 'fatal');
+      else this.output.warn('check', 'battery is low!');
     }
   };
 

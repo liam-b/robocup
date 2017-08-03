@@ -6,8 +6,6 @@ var Logger = require('./log.js');
 global.constants = require('./constants.js');
 constants.COMPETITION = process.argv[2] == '-comp' || process.argv[2] == '-competition';
 
-console.log(constants.COMPETITION);
-
 var motor = require('./io/motor.js');
 var sensor = require('./io/sensor.js');
 var extra = require('./io/extra.js');
@@ -19,7 +17,9 @@ function quit (level) {
   process.exit(level);
 }
 
-global.output = new Logger('robot', quit, false);
+global.output = new Logger('robot', quit, false, constants.COMPETITION);
+
+if (constants.COMPETITION) output.info('main', 'running with competition flag');
 
 process.stdin.resume();
 
