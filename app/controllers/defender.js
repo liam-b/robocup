@@ -8,8 +8,6 @@ var STATE = {
   'track': function () {
     var value = bot.seeker.value();
 
-    console.log(value);
-
     if (value.distance > constants.DEFENDER.TRACK.CLEAR_DISTANCE && value.angle == 5) constants.DEFENDER.STATE = 'confirm_ball';
     else behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK.SPEED);
   },
