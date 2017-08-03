@@ -26,7 +26,6 @@ var STATE = {
       bot.motors.reset();
       constants.DEFENDER.STATE = 'intercept';
     }
-    // else behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK_SPEED);
     else bot.motors.stop();
   },
   'intercept': function () {
@@ -35,6 +34,7 @@ var STATE = {
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
       bot.motors.stop();
       constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
+      bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
       constants.DEFENDER.STATE = 'retreat';
     }
     else if (bot.motors.averagePosition() >= constants.DEFENDER.INTERCEPT.KICK_ROTATIONS) {
@@ -45,11 +45,15 @@ var STATE = {
   },
   'kick': function () {
     var value = bot.seeker.value();
+
     constants.DEFENDER.KICK.TIMER += 1;
+
+    bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
 
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
       bot.motors.stop();
       constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
+      bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
       constants.DEFENDER.STATE = 'retreat';
     }
 
@@ -59,26 +63,21 @@ var STATE = {
       bot.kicker.stop();
       constants.DEFENDER.RETREAT.TIMER = 0;
       constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
+      bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
       constants.DEFENDER.STATE = 'retreat';
     }
-
-    bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
-    // bot.motors.stop();
   },
   'retreat': function () {
-    // var value = bot.seeker.value();
-    //
-    // console.log(value);
-
     if (bot.motors.averagePosition() <= 0) {
       bot.motors.stop();
       constants.DEFENDER.COOLDOWN.TIMER = 0;
       constants.DEFENDER.STATE = 'cooldown';
     }
-    else bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
   },
   'cooldown': function () {
     constants.DEFENDER.COOLDOWN.TIMER += 1;
+
+    bot.motors.stop();
 
     if (constants.DEFENDER.COOLDOWN.TIMER == constants.DEFENDER.COOLDOWN.TRACK_TIME) constants.DEFENDER.STATE = 'track';
   }

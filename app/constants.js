@@ -31,10 +31,10 @@ module.exports = {
 
     KICK: {
       POWER: 800,
-      RESET_SPEED: 100,
+      RESET_SPEED: 80,
       KICK_TIME: 1,
       RESET_TIME: 2,
-      RETREAT_TIME: 3,
+      RETREAT_TIME: 4,
       TIMER: 0
     },
 
