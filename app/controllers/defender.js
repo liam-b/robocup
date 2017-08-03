@@ -37,7 +37,7 @@ var STATE = {
       constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
       constants.DEFENDER.STATE = 'retreat';
     }
-    else if (bot.motors.averagePosition() == constants.DEFENDER.INTERCEPT.KICK_ROTATIONS) {
+    else if (bot.motors.averagePosition() >= constants.DEFENDER.INTERCEPT.KICK_ROTATIONS) {
       constants.DEFENDER.KICK.TIMER = 0;
       constants.DEFENDER.STATE = 'kick';
     }
