@@ -12,11 +12,12 @@ module.exports = {
     SHOOT_SPEED: 850,
     SHOOTING: false
   },
+
   DEFENDER: {
     STATE: 'initial',
     TRACK: {
       SPEED: 500,
-      CLEAR_DISTANCE: 27
+      CLEAR_DISTANCE: 23
     },
 
     CONFIRM: {
@@ -40,7 +41,8 @@ module.exports = {
 
     RETREAT: {
       SPEED: 400,
-      MOTOR_ROTATIONS: 0
+      MOTOR_ROTATIONS: 0,
+      STOP_FUDGE: 50
     },
 
     COOLDOWN: {
