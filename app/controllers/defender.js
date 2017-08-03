@@ -56,7 +56,7 @@ var STATE = {
     }
 
     if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.KICK_TIME) bot.kicker.run(constants.DEFENDER.KICK.POWER);
-    if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.RESET_TIME) bot.kicker.run(constants.DEFENDER.KICK.RESET_SPEED);
+    if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.RESET_TIME) bot.kicker.run(-constants.DEFENDER.KICK.RESET_SPEED);
     if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.RETREAT_TIME) {
       bot.kicker.stop();
       constants.DEFENDER.RETREAT.TIMER = 0;

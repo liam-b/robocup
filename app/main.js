@@ -140,12 +140,12 @@ function loop () {
   var value = bot.seeker.value();
 
   if (constants.ROLE == 'defend') {
-    output.trace('state', 'angle: ' + value.angle, ', dist: ' + value.distance, constants.DEFENDER.STATE);
+    output.trace('state', 'angle: ' + value.angle + ', dist: ' + value.distance, constants.DEFENDER.STATE);
     controllers.defender();
   }
 
   if (constants.ROLE == 'attack') {
-    output.trace('state', 'angle: ' + value.angle, ', dist: ' + value.distance, constants.ATTACKER.STATE);
+    output.trace('state', 'angle: ' + value.angle + ', dist: ' + value.distance, constants.ATTACKER.STATE);
     controllers.attacker();
   }
 }
