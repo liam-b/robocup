@@ -25,7 +25,7 @@ detail('sensor wrapper classes', 'io', __filename, function () {
 
       colorSensor.sensor.connected = false;
       colorSensor.check();
-      expect(colorSensor.output.err).toHaveBeenCalled();
+      expect(colorSensor.output.error).toHaveBeenCalled();
     })
 
     it('should catch sensor disconnect', function () {
@@ -34,7 +34,7 @@ detail('sensor wrapper classes', 'io', __filename, function () {
       colorSensor.sensor.connected = false;
       colorSensor.value();
       colorSensor.mode('mock');
-      expect(colorSensor.output.err).toHaveBeenCalled();
+      expect(colorSensor.output.error).toHaveBeenCalled();
     })
   })
 
@@ -60,7 +60,7 @@ detail('sensor wrapper classes', 'io', __filename, function () {
 
       ultrasonicSensor.sensor.connected = false;
       ultrasonicSensor.check();
-      expect(ultrasonicSensor.output.err).toHaveBeenCalled();
+      expect(ultrasonicSensor.output.error).toHaveBeenCalled();
     })
 
     it('should catch sensor disconnect', function () {
@@ -69,7 +69,7 @@ detail('sensor wrapper classes', 'io', __filename, function () {
       ultrasonicSensor.sensor.connected = false;
       ultrasonicSensor.value();
       ultrasonicSensor.mode('mock');
-      expect(ultrasonicSensor.output.err).toHaveBeenCalled();
+      expect(ultrasonicSensor.output.error).toHaveBeenCalled();
     })
   })
 
@@ -88,7 +88,7 @@ detail('sensor wrapper classes', 'io', __filename, function () {
 
       compassSensor.sensor.connected = false;
       compassSensor.check();
-      expect(compassSensor.output.err).toHaveBeenCalled();
+      expect(compassSensor.output.error).toHaveBeenCalled();
     })
 
     it('should catch sensor disconnect', function () {
@@ -129,7 +129,7 @@ detail('sensor wrapper classes', 'io', __filename, function () {
 
       seekerSensor.sensor.connected = false;
       seekerSensor.check();
-      expect(seekerSensor.output.err).toHaveBeenCalled();
+      expect(seekerSensor.output.error).toHaveBeenCalled();
     })
 
     it('should catch sensor disconnect', function () {
@@ -138,7 +138,7 @@ detail('sensor wrapper classes', 'io', __filename, function () {
       seekerSensor.sensor.connected = false;
       seekerSensor.value();
       seekerSensor.mode('mock');
-      expect(seekerSensor.output.err).toHaveBeenCalled();
+      expect(seekerSensor.output.error).toHaveBeenCalled();
     })
   })
 })

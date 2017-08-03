@@ -45,7 +45,7 @@ detail('motor wrapper classes', 'io', __filename, function () {
       motors.left.connected = false;
       motors.right.connected = false;
       motors.check();
-      expect(motors.output.err).toHaveBeenCalled();
+      expect(motors.output.error).toHaveBeenCalled();
     })
   })
 
@@ -75,7 +75,7 @@ detail('motor wrapper classes', 'io', __filename, function () {
 
       motors.motor.connected = false;
       motors.check();
-      expect(motors.output.err).toHaveBeenCalled();
+      expect(motors.output.error).toHaveBeenCalled();
     })
   })
 })
