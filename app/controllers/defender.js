@@ -48,7 +48,7 @@ var STATE = {
 
     constants.DEFENDER.KICK.TIMER += 1;
 
-    bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
+    bot.motors.ratio([1, 1], constants.DEFENDER.KICK.DRIVE_SPEED);
 
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
       bot.kicker.stop();

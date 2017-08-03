@@ -37,11 +37,11 @@ module.exports = {
       KICK_TIME: 1,
       RESET_TIME: 2,
       RETREAT_TIME: 4,
-      TIMER: 0
+      TIMER: 0,
+      DRIVE_SPEED: 300
     },
 
     RETREAT: {
-      SPEED: 400,
       MOTOR_ROTATIONS: 0,
       STOP_FUDGE: 50
     },
