@@ -1,15 +1,5 @@
-console.log('----------------');
-console.log('Using mock, fyi.');
-console.log('----------------');
+console.log('                       _    _ \r\n                      | |  | |\r\n  _ __ ___   ___   ___| | _| |\r\n | \'_ ` _ \\ \/ _ \\ \/ __| |\/ \/ |\r\n | | | | | | (_) | (__|   <|_|\r\n |_| |_| |_|\\___\/ \\___|_|\\_(_)\n');
 module.exports = {
-  'Logger': function () {
-    this.cyan = function (text) { return text; };
-    this.trace = function (task, text) {};
-    this.info = function (task, text) {};
-    this.debug = function (task, text) {};
-    this.warn = function (task, text) {};
-    this.err = function (task, text) {};
-  },
   'LargeMotor': function (port) {
     this.connected = true;
 
@@ -31,7 +21,10 @@ module.exports = {
   'Sensor': function (port, id) {
     this.connected = true;
 
-    this.getValue = function (id) { return 5; };
+    this.getValue = function (id) {
+      if (id == 0) return 5;
+      else return 25;
+    };
     this.setProperty = function (property, value) {};
   },
   'LEDGroup': function (l1, r1, l2, r2) {

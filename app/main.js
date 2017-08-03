@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-try { global.ev3dev = require('ev3dev-lang'); }
-catch (e) { global.ev3dev = require('../mock.js'); }
+
+try { global.ev3dev = require('ev3dev-lang'); global.MOCK = false; }
+catch (e) { global.ev3dev = require('./mock.js'); global.MOCK = true; }
 
 var Logger = require('./log.js');
 global.constants = require('./constants.js');
-constants.COMPETITION = process.argv[2] == '-comp' || process.argv[2] == '-competition';
+constants.COMPETITION = process.argv.indexOf('-comp') != -1;
+constants.SURPRESS_TRACE = process.argv.indexOf('-trace') == -1;
 
 var motor = require('./io/motor.js');
 var sensor = require('./io/sensor.js');
@@ -17,7 +19,7 @@ function quit (level) {
   process.exit(level);
 }
 
-global.output = new Logger('robot', quit, false, constants.COMPETITION);
+global.output = new Logger('robot', quit, constants.SURPRESS_TRACE, constants.COMPETITION);
 
 if (constants.COMPETITION) output.info('main', 'running with competition flag');
 
@@ -28,7 +30,7 @@ process.on('SIGINT', function (err) {
 });
 
 process.on('uncaughtException', function (err) {
-  console.log(err);
+  console.log(err.code);
   console.log(err.stack);
   output.exit('uncaught', 'fatal uncaught error', 'fatal');
   process.exit(1);

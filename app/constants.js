@@ -1,5 +1,7 @@
 module.exports = {
   COMPETITION: false,
+  SURPRESS_TRACE: true,
+
   ROLE: 'undecided',
   BOT_STATE: 'initial',
   PAUSED: false,
