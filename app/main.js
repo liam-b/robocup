@@ -11,6 +11,11 @@ var buttons = require('./io/buttons.js');
 var leds = new extra.Leds();
 var output = new Logger('robot');
 
+global.robocupError = function (err) {
+  output.fatal('error/' + err.type, err.text);
+  quit(true);
+};
+
 output.debug('start', 'started');
 constants.BOT_STATE = 'setup';
 output.debug('start', 'setting up');
@@ -145,15 +150,11 @@ function exitHandler (action, err) {
   if (action == 'exit') quit(err);
 }
 
-function robocupError (err) {
-  output.fatal('error/' + err.type, err.text);
-  quit(true);
-}
-
 process.on('SIGINT', function (err) {
   output.info('SIGINT', 'caught ctrl-c');
   exitHandler('exit');
 });
+
 process.on('uncaughtException', function (err) {
   output.fatal('uncaught', 'fatal uncaught error');
   exitHandler('exit', err);
