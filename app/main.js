@@ -1,11 +1,6 @@
 #!/usr/bin/env node
-
-try {
-  global.ev3dev = require('ev3dev-lang');
-}
-catch (e) {
-  var ev3dev = require('../mock.js');
-}
+try { global.ev3dev = require('ev3dev-lang'); }
+catch (e) { global.ev3dev = require('../mock.js'); }
 
 var Logger = require('./log.js');
 global.constants = require('./constants.js');
