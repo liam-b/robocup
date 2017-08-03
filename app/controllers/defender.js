@@ -33,7 +33,6 @@ var STATE = {
     var value = bot.seeker.value();
 
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
-      bot.motors.stop();
       constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
       bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
       constants.DEFENDER.STATE = 'retreat';
