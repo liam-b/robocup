@@ -21,7 +21,7 @@ module.exports = {
 
     CONFIRM: {
       COUNT: 2,
-      INTERCEPT_COUNT: 2
+      INTERCEPT_COUNT: 3
     },
 
     INTERCEPT: {
