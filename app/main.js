@@ -33,7 +33,7 @@ var controllers = {
 helpers.position.init(output);
 
 var bot = {
-  'motors': new motor.DriveMotors('outB', 'outA', output),
+  'motors': new motor.DriveMotors('outB', 'outC', output),
   'kicker': new motor.Motor('outD', output),
 
   'colorSensor': new sensor.ColorSensor('in1', output),
