@@ -38,7 +38,7 @@ var STATE = {
 
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
       bot.motors.stop();
-      constants.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
+      constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
       constants.DEFENDER.STATE = 'retreat';
     }
     else if (constants.DEFENDER.INTERCEPT.TIMER == constants.DEFENDER.INTERCEPT.KICK_TIME) {
@@ -56,7 +56,7 @@ var STATE = {
     if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.RETREAT_TIME) {
       bot.kicker.stop();
       constants.DEFENDER.RETREAT.TIMER = 0;
-      constants.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
+      constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
       constants.DEFENDER.STATE = 'retreat';
     }
 
