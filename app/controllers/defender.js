@@ -1,11 +1,11 @@
-module.exports = function (bot, behaviors, helpers, constants) { STATE[constants.DEFENDER.STATE](bot, behaviors, helpers, constants); };
+module.exports = function () { STATE[constants.DEFENDER.STATE](); };
 
 var STATE = {
-  'initial': function (bot, behaviors, helpers, constants) {
+  'initial': function () {
     constants.DEFENDER.STATE = 'track';
     bot.motors.stop();
   },
-  'track': function (bot, behaviors, helpers, constants) {
+  'track': function () {
     var value = bot.seeker.value();
 
     console.log(value);
@@ -13,7 +13,7 @@ var STATE = {
     if (value.distance > constants.DEFENDER.TRACK.CLEAR_DISTANCE && value.angle == 5) constants.DEFENDER.STATE = 'confirm_ball';
     else behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK.SPEED);
   },
-  'confirm_ball': function (bot, behaviors, helpers, constants) {
+  'confirm_ball': function () {
     var value = bot.seeker.value();
 
     constants.DEFENDER.CONFIRM.COUNT += 1;
@@ -29,7 +29,7 @@ var STATE = {
     // else behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK_SPEED);
     else bot.motors.stop();
   },
-  'intercept': function (bot, behaviors, helpers, constants) {
+  'intercept': function () {
     var value = bot.seeker.value();
 
     if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
@@ -43,7 +43,7 @@ var STATE = {
     }
     else bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
   },
-  'kick': function (bot, behaviors, helpers, constants) {
+  'kick': function () {
     var value = bot.seeker.value();
     constants.DEFENDER.KICK.TIMER += 1;
 
@@ -65,7 +65,7 @@ var STATE = {
     bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
     // bot.motors.stop();
   },
-  'retreat': function (bot, behaviors, helpers, constants) {
+  'retreat': function () {
     // var value = bot.seeker.value();
     //
     // console.log(value);
@@ -77,7 +77,7 @@ var STATE = {
     }
     else bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
   },
-  'cooldown': function (bot, behaviors, helpers, constants) {
+  'cooldown': function () {
     constants.DEFENDER.COOLDOWN.TIMER += 1;
 
     if (constants.DEFENDER.COOLDOWN.TIMER == constants.DEFENDER.COOLDOWN.TRACK_TIME) constants.DEFENDER.STATE = 'track';

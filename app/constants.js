@@ -5,7 +5,7 @@ module.exports = {
 
   CHASE_SPEED: 700,
   KICK_RANGE: 30,
-  KICK_ANGLE: [4,5,6], //This is in seeker units
+  KICK_ANGLE: [4, 5, 6], // This is in seeker units
 
   ATTACKER: {
     STATE: 'dribble',

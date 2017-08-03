@@ -8,36 +8,48 @@ var sensor = require('./io/sensor.js');
 var extra = require('./io/extra.js');
 var buttons = require('./io/buttons.js');
 
-var leds = new extra.Leds();
-var output = new Logger('robot');
+function quit (level) {
+  bot.motors.stop();
+  bot.kicker.stop();
+  process.exit(level);
+}
 
-global.robocupError = function (err) {
-  output.fatal('error/' + err.type, err.text);
-  quit(true);
-};
+global.output = new Logger('robot', quit);
+
+process.stdin.resume();
+
+process.on('SIGINT', function (err) {
+  output.exit('SIGINT', 'caught ctrl-c', 'info');
+});
+
+process.on('uncaughtException', function (err) {
+  console.log(err)
+  output.exit('uncaught', 'fatal uncaught error', 'fatal');
+  process.exit(1);
+});
 
 output.debug('start', 'started');
 constants.BOT_STATE = 'setup';
 output.debug('start', 'setting up');
 
-var behaviors = {
+global.behaviors = {
   'chase': require('./behaviors/chase.js'),
   'kick': require('./behaviors/kick.js'),
   'track': require('./behaviors/track.js')
 };
 
-var helpers = {
+global.helpers = {
   'position': require('./helpers/position.js')
 };
 
-var controllers = {
+global.controllers = {
   'attacker': require('./controllers/attacker.js'),
   'defender': require('./controllers/defender.js')
 };
 
 helpers.position.init(output);
 
-var bot = {
+global.bot = {
   'motors': new motor.DriveMotors('outB', 'outC', output),
   'kicker': new motor.Motor('outD', output),
 
@@ -46,7 +58,8 @@ var bot = {
   'compass': new sensor.CompassSensor('in4:i2c1', output),
   'seeker': new sensor.SeekerSensor('in3:i2c8', output),
 
-  'battery': new extra.PowerSupply(output)
+  'battery': new extra.PowerSupply(output),
+  'leds': new extra.Leds()
 };
 
 output.info('start', 'checking connections');
@@ -67,7 +80,7 @@ bot.colorSensor.mode(bot.colorSensor.REFLECTIVE);
 // bot.ultrasonicSensor.mode(bot.ultrasonicSensor.DISTANCE);
 bot.seeker.mode(bot.seeker.MODULATED);
 
-leds.color(leds.BLACK);
+bot.leds.color(bot.leds.GREEN);
 
 output.info('start', 'other setup');
 
@@ -102,7 +115,7 @@ buttons.event.pressed('enter', function () {
 
 buttons.event.pressed('back', function () {
   constants.BOT_STATE = 'end';
-  output.info('interrupt', 'caught escape, stopping');
+  output.info('interrupt', 'caught escape');
   quit();
 });
 
@@ -126,37 +139,11 @@ function start () {
 function loop () {
   if (constants.ROLE == 'defend') {
     output.trace('state', '', constants.DEFENDER.STATE);
-    controllers.defender(bot, behaviors, helpers, constants);
+    controllers.defender();
   }
 
   if (constants.ROLE == 'attack') {
     output.trace('state', '', constants.ATTACKER.STATE);
-    controllers.attacker(bot, behaviors, helpers, constants);
+    controllers.attacker();
   }
 }
-
-function quit (err) {
-  bot.motors.stop();
-  bot.kicker.stop();
-  if (!err) output.debug('exit', 'exiting');
-  if (err) process.exit(1);
-  else process.exit(0);
-}
-
-process.stdin.resume();
-
-function exitHandler (action, err) {
-  if (err) console.log(err.stack);
-  if (action == 'exit') quit(err);
-}
-
-process.on('SIGINT', function (err) {
-  output.info('SIGINT', 'caught ctrl-c');
-  exitHandler('exit');
-});
-
-process.on('uncaughtException', function (err) {
-  output.fatal('uncaught', 'fatal uncaught error');
-  exitHandler('exit', err);
-  process.exit(1);
-});
