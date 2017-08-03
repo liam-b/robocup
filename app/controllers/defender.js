@@ -66,9 +66,9 @@ var STATE = {
     // bot.motors.stop();
   },
   'retreat': function (bot, behaviors, helpers, constants) {
-    var value = bot.seeker.value();
-
-    console.log(value);
+    // var value = bot.seeker.value();
+    //
+    // console.log(value);
 
     if (bot.motors.averagePosition() <= 0) {
       bot.motors.stop();

@@ -5,3 +5,5 @@ wilson hall
 make all thing global
 
 fully switch over to motor rotations
+
+fix return infrequent checking
