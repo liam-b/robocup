@@ -20,8 +20,8 @@ module.exports = {
     },
 
     CONFIRM: {
-      COUNT: 2,
-      INTERCEPT_COUNT: 3
+      COUNT: 0,
+      INTERCEPT_COUNT: 1
     },
 
     INTERCEPT: {
