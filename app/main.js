@@ -1,12 +1,30 @@
 #!/usr/bin/env node
 
+console.log('            _                            \r\n  _ __ ___ | |__   ___   ___ _   _ _ __  \r\n | \'__\/ _ \\| \'_ \\ \/ _ \\ \/ __| | | | \'_ \\ \r\n | | | (_) | |_) | (_) | (__| |_| | |_) |\r\n |_|  \\___\/|_.__\/ \\___\/ \\___|\\__,_| .__\/ \r\n                                  |_|    ');
+
 try { global.ev3dev = require('ev3dev-lang'); global.MOCK = false; }
 catch (e) { global.ev3dev = require('./mock.js'); global.MOCK = true; }
 
+function argumentPassed (arg) {
+  return process.argv.indexOf(arg) != -1;
+}
+
 var Logger = require('./log.js');
 global.constants = require('./constants.js');
-constants.COMPETITION = process.argv.indexOf('-comp') != -1;
-constants.SURPRESS_TRACE = process.argv.indexOf('-trace') == -1;
+constants.COMPETITION = argumentPassed('--comp');
+constants.SURPRESS_TRACE = argumentPassed('--trace');
+
+global.output = new Logger('robot', quit, constants.SURPRESS_TRACE, constants.COMPETITION);
+
+if (constants.COMPETITION) {
+  process.argv.push('-p');
+  process.argv.push('comp');
+}
+
+require('./presets.js');
+
+if (constants.PRESETS.length > 0) output.info('main/presets', 'running presets: [' + constants.PRESETS.toString().replace(',', ', ') + ']');
+else output.info('main/presets', 'no active presets');
 
 var motor = require('./io/motor.js');
 var sensor = require('./io/sensor.js');
@@ -19,9 +37,10 @@ function quit (level) {
   process.exit(level);
 }
 
-global.output = new Logger('robot', quit, constants.SURPRESS_TRACE, constants.COMPETITION);
-
-if (constants.COMPETITION) output.info('main', 'running with competition flag');
+if (constants.COMPETITION) {
+  output.info('main', 'running with competition flag');
+  output.info('main', 'running with much more strict rules');
+}
 
 process.stdin.resume();
 
@@ -71,8 +90,6 @@ global.bot = {
 };
 
 output.info('start', 'checking connections');
-
-var checkErrorTracker = false;
 
 bot.motors.check();
 bot.colorSensor.check();

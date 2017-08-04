@@ -2,6 +2,8 @@ module.exports = {
   COMPETITION: false,
   SURPRESS_TRACE: true,
 
+  PRESETS: [],
+
   ROLE: 'undecided',
   BOT_STATE: 'initial',
   PAUSED: false,
@@ -25,6 +27,7 @@ module.exports = {
     },
 
     CONFIRM: {
+      DO: true,
       COUNT: 0,
       INTERCEPT_COUNT: 0
     },
@@ -50,6 +53,7 @@ module.exports = {
     },
 
     COOLDOWN: {
+      DO: true,
       TIMER: 0,
       TRACK_TIME: 2
     }

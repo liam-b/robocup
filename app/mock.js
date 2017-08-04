@@ -1,4 +1,4 @@
-console.log('                       _    _ \r\n                      | |  | |\r\n  _ __ ___   ___   ___| | _| |\r\n | \'_ ` _ \\ \/ _ \\ \/ __| |\/ \/ |\r\n | | | | | | (_) | (__|   <|_|\r\n |_| |_| |_|\\___\/ \\___|_|\\_(_)\n');
+console.log('-----------\nusing mock!\n-----------');
 module.exports = {
   'LargeMotor': function (port) {
     this.connected = true;

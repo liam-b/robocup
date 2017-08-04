@@ -12,8 +12,18 @@ var STATE = {
     if (value.distance > constants.DEFENDER.TRACK.CLEAR_DISTANCE && value.angle == 5) {
       constants.DEFENDER.CONFIRM.COUNT = 0;
       output.debug('controller', 'detected ball', constants.DEFENDER.STATE);
-      output.debug('controller', 'confirming ball', constants.DEFENDER.STATE);
-      constants.DEFENDER.STATE = 'confirm_ball';
+
+      if (constants.DEFENDER.CONFIRM.DO) {
+        output.debug('controller', 'confirming ball', constants.DEFENDER.STATE);
+        constants.DEFENDER.STATE = 'confirm_ball';
+      }
+      else {
+        output.debug('controller', 'skipping ball confirmation', constants.DEFENDER.STATE);
+        constants.DEFENDER.INTERCEPT.TIMER = 0;
+        bot.motors.reset();
+        output.debug('controller', 'intercepting', constants.DEFENDER.STATE);
+        constants.DEFENDER.STATE = 'intercept';
+      }
     }
     else if (value.distance > constants.DEFENDER.TRACK.TRACK_DISTANCE) behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK.SPEED);
     else bot.motors.stop();
@@ -83,10 +93,17 @@ var STATE = {
     bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
 
     if (bot.motors.averagePosition() <= constants.DEFENDER.RETREAT.STOP_FUDGE) {
-      bot.motors.stop();
-      constants.DEFENDER.COOLDOWN.TIMER = 0;
-      output.debug('controller', 'moving to cooldown', constants.DEFENDER.STATE);
-      constants.DEFENDER.STATE = 'cooldown';
+      if (constants.DEFENDER.COOLDOWN.DO) {
+        bot.motors.stop();
+        constants.DEFENDER.COOLDOWN.TIMER = 0;
+        output.debug('controller', 'moving to cooldown', constants.DEFENDER.STATE);
+        constants.DEFENDER.STATE = 'cooldown';
+      }
+      else {
+        bot.motors.stop();
+        output.debug('controller', 'skipping cooldown', constants.DEFENDER.STATE);
+        constants.DEFENDER.STATE = 'track';
+      }
     }
   },
   'cooldown': function () {
