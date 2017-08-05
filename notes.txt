@@ -14,6 +14,8 @@ wilson hall
 
 // distance too far, don't move
 
-comp system
+// comp system
 
-presets system
+// presets system
+
+stop passing output to io classes
