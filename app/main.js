@@ -2,9 +2,6 @@
 
 console.log('            _                            \r\n  _ __ ___ | |__   ___   ___ _   _ _ __  \r\n | \'__\/ _ \\| \'_ \\ \/ _ \\ \/ __| | | | \'_ \\ \r\n | | | (_) | |_) | (_) | (__| |_| | |_) |\r\n |_|  \\___\/|_.__\/ \\___\/ \\___|\\__,_| .__\/ \r\n                                  |_|    ');
 
-try { global.ev3dev = require('ev3dev-lang'); global.MOCK = false; }
-catch (e) { global.ev3dev = require('./mock.js'); global.MOCK = true; }
-
 function argumentPassed (arg) {
   return process.argv.indexOf(arg) != -1;
 }
@@ -26,10 +23,12 @@ require('./presets.js');
 if (constants.PRESETS.length > 0) output.info('main/presets', 'running presets: [' + constants.PRESETS.toString().replace(',', ', ') + ']');
 else output.info('main/presets', 'no active presets');
 
-var motor = require('./io/motor.js');
-var sensor = require('./io/sensor.js');
-var extra = require('./io/extra.js');
-var buttons = require('./io/buttons.js');
+function errorHandler (err) {
+  console.log(err.code);
+  console.log(err.stack);
+  output.exit('uncaught', 'fatal uncaught error', 'fatal');
+  process.exit(1);
+}
 
 function quit (level) {
   bot.motors.stop();
@@ -42,18 +41,15 @@ if (constants.COMPETITION) {
   output.info('main', 'running with much more strict rules');
 }
 
+var io = require('../lib/index.js');
+
 process.stdin.resume();
 
 process.on('SIGINT', function (err) {
   output.exit('SIGINT', 'caught ctrl-c', 'info');
 });
 
-process.on('uncaughtException', function (err) {
-  console.log(err.code);
-  console.log(err.stack);
-  output.exit('uncaught', 'fatal uncaught error', 'fatal');
-  process.exit(1);
-});
+process.on('uncaughtException', errorHandler);
 
 output.debug('start', 'started');
 constants.BOT_STATE = 'setup';
@@ -77,35 +73,20 @@ global.controllers = {
 helpers.position.init(output);
 
 global.bot = {
-  'motors': new motor.DriveMotors('outB', 'outC', output),
-  'kicker': new motor.Motor('outD', output),
+  'motors': new io.motor.Drive('outB', 'outC', errorHandler),
+  'kicker': new io.motor.Motor('outD', errorHandler),
 
-  'colorSensor': new sensor.ColorSensor('in1', output),
-  // 'ultrasonicSensor': new sensor.UltrasonicSensor('in2', output),
-  'compass': new sensor.CompassSensor('in4:i2c1', output),
-  'seeker': new sensor.SeekerSensor('in3:i2c8', output),
+  'colorSensor': new io.sensor.Color('in1', errorHandler),
+  'compass': new io.sensor.Compass('in4', errorHandler),
+  'seeker': new io.sensor.IRSeeker('in3', errorHandler),
 
-  'battery': new extra.PowerSupply(output),
-  'leds': new extra.Leds()
+  'battery': new io.extra.Battery(errorHandler)
 };
-
-output.info('start', 'checking connections');
-
-bot.motors.check();
-bot.colorSensor.check();
-// bot.ultrasonicSensor.check();
-bot.compass.check();
-bot.seeker.check();
-
-bot.battery.check();
 
 output.info('start', 'setting modes');
 
 bot.colorSensor.mode(bot.colorSensor.REFLECTIVE);
-// bot.ultrasonicSensor.mode(bot.ultrasonicSensor.DISTANCE);
 bot.seeker.mode(bot.seeker.MODULATED);
-
-bot.leds.color(bot.leds.GREEN);
 
 output.info('start', 'other setup');
 
