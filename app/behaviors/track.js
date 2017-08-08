@@ -1,7 +1,7 @@
 module.exports = function (motors, seeker, speed) {
   // var values = seeker.value();
 
-  switch (bot.seeker.angle) {
+  switch (bot.seeker.angle()) {
     case 9:
       motors.ratio([0.6, -0.6], speed);
       break;
@@ -15,7 +15,8 @@ module.exports = function (motors, seeker, speed) {
       motors.ratio([0.2, -0.2], speed);
       break;
     case 5:
-      motors.ratio([0, 0], speed);
+      // motors.ratio([0, 0], speed);
+      motors.stop();
       break;
     case 4:
       motors.ratio([-0.2, 0.2], speed);

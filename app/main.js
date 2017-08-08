@@ -8,6 +8,10 @@ function argumentPassed (arg) {
   return process.argv.indexOf(arg) != -1;
 }
 
+Array.prototype.contains = function (item) {
+  return this.indexOf(item) != -1;
+};
+
 var Logger = require('./log.js');
 global.constants = require('./constants.js');
 constants.COMPETITION = argumentPassed('--comp');
@@ -137,7 +141,7 @@ constants.BOT_STATE = 'post_setup';
 output.info('start', 'finished setup');
 
 function start () {
-  helpers.position.setRelativeNorth(bot.compass.value());
+  // helpers.position.setRelativeNorth(bot.compass.value());
   bot.motors.run(100, 100);
 
   constants.BOT_STATE = 'looping';
@@ -150,12 +154,12 @@ function loop () {
   // var value = bot.seeker.value();
 
   if (constants.ROLE == 'defend') {
-    output.trace('state', 'angle: ' + bot.seeker.angle + ', dist: ' + bot.seeker.distance, constants.DEFENDER.STATE);
+    output.trace('state', 'angle: ' + bot.seeker.angle() + ', dist: ' + bot.seeker.distance(), constants.DEFENDER.STATE);
     controllers.defender();
   }
 
   if (constants.ROLE == 'attack') {
-    output.trace('state', 'angle: ' + bot.seeker.angle + ', dist: ' + bot.seeker.distance, constants.ATTACKER.STATE);
+    output.trace('state', 'angle: ' + bot.seeker.angle() + ', dist: ' + bot.seeker.distance(), constants.ATTACKER.STATE);
     controllers.attacker();
   }
 }

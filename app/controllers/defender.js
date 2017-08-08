@@ -7,9 +7,10 @@ var STATE = {
     bot.motors.stop();
   },
   'track': function () {
-    var value = bot.seeker.value();
+    var distance = bot.seeker.distance();
+    var angle = bot.seeker.angle();
 
-    if (value.distance > constants.DEFENDER.TRACK.CLEAR_DISTANCE && value.angle == 5) {
+    if (distance > constants.DEFENDER.TRACK.CLEAR_DISTANCE && angle == 5) {
       constants.DEFENDER.CONFIRM.COUNT = 0;
       output.debug('controller', 'detected ball', constants.DEFENDER.STATE);
 
@@ -19,80 +20,95 @@ var STATE = {
       }
       else {
         output.debug('controller', 'skipping ball confirmation', constants.DEFENDER.STATE);
-        constants.DEFENDER.INTERCEPT.TIMER = 0;
-        bot.motors.reset();
         output.debug('controller', 'intercepting', constants.DEFENDER.STATE);
-        constants.DEFENDER.STATE = 'intercept';
+        constants.DEFENDER.STATE = 'pre_intercept';
       }
     }
-    else if (value.distance > constants.DEFENDER.TRACK.TRACK_DISTANCE) behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK.SPEED);
+    else if (distance > constants.DEFENDER.TRACK.TRACK_DISTANCE) behaviors.track(bot.motors, bot.seeker, constants.DEFENDER.TRACK.SPEED);
     else bot.motors.stop();
   },
   'confirm_ball': function () {
-    var value = bot.seeker.value();
+    var distance = bot.seeker.distance();
+    var angle = bot.seeker.angle();
 
     constants.DEFENDER.CONFIRM.COUNT += 1;
 
-    if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE || value.angle != 5) {
+    if (distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE || angle != 5) {
       output.warn('controller', 'lost ball while confirming', constants.DEFENDER.STATE);
       constants.DEFENDER.STATE = 'track';
     }
     else if (constants.DEFENDER.CONFIRM.COUNT > constants.DEFENDER.CONFIRM.INTERCEPT_COUNT) {
-      constants.DEFENDER.INTERCEPT.TIMER = 0;
-      bot.motors.reset();
       output.debug('controller', 'confirmed ball', constants.DEFENDER.STATE);
       output.debug('controller', 'intercepting', constants.DEFENDER.STATE);
-      constants.DEFENDER.STATE = 'intercept';
+      constants.DEFENDER.STATE = 'pre_intercept';
     }
     else bot.motors.stop();
   },
-  'intercept': function () {
-    var value = bot.seeker.value();
-
-    if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
-      constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
-      output.warn('controller', 'lost ball during intercept', constants.DEFENDER.STATE);
-      constants.DEFENDER.STATE = 'retreat';
-    }
-    else if (bot.motors.averagePosition() >= constants.DEFENDER.INTERCEPT.KICK_ROTATIONS) {
-      constants.DEFENDER.KICK.TIMER = 0;
-      output.debug('controller', 'kicking ball', constants.DEFENDER.STATE);
-      constants.DEFENDER.STATE = 'kick';
-    }
-    else bot.motors.ratio([1, 1], constants.DEFENDER.INTERCEPT.SPEED);
+  'pre_intercept': function () {
+    constants.DEFENDER.INTERCEPT.TIMER = 0;
+    bot.motors.reset();
+    // console.log(bot.motors);
+    bot.motors.ratioTo([1, 1], constants.DEFENDER.INTERCEPT.SPEED, constants.DEFENDER.INTERCEPT.DISTANCE);
+    constants.DEFENDER.STATE = 'intercept';
   },
-  'kick': function () {
-    var value = bot.seeker.value();
+  'intercept': function () {
+    var distance = bot.seeker.distance();
+    var angle = bot.seeker.angle();
 
-    constants.DEFENDER.KICK.TIMER += 1;
-
+    if (distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
+      bot.motors.stop();
+      output.warn('controller', 'lost ball during intercept', constants.DEFENDER.STATE);
+      constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.position();
+      constants.DEFENDER.STATE = 'start_retreat';
+    }
+    else if (bot.motors.position() >= constants.DEFENDER.INTERCEPT.DISTANCE - 300) {
+      output.debug('controller', 'kicking ball', constants.DEFENDER.STATE);
+      constants.DEFENDER.STATE = 'start_kick';
+    }
+  },
+  'start_kick': function () {
+    bot.kicker.runTo(constants.DEFENDER.KICK.POSITION, constants.DEFENDER.KICK.POWER);
+    constants.DEFENDER.STATE = 'kick';
     bot.motors.ratio([1, 1], constants.DEFENDER.KICK.DRIVE_SPEED);
 
-    if (value.distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
-      bot.kicker.stop();
-      constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
-      output.warn('controller', 'lost ball while kicking', constants.DEFENDER.STATE);
-      constants.DEFENDER.STATE = 'retreat';
-    }
-
-    if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.KICK_TIME) {
-      output.debug('controller', 'kick!', constants.DEFENDER.STATE);
-      bot.kicker.run(constants.DEFENDER.KICK.POWER);
-    }
-
-    if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.RESET_TIME) bot.kicker.run(-constants.DEFENDER.KICK.RESET_SPEED);
-
-    if (constants.DEFENDER.KICK.TIMER == constants.DEFENDER.KICK.RETREAT_TIME) {
-      bot.kicker.stop();
-      constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.averagePosition();
-      output.debug('controller', 'retreating after kicking', constants.DEFENDER.STATE);
-      constants.DEFENDER.STATE = 'retreat';
+    if (distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
+      bot.motors.stop();
+      output.warn('controller', 'lost ball during start of kick', constants.DEFENDER.STATE);
+      constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.position();
+      bot.kicker.runTo(-constants.DEFENDER.KICK.POSITION, constants.DEFENDER.KICK.RESET_SPEED);
+      constants.DEFENDER.STATE = 'start_retreat';
     }
   },
-  'retreat': function () {
-    bot.motors.ratio([-1, -1], constants.DEFENDER.INTERCEPT.SPEED);
+  'kick': function () {
+    if (!bot.kicker.state().contains('running') || bot.kicker.state().contains('overloaded')) {
+      bot.kicker.runTo(-constants.DEFENDER.KICK.POSITION, constants.DEFENDER.KICK.RESET_SPEED);
+      constants.DEFENDER.STATE = 'end_kick';
+    }
 
-    if (bot.motors.averagePosition() <= constants.DEFENDER.RETREAT.STOP_FUDGE) {
+    if (distance < constants.DEFENDER.TRACK.CLEAR_DISTANCE) {
+      bot.motors.stop();
+      output.warn('controller', 'lost ball during kick', constants.DEFENDER.STATE);
+      constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.position();
+      bot.kicker.runTo(-constants.DEFENDER.KICK.POSITION, constants.DEFENDER.KICK.RESET_SPEED);
+      constants.DEFENDER.STATE = 'start_retreat';
+    }
+  },
+  'end_kick': function () {
+    if (!bot.kicker.state().contains('running') || bot.kicker.state().contains('stalled')) {
+      bot.kicker.stop();
+      constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.position();
+      // output.warn('controller', 'lost ball while kicking', constants.DEFENDER.STATE);
+      output.debug('controller', 'retreating after kicking', constants.DEFENDER.STATE);
+      constants.DEFENDER.STATE = 'start_retreat';
+    }
+  },
+  'start_retreat': function () {
+    console.log(-constants.DEFENDER.RETREAT.MOTOR_ROTATIONS);
+    bot.motors.ratioTo([1, 1], constants.DEFENDER.INTERCEPT.SPEED, -constants.DEFENDER.RETREAT.MOTOR_ROTATIONS);
+    constants.DEFENDER.STATE = 'retreat';
+  },
+  'retreat': function () {
+    if (!bot.motors.state().contains('running')) {
       if (constants.DEFENDER.COOLDOWN.DO) {
         bot.motors.stop();
         constants.DEFENDER.COOLDOWN.TIMER = 0;
@@ -110,6 +126,10 @@ var STATE = {
     constants.DEFENDER.COOLDOWN.TIMER += 1;
 
     bot.motors.stop();
+
+    if (!bot.kicker.state().contains('running') || bot.kicker.state().contains('stalled')) {
+      bot.kicker.stop();
+    }
 
     if (constants.DEFENDER.COOLDOWN.TIMER == constants.DEFENDER.COOLDOWN.TRACK_TIME) {
       output.debug('controller', 'cooldown finished', constants.DEFENDER.STATE);
