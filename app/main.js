@@ -95,21 +95,21 @@ bot.seeker.mode(bot.seeker.MODULATED);
 
 output.info('start', 'other setup');
 
-buttons.event.pressed('up', function () {
+io.buttons.event.pressed('up', function () {
   constants.BOT_STATE = 'role set';
   constants.ROLE = 'attack';
   output.info('start', 'bot set to play in attack');
   start();
 });
 
-buttons.event.pressed('down', function () {
+io.buttons.event.pressed('down', function () {
   constants.BOT_STATE = 'role set';
   constants.ROLE = 'defend';
   output.info('start', 'bot set to play in defend');
   start();
 });
 
-buttons.event.pressed('enter', function () {
+io.buttons.event.pressed('enter', function () {
   constants.PAUSED = (constants.PAUSED) ? false : true;
   if (constants.PAUSED) {
     bot.motors.stop();
@@ -124,12 +124,12 @@ buttons.event.pressed('enter', function () {
   }
 });
 
-buttons.event.pressed('back', function () {
+io.buttons.event.pressed('back', function () {
   constants.BOT_STATE = 'end';
   output.exit('SIGINT', 'caught escape', 'info');
 });
 
-buttons.event.pressed('left', function () {
+io.buttons.event.pressed('left', function () {
   if (constants.PAUSED) helpers.position.setRelativeNorth(bot.compass.value());
 });
 
