@@ -33,8 +33,11 @@ function errorHandler (err) {
 }
 
 function quit (level) {
-  bot.motors.stop();
-  bot.kicker.stop();
+  try {
+    bot.motors.stop();
+    bot.kicker.stop();
+  }
+  catch (e) {}
   process.exit(level);
 }
 
