@@ -67,6 +67,7 @@ var STATE = {
     }
   },
   'start_kick': function () {
+    var distance = bot.seeker.distance();
     bot.kicker.runTo(constants.DEFENDER.KICK.POSITION, constants.DEFENDER.KICK.POWER);
     constants.DEFENDER.STATE = 'kick';
     bot.motors.ratio([1, 1], constants.DEFENDER.KICK.DRIVE_SPEED);
@@ -80,6 +81,7 @@ var STATE = {
     }
   },
   'kick': function () {
+    var distance = bot.seeker.distance();
     if (!bot.kicker.state().contains('running') || bot.kicker.state().contains('overloaded')) {
       bot.kicker.runTo(-constants.DEFENDER.KICK.POSITION, constants.DEFENDER.KICK.RESET_SPEED);
       constants.DEFENDER.STATE = 'end_kick';
