@@ -6,7 +6,8 @@ var STATE = {
   'dribble': function () {
     behaviors.chase(bot.motors, constants, bot.seeker);
     console.log(helpers.position.relativeRotation(bot.compass.value()));
-    if (bot.seeker.value().distance > constants.KICK_RANGE && constants.KICK_ANGLE.indexOf(bot.seeker.value().angle) != -1 && (helpers.position.relativeRotation(bot.compass.value()) > 315 || helpers.position.relativeRotation(bot.compass.value()) < 45)) {
+    if (bot.seeker.value().distance > constants.KICK_RANGE && constants.KICK_ANGLE.indexOf(bot.seeker.value().angle) != -1 &&
+    (helpers.position.relativeRotation(bot.compass.value()) > 315 || helpers.position.relativeRotation(bot.compass.value()) < 45)) {
       timer = 0;
       constants.ATTACKER.STATE = 'shoot';
     }
