@@ -1,6 +1,6 @@
 module.exports = function (motors, constants, seeker) {
-  var values = seeker.value();
-  switch (values.angle) {
+  var angle = seeker.angle();
+  switch (angle) {
     case 9:
       motors.ratio([0.5, -0.5], constants.CHASE_SPEED);
       break;
