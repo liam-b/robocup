@@ -31,7 +31,7 @@ module.exports = function () {
       bot.motors.ratio([-0.5, 0.5], constants.CHASE_SPEED);
       break;
     case 0:
-      bot.motors.ratio([-0.5, -1.5], constants.CHASE_SPEED);
+      bot.motors.ratio([0.5, 1.5], constants.CHASE_SPEED);
       break;
   }
   // } else {
