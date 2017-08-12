@@ -30,8 +30,8 @@ var STATE = {
     if (constants.ATTACKER.STALL.TIMER != 0) {
       bot.motors.ratio([-1, -1], constants.CHASE_SPEED);
       constants.ATTACKER.STALL.TIMER -= 1;
-    }
-    else if (!bot.motors.state().contains('stalled')) {
+    } else {
+    // else if (!bot.motors.state().contains('stalled')) {
       constants.ATTACKER.STATE = 'stalled';
     }
   },
