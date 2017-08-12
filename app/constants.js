@@ -15,7 +15,11 @@ module.exports = {
   ATTACKER: {
     STATE: 'dribble',
     SHOOT_SPEED: 850,
-    SHOOTING: false
+    SHOOTING: false,
+
+    DRIBBLE: {
+      DRIVE_FORWARD_DISTANCE: 35
+    }
   },
 
   DEFENDER: {

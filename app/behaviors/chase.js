@@ -15,7 +15,8 @@ module.exports = function () {
       bot.motors.ratio([1.3, 0.6], constants.CHASE_SPEED);
       break;
     case 5:
-      bot.motors.ratio([1, 1], constants.CHASE_SPEED);
+      // bot.motors.ratio([1, 1], constants.CHASE_SPEED);
+      bot.motors.ratio([1, 0.9], constants.CHASE_SPEED);
       break;
     case 4:
       bot.motors.ratio([0.6, 1.3], constants.CHASE_SPEED);

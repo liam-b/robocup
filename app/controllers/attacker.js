@@ -7,8 +7,10 @@ var STATE = {
     var distance = bot.seeker.distance();
     var angle = bot.seeker.angle();
 
-    if (distance < constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE) {
-      bot.motors.ratio([1, 1], constants.CHASE_SPEED);
+    if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 6) {
+      // bot.motors.ratio([1, 1], constants.CHASE_SPEED);
+      bot.motors.ratio([1, 0.9], constants.CHASE_SPEED);
+      console.log('drive straight!');
     }
     else {
       behaviors.chase();
