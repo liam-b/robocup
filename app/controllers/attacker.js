@@ -6,7 +6,7 @@ var STATE = {
   'dribble': function () {
     var distance = bot.seeker.distance();
     var angle = bot.seeker.angle();
-    console.log(bot)
+    bot.motors.ratio([1, 0.9], constants.CHASE_SPEED);
     if bot.motors.state().contains('stalled') {
       constants.ATTACKER.STATE = 'stalled';
     }
