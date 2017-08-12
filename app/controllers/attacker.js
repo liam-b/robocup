@@ -9,7 +9,7 @@ var STATE = {
 
     if (bot.motors.state().contains('stalled')) {
       constants.ATTACKER.STATE = 'stalled';
-      constants.ATTACKER.STALL.TIMER = 20;
+      constants.ATTACKER.STALL.TIMER = 10;
     }
 
     if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 6) {
