@@ -33,7 +33,7 @@ var STATE = {
       console.log(constants.ATTACKER.STALL.TIMER)
     } else {
     // else if (!bot.motors.state().contains('stalled')) {
-      constants.ATTACKER.STATE = 'stalled';
+      constants.ATTACKER.STATE = 'dribble';
     }
   },
   'shoot': function () {
