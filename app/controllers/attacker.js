@@ -9,6 +9,7 @@ var STATE = {
 
     if (bot.motors.state().contains('stalled')) {
       constants.ATTACKER.STATE = 'stalled';
+      constants.ATTACKER.STALL.TIMER = 200;
     }
 
     if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 6) {
@@ -25,7 +26,15 @@ var STATE = {
     //   constants.ATTACKER.STATE = 'shoot';
     // }
   },
-  'stalled': function () {},
+  'stalled': function () {
+    if (constants.ATTACKER.STALL.TIMER != 0) {
+      bot.motors.ratio([-1, -1], constants.CHASE_SPEED);
+      constants.ATTACKER.STALL.TIMER -= 1;
+    }
+    else if (!bot.motors.state().contains('stalled')) {
+      constants.ATTACKER.STATE = 'stalled';
+    }
+  },
   'shoot': function () {
     // output.info('attack', 'shooting'); // Somehow this was working...
     bot.motors.ratio([1, 1], constants.ATTACKER.SHOOT_SPEED);

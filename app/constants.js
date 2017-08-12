@@ -17,6 +17,10 @@ module.exports = {
     SHOOT_SPEED: 850,
     SHOOTING: false,
 
+    STALL: {
+      TIMER: 0
+    },
+
     DRIBBLE: {
       DRIVE_FORWARD_DISTANCE: 35
     }
