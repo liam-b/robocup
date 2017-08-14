@@ -7,17 +7,17 @@ var STATE = {
     var distance = bot.seeker.distance();
     var angle = bot.seeker.angle();
 
-    console.log(constants.DEFENDER.OVERLOAD_COUNTER);
+    console.log(constants.ATTACKER.OVERLOAD.COUNTER);
 
     if (bot.motors.state().contains('overloaded')) {
-      if (constants.DEFENDER.OVERLOAD_COUNTER == constants.DEFENDER.OVERLOAD_COUNTER_MAX) {
+      if (constants.ATTACKER.OVERLOAD.COUNTER == constants.ATTACKER.OVERLOAD.COUNTER_MAX) {
         constants.ATTACKER.STATE = 'overloaded';
         constants.ATTACKER.OVERLOAD.TIMER = 3; // 5 is about half a field width, iirc
       }
-      else constants.DEFENDER.OVERLOAD_COUNTER += 1;
+      else constants.ATTACKER.OVERLOAD.COUNTER += 1;
     }
     else {
-      constants.DEFENDER.OVERLOAD_COUNTER = 0;
+      constants.ATTACKER.OVERLOAD.COUNTER = 0;
     }
 
     if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 6) {
@@ -44,7 +44,7 @@ var STATE = {
       constants.ATTACKER.OVERLOAD.TIMER -= 1;
       console.log(constants.ATTACKER.OVERLOAD.TIMER);
     } else {
-      constants.DEFENDER.OVERLOAD_COUNTER = 0;
+      constants.ATTACKER.OVERLOAD.COUNTER = 0;
       constants.ATTACKER.STATE = 'dribble';
     }
   },
@@ -53,7 +53,7 @@ var STATE = {
     bot.motors.ratio([1, 1], constants.ATTACKER.SHOOT_SPEED);
     if (timer >= 10) {
       behaviors.kick(bot.kicker);
-      constants.DEFENDER.OVERLOAD_COUNTER = 0;
+      constants.ATTACKER.OVERLOAD.COUNTER = 0;
       constants.ATTACKER.STATE = 'dribble';
     } else {
       timer += 1;
