@@ -105,6 +105,7 @@ var STATE = {
     }
   },
   'start_retreat': function () {
+    constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.position();
     console.log(-constants.DEFENDER.RETREAT.MOTOR_ROTATIONS);
     bot.motors.ratioTo([1, 1], constants.DEFENDER.INTERCEPT.SPEED, -constants.DEFENDER.RETREAT.MOTOR_ROTATIONS);
     constants.DEFENDER.STATE = 'retreat';

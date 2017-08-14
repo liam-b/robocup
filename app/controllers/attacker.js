@@ -30,7 +30,7 @@ var STATE = {
     if (constants.ATTACKER.STALL.TIMER > 0) {
       bot.motors.ratio([-1, -1], constants.CHASE_SPEED);
       constants.ATTACKER.STALL.TIMER -= 1;
-      console.log(constants.ATTACKER.STALL.TIMER)
+      console.log(constants.ATTACKER.STALL.TIMER);
     } else {
     // else if (!bot.motors.state().contains('stalled')) {
       constants.ATTACKER.STATE = 'dribble';
