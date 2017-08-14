@@ -17,13 +17,12 @@ module.exports = {
     SHOOT_SPEED: 850,
     SHOOTING: false,
 
-    OVERLOAD_COUNTER: 0,
-    WAS_OVERLOADED_LAST_LOOP: false,
-    OVERLOAD_COUNTER_MAX: 10,
-
     OVERLOAD: {
       TIMER: 0,
-      SPEED: 600
+      SPEED: 600,
+      COUNTER: 0,
+      WAS_LAST_LOOP: false,
+      COUNTER_MAX: 10
     },
 
     DRIBBLE: {
