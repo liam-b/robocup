@@ -7,8 +7,8 @@ var STATE = {
     var distance = bot.seeker.distance();
     var angle = bot.seeker.angle();
 
-    if (bot.motors.state().contains('stalled')) {
-      constants.ATTACKER.STATE = 'stalled';
+    if (bot.motors.state().contains('overloaded')) {
+      constants.ATTACKER.STATE = 'overloaded';
       constants.ATTACKER.STALL.TIMER = 5;
     }
 
@@ -26,7 +26,7 @@ var STATE = {
     //   constants.ATTACKER.STATE = 'shoot';
     // }
   },
-  'stalled': function () {
+  'overloaded': function () {
     if (constants.ATTACKER.STALL.TIMER > 0) {
       bot.motors.ratio([-1, -1], constants.CHASE_SPEED);
       constants.ATTACKER.STALL.TIMER -= 1;
