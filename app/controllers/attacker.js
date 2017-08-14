@@ -9,7 +9,7 @@ var STATE = {
 
     if (bot.motors.state().contains('overloaded')) {
       constants.ATTACKER.STATE = 'overloaded';
-      constants.ATTACKER.STALL.TIMER = 3; // 5 is ~half a field width, iirc
+      constants.ATTACKER.OVERLOAD.TIMER = 3; // 5 is ~half a field width, iirc
     }
 
     if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 6) {
@@ -27,10 +27,10 @@ var STATE = {
     // }
   },
   'overloaded': function () {
-    if (constants.ATTACKER.STALL.TIMER > 0) {
-      bot.motors.ratio([-1, -1], constants.CHASE_SPEED);
-      constants.ATTACKER.STALL.TIMER -= 1;
-      console.log(constants.ATTACKER.STALL.TIMER);
+    if (constants.ATTACKER.OVERLOAD.TIMER > 0) {
+      bot.motors.ratio([-1, -1], constants.ATTACKER.OVERLOAD.SPEED);
+      constants.ATTACKER.OVERLOAD.TIMER -= 1;
+      console.log(constants.ATTACKER.OVERLOAD.TIMER);
     } else {
     // else if (!bot.motors.state().contains('stalled')) {
       constants.ATTACKER.STATE = 'dribble';

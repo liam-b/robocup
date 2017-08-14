@@ -17,8 +17,9 @@ module.exports = {
     SHOOT_SPEED: 850,
     SHOOTING: false,
 
-    STALL: {
-      TIMER: 0
+    OVERLOAD: {
+      TIMER: 0,
+      SPEED: 600
     },
 
     DRIBBLE: {
