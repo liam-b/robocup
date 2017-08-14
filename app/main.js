@@ -89,7 +89,8 @@ global.bot = {
   'compass': new io.sensor.Compass('in4', errorHandler),
   'seeker': new io.sensor.IRSeeker('in3', errorHandler),
 
-  'battery': new io.extra.Battery(errorHandler)
+  'battery': new io.extra.Battery(errorHandler),
+  'speaker': new io.sound.Speaker(errorHandler)
 };
 
 output.info('start', 'setting modes');

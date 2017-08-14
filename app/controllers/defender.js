@@ -45,6 +45,7 @@ var STATE = {
     else bot.motors.stop();
   },
   'pre_intercept': function () {
+    bot.speaker.play(500, 1000, 50);
     constants.DEFENDER.INTERCEPT.TIMER = 0;
     bot.motors.reset();
     // console.log(bot.motors);
