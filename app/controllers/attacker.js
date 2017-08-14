@@ -9,7 +9,7 @@ var STATE = {
 
     if (bot.motors.state().contains('overloaded')) {
       constants.ATTACKER.STATE = 'overloaded';
-      constants.ATTACKER.STALL.TIMER = 5;
+      constants.ATTACKER.STALL.TIMER = 3; // 5 is ~half a field width, iirc
     }
 
     if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 6) {
