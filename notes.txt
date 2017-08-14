@@ -19,3 +19,7 @@ wilson hall
 // presets system
 
 stop passing output to io classes
+
+sudo chvt 6
+
+sudo chvt 1
