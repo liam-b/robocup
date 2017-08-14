@@ -17,6 +17,9 @@ module.exports = {
     SHOOT_SPEED: 850,
     SHOOTING: false,
 
+    OVERLOAD_COUNTER: 0,
+    OVERLOAD_COUNTER_MAX: 10,
+
     OVERLOAD: {
       TIMER: 0,
       SPEED: 600

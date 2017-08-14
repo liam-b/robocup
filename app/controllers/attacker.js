@@ -8,8 +8,12 @@ var STATE = {
     var angle = bot.seeker.angle();
 
     if (bot.motors.state().contains('overloaded')) {
-      constants.ATTACKER.STATE = 'overloaded';
-      constants.ATTACKER.OVERLOAD.TIMER = 3; // 5 is about half a field width, iirc
+      constants.DEFENDER.OVERLOAD_COUNTER += 1;
+
+      if (constants.DEFENDER.OVERLOAD_COUNTER >= constants.DEFENDER.OVERLOAD_COUNTER_MAX) {
+        constants.ATTACKER.STATE = 'overloaded';
+        constants.ATTACKER.OVERLOAD.TIMER = 3; // 5 is about half a field width, iirc
+      }
     }
 
     if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 6) {
@@ -36,6 +40,7 @@ var STATE = {
       constants.ATTACKER.OVERLOAD.TIMER -= 1;
       console.log(constants.ATTACKER.OVERLOAD.TIMER);
     } else {
+      constants.DEFENDER.OVERLOAD_COUNTER = 0;
       constants.ATTACKER.STATE = 'dribble';
     }
   },
@@ -44,6 +49,7 @@ var STATE = {
     bot.motors.ratio([1, 1], constants.ATTACKER.SHOOT_SPEED);
     if (timer >= 10) {
       behaviors.kick(bot.kicker);
+      constants.DEFENDER.OVERLOAD_COUNTER = 0;
       constants.ATTACKER.STATE = 'dribble';
     } else {
       timer += 1;
