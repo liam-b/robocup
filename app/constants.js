@@ -18,6 +18,7 @@ module.exports = {
     SHOOTING: false,
 
     OVERLOAD_COUNTER: 0,
+    WAS_OVERLOADED_LAST_LOOP: false,
     OVERLOAD_COUNTER_MAX: 10,
 
     OVERLOAD: {

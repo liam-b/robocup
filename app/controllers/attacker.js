@@ -7,13 +7,21 @@ var STATE = {
     var distance = bot.seeker.distance();
     var angle = bot.seeker.angle();
 
-    if (bot.motors.state().contains('overloaded')) {
-      constants.DEFENDER.OVERLOAD_COUNTER += 1;
+    console.log(constants.DEFENDER.OVERLOAD_COUNTER);
 
-      if (constants.DEFENDER.OVERLOAD_COUNTER >= constants.DEFENDER.OVERLOAD_COUNTER_MAX) {
-        constants.ATTACKER.STATE = 'overloaded';
-        constants.ATTACKER.OVERLOAD.TIMER = 3; // 5 is about half a field width, iirc
+    if (bot.motors.state().contains('overloaded')) {
+      if (constants.DEFENDER.WAS_OVERLOADED_LAST_LOOP) {
+        if (constants.DEFENDER.OVERLOAD_COUNTER >= constants.DEFENDER.OVERLOAD_COUNTER_MAX) {
+          constants.ATTACKER.STATE = 'overloaded';
+          constants.ATTACKER.OVERLOAD.TIMER = 3; // 5 is about half a field width, iirc
+        }
+        else constants.DEFENDER.OVERLOAD_COUNTER += 1;
       }
+      else constants.DEFENDER.WAS_OVERLOADED_LAST_LOOP = true;
+    }
+    else {
+      constants.DEFENDER.OVERLOAD_COUNTER = 0;
+      constants.DEFENDER.WAS_OVERLOADED_LAST_LOOP = false;
     }
 
     if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 6) {
