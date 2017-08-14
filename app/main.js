@@ -100,6 +100,16 @@ bot.seeker.mode(bot.seeker.MODULATED);
 
 output.info('start', 'other setup');
 
+if (argumentPassed('-d') || argumentPassed('--defender')) {
+  start();
+  constants.ROLE = 'defend';
+}
+
+if (argumentPassed('-a') || argumentPassed('--attacker')) {
+  start();
+  constants.ROLE = 'attack';
+}
+
 io.buttons.event.pressed('up', function () {
   constants.BOT_STATE = 'role set';
   constants.ROLE = 'attack';

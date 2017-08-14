@@ -7,8 +7,6 @@ var STATE = {
     var distance = bot.seeker.distance();
     var angle = bot.seeker.angle();
 
-    // console.log(constants.ATTACKER.OVERLOAD.COUNTER);
-    //
     // if (bot.motors.state().contains('overloaded')) {
     //   if (constants.ATTACKER.OVERLOAD.COUNTER == constants.ATTACKER.OVERLOAD.COUNTER_MAX) {
     //     constants.ATTACKER.STATE = 'overloaded';
@@ -23,11 +21,11 @@ var STATE = {
     if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 6) {
       // bot.motors.ratio([1, 1], constants.CHASE_SPEED);
       bot.motors.ratio([1, 0.9], constants.CHASE_SPEED);
-      console.log('drive straight (slightly right)!');
+      // console.log('drive straight (slightly right)!');
     }
     else if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 4){
-      bot.motors.ratio([0.9, 1], constants.CHASE_SPEED);
-      console.log('drive straight (slightly left)!');
+      bot.motors.ratio([1, 0.9], constants.CHASE_SPEED);
+      // console.log('drive straight (slightly left)!');
     }
     else {
       behaviors.chase();
