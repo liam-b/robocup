@@ -20,9 +20,8 @@ var STATE = {
 
     if (constants.CHASE_LOST_TIMER >= 5) {
       constants.ATTACKER.STATE = 'lost_ball';
-      console.log(constants.CHASE_LOST_TIMER);
     }
-    console.log(constants.CHASE_LOST_TIMER);
+
     if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 6) {
       // bot.motors.ratio([1, 1], constants.CHASE_SPEED);
       bot.motors.ratio([0.9, 1], constants.CHASE_SPEED);
@@ -34,7 +33,6 @@ var STATE = {
     }
     else {
       behaviors.chase();
-      console.log(constants.CHASE_LOST_TIMER);
     }
     // console.log(helpers.position.relativeRotation(bot.compass.value()));
     // if (bot.seeker.value().distance > constants.KICK_RANGE && constants.KICK_ANGLE.indexOf(bot.seeker.value().angle) != -1 && (helpers.position.relativeRotation(bot.compass.value()) > 315 || helpers.position.relativeRotation(bot.compass.value()) < 45)) {
@@ -67,6 +65,7 @@ var STATE = {
     if (constants.CHASE_LOST_TIMER > 0) {
       bot.motors.ratio([-0.25, -1.75], constants.CHASE_SPEED);
       constants.CHASE_LOST_TIMER -= 1;
+      console.log('CHASE_LOST_TIMER subtracted from: ' + constants.CHASE_LOST_TIMER);
     }
     else {
       constants.ATTACKER.STATE = 'dribble';

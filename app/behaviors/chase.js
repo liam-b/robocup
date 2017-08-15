@@ -1,6 +1,6 @@
 module.exports = function () {
   var angle = bot.seeker.angle();
-  output.debug('chase', 'constants.CHASE_LOST_TIMER');
+
   switch (angle) {
     case 9:
       bot.motors.ratio([0.5, -0.5], constants.CHASE_SPEED);
@@ -33,7 +33,7 @@ module.exports = function () {
     case 0:
       constants.CHASE_LOST_TIMER += 1;
       // bot.motors.ratio([-0.25, -1.75], constants.CHASE_SPEED);
-      console.log(constants.CHASE_LOST_TIMER);
+      console.log('CHASE_LOST_TIMER added to: ' + constants.CHASE_LOST_TIMER);
       break;
   }
   // } else {
