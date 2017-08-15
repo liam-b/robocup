@@ -1,6 +1,6 @@
 module.exports = function () {
   var angle = bot.seeker.angle();
-  console.log(constants.CHASE_LOST_TIMER);
+  console.log('constants.CHASE_LOST_TIMER');
   switch (angle) {
     case 9:
       bot.motors.ratio([0.5, -0.5], constants.CHASE_SPEED);
