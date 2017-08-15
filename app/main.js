@@ -185,6 +185,7 @@ function loop () {
 
   if (constants.ROLE == 'attack') {
     output.trace('state', 'angle: ' + bot.seeker.angle() + ', dist: ' + bot.seeker.distance(), constants.ATTACKER.STATE);
-    controllers.attacker();
+    // controllers.attacker();
+    bot.motors.run(500, 500);
   }
 }
