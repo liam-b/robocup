@@ -18,6 +18,10 @@ var STATE = {
     //   constants.ATTACKER.OVERLOAD.COUNTER = 0;
     // }
 
+    if (constants.CHASE_LOST_TIMER >= 5) {
+      constants.ATTACKER.STATE = 'lost_ball';
+    }
+
     if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 6) {
       // bot.motors.ratio([1, 1], constants.CHASE_SPEED);
       bot.motors.ratio([0.9, 1], constants.CHASE_SPEED);
@@ -55,6 +59,15 @@ var STATE = {
       constants.ATTACKER.STATE = 'dribble';
     } else {
       timer += 1;
+    }
+  },
+  'lost_ball': function () {
+    if (constants.CHASE_LOST_TIMER > 0) {
+      bot.motors.ratio([-0.25, -1.75], constants.CHASE_SPEED);
+      constants.CHASE_LOST_TIMER -= 1;
+    }
+    else {
+      constants.ATTACKER.STATE = 'dribble';
     }
   }
 };
