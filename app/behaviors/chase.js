@@ -33,6 +33,7 @@ module.exports = function () {
     case 0:
       constants.CHASE_LOST_TIMER += 1;
       // bot.motors.ratio([-0.25, -1.75], constants.CHASE_SPEED);
+      console.log(constants.CHASE_LOST_TIMER);
       break;
   }
   // } else {
