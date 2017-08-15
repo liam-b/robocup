@@ -100,16 +100,6 @@ bot.seeker.mode(bot.seeker.MODULATED);
 
 output.info('start', 'other setup');
 
-if (argumentPassed('-d') || argumentPassed('--defender')) {
-  start();
-  constants.ROLE = 'defend';
-}
-
-if (argumentPassed('-a') || argumentPassed('--attacker')) {
-  start();
-  constants.ROLE = 'attack';
-}
-
 io.buttons.event.pressed('up', function () {
   constants.BOT_STATE = 'role set';
   constants.ROLE = 'attack';
@@ -151,9 +141,26 @@ io.buttons.event.pressed('left', function () {
 constants.BOT_STATE = 'post_setup';
 output.info('start', 'finished setup');
 
+if (argumentPassed('-d') || argumentPassed('--defender')) {
+  start();
+  constants.ROLE = 'defend';
+}
+
+if (argumentPassed('-a') || argumentPassed('--attacker')) {
+  start();
+  constants.ROLE = 'attack';
+}
+
 function start () {
-  // helpers.position.setRelativeNorth(bot.compass.value());
   bot.motors.run(100, 100);
+  
+  if (argumentPassed('-p') || argumentPassed('--pause')) {
+    constants.PAUSED = true;
+    bot.motors.stop();
+    bot.kicker.stop();
+    output.info('interrupt', 'program paused');
+  }
+  // helpers.position.setRelativeNorth(bot.compass.value());
 
   constants.BOT_STATE = 'looping';
   var loopInterval = setInterval(function () {
