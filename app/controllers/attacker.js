@@ -18,6 +18,10 @@ var STATE = {
     //   constants.ATTACKER.OVERLOAD.COUNTER = 0;
     // }
 
+    if (angle != 0) {
+      constants.CHASE_LOST_TIMER = 0;
+    }
+
     if (constants.CHASE_LOST_TIMER >= 5) {
       constants.ATTACKER.STATE = 'lost_ball';
     }
