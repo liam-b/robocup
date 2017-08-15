@@ -20,9 +20,9 @@ var STATE = {
 
     if (constants.CHASE_LOST_TIMER >= 5) {
       constants.ATTACKER.STATE = 'lost_ball';
-      console.log(constants.CHASE_LOST_TIMER)
+      console.log(constants.CHASE_LOST_TIMER);
     }
-
+    console.log(constants.CHASE_LOST_TIMER);
     if (distance > constants.ATTACKER.DRIBBLE.DRIVE_FORWARD_DISTANCE && angle == 6) {
       // bot.motors.ratio([1, 1], constants.CHASE_SPEED);
       bot.motors.ratio([0.9, 1], constants.CHASE_SPEED);
