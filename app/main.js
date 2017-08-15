@@ -29,11 +29,17 @@ require('./presets.js');
 if (constants.PRESETS.length > 0) output.info('main/presets', 'running presets: [' + constants.PRESETS.toString().replace(',', ', ') + ']');
 else output.info('main/presets', 'no active presets');
 
+// function errorHandler (err) {
+//   console.log(err.code);
+//   console.log(err.stack);
+//   output.exit('uncaught', 'fatal uncaught error', 'fatal');
+//   process.exit(1);
+// }
+
 function errorHandler (err) {
   console.log(err.code);
   console.log(err.stack);
-  output.exit('uncaught', 'fatal uncaught error', 'fatal');
-  process.exit(1);
+  output.fatal('uncaught', 'fatal uncaught error, continuing');
 }
 
 function quit (level) {
