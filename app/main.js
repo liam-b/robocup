@@ -100,19 +100,19 @@ bot.seeker.mode(bot.seeker.MODULATED);
 
 output.info('start', 'other setup');
 
-io.buttons.event.pressed('up', function () {
-  constants.BOT_STATE = 'role set';
-  constants.ROLE = 'attack';
-  output.info('start', 'bot set to play in attack');
-  start();
-});
-
-io.buttons.event.pressed('down', function () {
-  constants.BOT_STATE = 'role set';
-  constants.ROLE = 'defend';
-  output.info('start', 'bot set to play in defend');
-  start();
-});
+// io.buttons.event.pressed('up', function () {
+//   constants.BOT_STATE = 'role set';
+//   constants.ROLE = 'attack';
+//   output.info('start', 'bot set to play in attack');
+//   start();
+// });
+//
+// io.buttons.event.pressed('down', function () {
+//   constants.BOT_STATE = 'role set';
+//   constants.ROLE = 'defend';
+//   output.info('start', 'bot set to play in defend');
+//   start();
+// });
 
 io.buttons.event.pressed('enter', function () {
   constants.PAUSED = (constants.PAUSED) ? false : true;
@@ -153,7 +153,7 @@ if (argumentPassed('-a') || argumentPassed('--attacker')) {
 
 function start () {
   bot.motors.run(100, 100);
-  
+
   if (argumentPassed('-p') || argumentPassed('--pause')) {
     constants.PAUSED = true;
     bot.motors.stop();
