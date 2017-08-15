@@ -23,3 +23,5 @@ stop passing output to io classes
 sudo chvt 6
 
 sudo chvt 1
+
+left motor slightly stronger nrc2
