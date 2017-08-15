@@ -109,7 +109,7 @@ var STATE = {
     constants.DEFENDER.RETREAT.MOTOR_ROTATIONS = bot.motors.position();
     // console.log(-constants.DEFENDER.RETREAT.MOTOR_ROTATIONS);
     // output.debug('retreat', 'retreating ' + (-constants.DEFENDER.RETREAT.MOTOR_ROTATIONS + 30) + ' rotations');
-    bot.motors.ratioTo([1, 1], constants.DEFENDER.INTERCEPT.SPEED, -constants.DEFENDER.RETREAT.MOTOR_ROTATIONS + 30);
+    bot.motors.ratioTo([1, 1], constants.DEFENDER.INTERCEPT.SPEED, -constants.DEFENDER.RETREAT.MOTOR_ROTATIONS + 90);
     constants.DEFENDER.STATE = 'retreat';
   },
   'retreat': function () {
