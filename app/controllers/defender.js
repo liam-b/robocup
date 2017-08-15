@@ -132,7 +132,7 @@ var STATE = {
 
     bot.motors.stop();
 
-    if (!bot.kicker.state().contains('running') || bot.kicker.state().contains('stalled')) {
+    if (bot.kicker.state().contains('stalled')) {
       bot.kicker.stop();
     }
 
